@@ -1,8 +1,8 @@
 %define modname reports
 Summary: Issabel Reports Module
 Name: issabel-reports
-Version: 5.0.0
-Release: 3
+Version: 6.0.0
+Release: 1
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
