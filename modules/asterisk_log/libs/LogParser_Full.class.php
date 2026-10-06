@@ -20,7 +20,7 @@ class LogParser_Full
 	private $_hArchivo;
 	private $_sNombreArchivo;
 
-	function LogParser_Full($sRuta = '/var/log/asterisk', $pattern = 'full')
+	function __construct($sRuta = '/var/log/asterisk', $pattern = 'full')
 	{
 		$this->_pos_Fecha = NULL;
 		$this->_pos_OffsetMsg = NULL;

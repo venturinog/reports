@@ -72,7 +72,7 @@ class core_CDR
      * Constructor
      *
      */
-    public function core_CDR()
+    public function __construct()
     {
         $this->_dbCache   = array();
         $this->_pACL      = NULL;

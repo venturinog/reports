@@ -38,9 +38,9 @@ class SOAP_CDR extends core_CDR
      *
      * @param  object   $objSOAPServer     SOAP Server Object
      */
-    public function SOAP_CDR($objSOAPServer)
+    public function __construct($objSOAPServer)
     {
-         parent::core_CDR();
+         parent::__construct();
          $this->objSOAPServer = $objSOAPServer;
     }
 
