@@ -418,7 +418,7 @@ function grafic($du, $totIn, $totOut, $tot, $ext)
 		//$graph->title->SetColor("#444444");
 		
 		// Set A title for the plot
-		$graph->title->Set(utf8_decode(_tr("Number of calls extension")." $ext"));
+		$graph->title->Set(mb_convert_encoding(_tr("Number of calls extension")." $ext", 'ISO-8859-1', 'UTF-8'));
 		//$graph->title->SetFont(FF_VERDANA,FS_BOLD,18);
 		$graph->title->SetColor("#444444");
 		$graph->legend->Pos(0.1,0.2);
@@ -445,8 +445,8 @@ function grafic($du, $totIn, $totOut, $tot, $ext)
 		// NOTE: You can't have exploded slices with edges!
 		$p1->SetEdge("black");
 		
-		$p1->SetLegends(array(utf8_decode(_tr("Incoming Calls")." ").$totIn,
-		                      utf8_decode(_tr("Outcoming Calls")." ").$totOut ));
+		$p1->SetLegends(array(mb_convert_encoding(_tr("Incoming Calls")." ", 'ISO-8859-1', 'UTF-8').$totIn,
+		                      mb_convert_encoding(_tr("Outcoming Calls")." ", 'ISO-8859-1', 'UTF-8').$totOut ));
 		
 		$graph->Add($p1);
 		$graph->Stroke();
@@ -454,7 +454,7 @@ function grafic($du, $totIn, $totOut, $tot, $ext)
 	else
 	{
 		$graph = new CanvasGraph(500,140,"auto");
-		$title = new Text(utf8_decode(_tr("The extension")." $ext "._tr("does not have calls yet")));
+		$title = new Text(mb_convert_encoding(_tr("The extension")." $ext "._tr("does not have calls yet"), 'ISO-8859-1', 'UTF-8'));
 		$title->ParagraphAlign('center');
 		$title->SetFont(FF_FONT2,FS_BOLD);
 		$title->SetMargin(3);
@@ -462,7 +462,7 @@ function grafic($du, $totIn, $totOut, $tot, $ext)
 		$title->Center(0,500,70);
 		$graph->AddText($title);
 
-		$t1 = new Text(utf8_decode(_tr("No exist calls for this number")));
+		$t1 = new Text(mb_convert_encoding(_tr("No exist calls for this number"), 'ISO-8859-1', 'UTF-8'));
 		$t1->SetBox("white","black",true);
 		$t1->ParagraphAlign("center");
 		$t1->SetColor("black");
@@ -543,7 +543,7 @@ function grafic_queue(&$pDB_ast_cdr, &$pDB_ast, $queue, $dti, $dtf)
 
     // Especifico la escala
     $graph->SetScale("intlin");
-    $graph->title->Set(utf8_decode(_tr("Number Calls vs Queues")));
+    $graph->title->Set(mb_convert_encoding(_tr("Number Calls vs Queues"), 'ISO-8859-1', 'UTF-8'));
     $graph->xaxis->SetLabelFormatCallback('NameQueue');
     $graph->xaxis->SetLabelAngle(90);
     $graph->xaxis->SetColor("#666666","#444444");
@@ -574,7 +574,7 @@ function grafic_queue(&$pDB_ast_cdr, &$pDB_ast, $queue, $dti, $dtf)
         $graph->Stroke();
     else{
         $graph = new CanvasGraph(500,140,"auto");
-	$title = new Text(utf8_decode(_tr("No records found")));
+	$title = new Text(mb_convert_encoding(_tr("No records found"), 'ISO-8859-1', 'UTF-8'));
 	$title->ParagraphAlign('center');
 	$title->SetFont(FF_FONT2,FS_BOLD);
 	$title->SetMargin(3);
@@ -582,7 +582,7 @@ function grafic_queue(&$pDB_ast_cdr, &$pDB_ast, $queue, $dti, $dtf)
 	$title->Center(0,500,70);
 	$graph->AddText($title);
 
-	$t1 = new Text(utf8_decode(_tr("There are no data to present")));
+	$t1 = new Text(mb_convert_encoding(_tr("There are no data to present"), 'ISO-8859-1', 'UTF-8'));
 	$t1->SetBox("white","black",true);
 	$t1->ParagraphAlign("center");
 	$t1->SetColor("black");
@@ -649,7 +649,7 @@ function grafic_trunk(&$pDB_ast_cdr, &$pDB_ast, $module_name, $trunk, $dti, $dtf
 		//$graph->title->SetColor("#444444");
 		
 		// Set A title for the plot
-		$graph->title->Set(utf8_decode(_tr("Total Time")));
+		$graph->title->Set(mb_convert_encoding(_tr("Total Time"), 'ISO-8859-1', 'UTF-8'));
 		//$graph->title->SetFont(FF_VERDANA,FS_BOLD,18);
 		$graph->title->SetColor("#444444");
 		$graph->legend->Pos(0.05,0.2);
@@ -676,8 +676,8 @@ function grafic_trunk(&$pDB_ast_cdr, &$pDB_ast, $module_name, $trunk, $dti, $dtf
 		// NOTE: You can't have exploded slices with edges!
 		$p1->SetEdge("black");
 		
-		$p1->SetLegends(array( utf8_decode(_tr("Incoming Calls").":\n").SecToHHMMSS($arrResult[0]),
-		                       utf8_decode(_tr("Outcoming Calls").":\n").SecToHHMMSS($arrResult[1])));
+		$p1->SetLegends(array( mb_convert_encoding(_tr("Incoming Calls").":\n", 'ISO-8859-1', 'UTF-8').SecToHHMMSS($arrResult[0]),
+		                       mb_convert_encoding(_tr("Outcoming Calls").":\n", 'ISO-8859-1', 'UTF-8').SecToHHMMSS($arrResult[1])));
 		
 		$graph->Add($p1);
 		$graph->Stroke();
@@ -685,7 +685,7 @@ function grafic_trunk(&$pDB_ast_cdr, &$pDB_ast, $module_name, $trunk, $dti, $dtf
 	else
 	{
 		$graph = new CanvasGraph(400,140,"auto");
-		$title = new Text(utf8_decode(_tr("Total Time")));
+		$title = new Text(mb_convert_encoding(_tr("Total Time"), 'ISO-8859-1', 'UTF-8'));
 		$title->ParagraphAlign('center');
 		$title->SetFont(FF_FONT2,FS_BOLD);
 		$title->SetMargin(3);
@@ -693,7 +693,7 @@ function grafic_trunk(&$pDB_ast_cdr, &$pDB_ast, $module_name, $trunk, $dti, $dtf
 		$title->Center(0,400,70);
 		$graph->AddText($title);
 
-		$t1 = new Text(utf8_decode(_tr("There are no data to present")));
+		$t1 = new Text(mb_convert_encoding(_tr("There are no data to present"), 'ISO-8859-1', 'UTF-8'));
 		$t1->SetBox("white","black",true);
 		$t1->ParagraphAlign("center");
 		$t1->SetColor("black");
@@ -765,7 +765,7 @@ function grafic_trunk2(&$pDB_ast_cdr, &$pDB_ast, $module_name, $trunk, $dti, $dt
 		//$graph->title->SetColor("#444444");
 		
 		// Set A title for the plot
-		$graph->title->Set(utf8_decode(_tr("Number of Calls")));
+		$graph->title->Set(mb_convert_encoding(_tr("Number of Calls"), 'ISO-8859-1', 'UTF-8'));
 		//$graph->title->SetFont(FF_VERDANA,FS_BOLD,18);
 		$graph->title->SetColor("#444444");
 		$graph->legend->Pos(0.04,0.2);
@@ -792,8 +792,8 @@ function grafic_trunk2(&$pDB_ast_cdr, &$pDB_ast, $module_name, $trunk, $dti, $dt
 		// NOTE: You can't have exploded slices with edges!
 		$p1->SetEdge("black");
 		
-		$p1->SetLegends(array( utf8_decode(_tr("Incoming Calls").":  ").$arrResult[0],
-		                       utf8_decode(_tr("Outcoming Calls").": ").$arrResult[1] ));
+		$p1->SetLegends(array( mb_convert_encoding(_tr("Incoming Calls").":  ", 'ISO-8859-1', 'UTF-8').$arrResult[0],
+		                       mb_convert_encoding(_tr("Outcoming Calls").": ", 'ISO-8859-1', 'UTF-8').$arrResult[1] ));
 		
 		$graph->Add($p1);
 		$graph->Stroke();
@@ -802,7 +802,7 @@ function grafic_trunk2(&$pDB_ast_cdr, &$pDB_ast, $module_name, $trunk, $dti, $dt
 	{
 
 		$graph = new CanvasGraph(400,140,"auto");
-		$title = new Text(utf8_decode(_tr("Number of Calls")));
+		$title = new Text(mb_convert_encoding(_tr("Number of Calls"), 'ISO-8859-1', 'UTF-8'));
 		$title->ParagraphAlign('center');
 		$title->SetFont(FF_FONT2,FS_BOLD);
 		$title->SetMargin(3);
@@ -810,7 +810,7 @@ function grafic_trunk2(&$pDB_ast_cdr, &$pDB_ast, $module_name, $trunk, $dti, $dt
 		$title->Center(0,400,70);
 		$graph->AddText($title);
 
-		$t1 = new Text(utf8_decode(_tr("There are no data to present")));
+		$t1 = new Text(mb_convert_encoding(_tr("There are no data to present"), 'ISO-8859-1', 'UTF-8'));
 		$t1->SetBox("white","black",true);
 		$t1->ParagraphAlign("center");
 		$t1->SetColor("black");

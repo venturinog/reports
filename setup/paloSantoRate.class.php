@@ -241,7 +241,7 @@ class paloRate {
                     $id  = $value[0];
                     $tarifa[$id]['rate'] = $value[1];
                     $tarifa[$id]['offset'] = $value[2];
-                    $tarifa[$id]['name'] = utf8_decode($value[3]);
+                    $tarifa[$id]['name'] = mb_convert_encoding($value[3], 'ISO-8859-1', 'UTF-8');
                     $tarifa[$id]['id'] = $id;
                 }
             }
