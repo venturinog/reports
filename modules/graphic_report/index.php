@@ -21,13 +21,9 @@
   +----------------------------------------------------------------------+
   $Id: default.conf.php,v 1.1 2008-09-01 10:09:57 jjvega Exp $ 
   $Id: default.conf.php,v 1.1 2015-02-23 11:05:27 achuto, dpanchana Exp $ */
-require_once("jpgraph/jpgraph.php");
-require_once("jpgraph/jpgraph_line.php");
-require_once("jpgraph/jpgraph_pie.php");
-require_once("jpgraph/jpgraph_pie3d.php");
-require_once("jpgraph/jpgraph_bar.php");
-require_once("jpgraph/jpgraph_canvas.php");
-require_once("jpgraph/jpgraph_canvtools.php");
+// Graficos con GD: reemplaza jpgraph, que no existe en EL10 y cuya API 4.x es
+// incompatible. Ver libs/gdchart.php.
+require_once dirname(__FILE__)."/libs/gdchart.php";
 require_once "libs/paloSantoDB.class.php";
 require_once "libs/paloSantoSampler.class.php";
 require_once "libs/paloSantoTrunk.class.php";
@@ -400,80 +396,21 @@ function grafic($du, $totIn, $totOut, $tot, $ext)
 	if( $tot != 0 )
 	{
 		$freeDisco = 100 - $usoDisco;
-		
-		// Some data
-		$data = array($usoDisco, $freeDisco);
-		
-		// Create the Pie Graph.
-		$graph = new PieGraph(630, 170,"auto");
-		//$graph->SetShadow();
-		$graph->SetMarginColor('#fafafa');
-		$graph->SetFrame(true,'#999999');
-		
-		$graph->legend->SetFillColor("#fafafa");
-		//$graph->legend->Pos(0.012, 0.5, "right","center");
-		$graph->legend->SetColor("#444444", "#999999");
-		$graph->legend->SetShadow('gray@0.6',4);
-		
-		//$graph->title->SetColor("#444444");
-		
-		// Set A title for the plot
-		$graph->title->Set(mb_convert_encoding(_tr("Number of calls extension")." $ext", 'ISO-8859-1', 'UTF-8'));
-		//$graph->title->SetFont(FF_VERDANA,FS_BOLD,18);
-		$graph->title->SetColor("#444444");
-		$graph->legend->Pos(0.1,0.2);
-		
-		// Create 3D pie plot
-		$p1 = new PiePlot3d($data);
-		//$p1->SetTheme("water");
-		$p1->SetSliceColors( array("#3333cc", "#9999cc", "#CC3333", "#72394a", "#aa3424") ); 
-		$p1->SetCenter(0.4);
-		$p1->SetSize(80);
-		
-		// Adjust projection angle
-		$p1->SetAngle(45);
-		
-		// Adjsut angle for first slice
-		$p1->SetStartAngle(45);
-		
-		// Display the slice values
-		//$p1->value->SetFont(FF_ARIAL,FS_BOLD,11);
-		//$p1->value->SetColor("navy");
-		$p1->value->SetColor("black");
-		
-		// Add colored edges to the 3D pies
-		// NOTE: You can't have exploded slices with edges!
-		$p1->SetEdge("black");
-		
-		$p1->SetLegends(array(mb_convert_encoding(_tr("Incoming Calls")." ", 'ISO-8859-1', 'UTF-8').$totIn,
-		                      mb_convert_encoding(_tr("Outcoming Calls")." ", 'ISO-8859-1', 'UTF-8').$totOut ));
-		
-		$graph->Add($p1);
-		$graph->Stroke();
+
+		// Pastel 3D con GD (reemplaza PieGraph/PiePlot3d de jpgraph).
+		gdchart_pie(630, 170,
+			_tr("Number of calls extension")." $ext",
+			array($usoDisco, $freeDisco),
+			array(_tr("Incoming Calls")." ".$totIn,
+			      _tr("Outcoming Calls")." ".$totOut),
+			0.4, 160, 16);
 	}
 	else
 	{
-		$graph = new CanvasGraph(500,140,"auto");
-		$title = new Text(mb_convert_encoding(_tr("The extension")." $ext "._tr("does not have calls yet"), 'ISO-8859-1', 'UTF-8'));
-		$title->ParagraphAlign('center');
-		$title->SetFont(FF_FONT2,FS_BOLD);
-		$title->SetMargin(3);
-		$title->SetAlign('center');
-		$title->Center(0,500,70);
-		$graph->AddText($title);
-
-		$t1 = new Text(mb_convert_encoding(_tr("No exist calls for this number"), 'ISO-8859-1', 'UTF-8'));
-		$t1->SetBox("white","black",true);
-		$t1->ParagraphAlign("center");
-		$t1->SetColor("black");
-
-		$graph->AddText($t1);
-		$graph->img->SetColor('navy');
-		$graph->img->SetTextAlign('center','bottom');
-		$graph->img->Rectangle(0,0,499,139);
-		$graph->Stroke();
-	}
-}
+		gdchart_nodata(500, 140,
+			_tr("The extension")." $ext "._tr("does not have calls yet"),
+			_tr("No exist calls for this number"));
+	}}
 
 function grafic_queue(&$pDB_ast_cdr, &$pDB_ast, $queue, $dti, $dtf)
 {
@@ -530,71 +467,21 @@ function grafic_queue(&$pDB_ast_cdr, &$pDB_ast, $queue, $dti, $dtf)
 
     //======================================================
 
-    $graph = new Graph($ancho,250);
-    $graph->SetMargin(50,$margenDerecho,30,40);
-    $graph->SetMarginColor('#fafafa');
-    $graph->SetFrame(true,'#999999');
-
-    $graph->legend->SetFillColor("#fafafa");
-    $graph->legend->Pos(0.012, 0.5, "right","center");
-    $graph->legend->SetColor("#444444", "#999999");
-    $graph->legend->SetShadow('gray@0.6',4);
-    $graph->title->SetColor("#444444");
-
-    // Especifico la escala
-    $graph->SetScale("intlin");
-    $graph->title->Set(mb_convert_encoding(_tr("Number Calls vs Queues"), 'ISO-8859-1', 'UTF-8'));
-    $graph->xaxis->SetLabelFormatCallback('NameQueue');
-    $graph->xaxis->SetLabelAngle(90);
-    $graph->xaxis->SetColor("#666666","#444444");
-
-    if(is_array($arrData) && count($arrData) > 0 ){
-        foreach($arrData as $k => $arrMuestra){
+    if (is_array($arrData) && count($arrData) > 0) {
+        foreach ($arrData as $k => $arrMuestra) {
             $arrTimestamp[$k] = $k; /* X */
-            
-            //$arr = $objPalo_AST_CDR->countQueue( $arrMuestra['id'], $dti, $dtf);
-            $arr = $objPalo_AST_CDR->countQueue( $arrMuestra[0], $dti, $dtf);
+            $arr = $objPalo_AST_CDR->countQueue($arrMuestra[0], $dti, $dtf);
             $arrValue[$k] = $arr[0]; /* Y */
         }
-        
-        if( count($arrTimestamp) > 0 ){
-            $numResults++;
-            $line = new LinePlot($arrValue, $arrTimestamp);
-            $line->SetStepStyle();
-            $line->SetColor("#00cc00");
-            $line->setFillColor("#00cc00");
-            $line->SetLegend("# "._tr("Calls"));
-            $graph->Add($line);
-            $graph->yaxis->SetColor("#00cc00");
-        }
-    }
-    //======================================================================================
-
-    if ($numResults>0)
-        $graph->Stroke();
-    else{
-        $graph = new CanvasGraph(500,140,"auto");
-	$title = new Text(mb_convert_encoding(_tr("No records found"), 'ISO-8859-1', 'UTF-8'));
-	$title->ParagraphAlign('center');
-	$title->SetFont(FF_FONT2,FS_BOLD);
-	$title->SetMargin(3);
-	$title->SetAlign('center');
-	$title->Center(0,500,70);
-	$graph->AddText($title);
-
-	$t1 = new Text(mb_convert_encoding(_tr("There are no data to present"), 'ISO-8859-1', 'UTF-8'));
-	$t1->SetBox("white","black",true);
-	$t1->ParagraphAlign("center");
-	$t1->SetColor("black");
-
-	$graph->AddText($t1);
-	$graph->img->SetColor('navy');
-	$graph->img->SetTextAlign('center','bottom');
-	$graph->img->Rectangle(0,0,499,139);
-	$graph->Stroke();
-
+        if (count($arrTimestamp) > 0) $numResults++;
     }
 
+    if ($numResults > 0) {
+        // Grafico de lineas con GD.
+        gdchart_line((int)$ancho, 250, _tr("Number Calls vs Queues"), $arrValue, $arrayX);
+    } else {
+        gdchart_nodata(500, 140, _tr("No records found"), _tr("There are no data to present"));
+    }
 }
 
 function NameQueue($aVal){
@@ -631,80 +518,20 @@ function grafic_trunk(&$pDB_ast_cdr, &$pDB_ast, $module_name, $trunk, $dti, $dtf
 	if( $tot != 0 )
 	{
 		$freeDisco = 100 - $usoDisco;
-		
-		// Some data
-		$data = array($usoDisco, $freeDisco);
-		
-		// Create the Pie Graph.
-		$graph = new PieGraph(400, 170,"auto");
-		//$graph->SetShadow();
-		$graph->SetMarginColor('#fafafa');
-		$graph->SetFrame(true,'#999999');
-		
-		$graph->legend->SetFillColor("#fafafa");
-		//$graph->legend->Pos(0.012, 0.5, "right","center");
-		$graph->legend->SetColor("#444444", "#999999");
-		$graph->legend->SetShadow('gray@0.6',4);
-		
-		//$graph->title->SetColor("#444444");
-		
-		// Set A title for the plot
-		$graph->title->Set(mb_convert_encoding(_tr("Total Time"), 'ISO-8859-1', 'UTF-8'));
-		//$graph->title->SetFont(FF_VERDANA,FS_BOLD,18);
-		$graph->title->SetColor("#444444");
-		$graph->legend->Pos(0.05,0.2);
-		
-		// Create 3D pie plot
-		$p1 = new PiePlot3d($data);
-		//$p1->SetTheme("water");
-		$p1->SetSliceColors( array("#3333cc", "#9999cc", "#CC3333", "#72394a", "#aa3424") ); 
-		$p1->SetCenter(0.3);
-		$p1->SetSize(80);
-		
-		// Adjust projection angle
-		$p1->SetAngle(45);
-		
-		// Adjsut angle for first slice
-		$p1->SetStartAngle(45);
-		
-		// Display the slice values
-		//$p1->value->SetFont(FF_ARIAL,FS_BOLD,11);
-		//$p1->value->SetColor("navy");
-		$p1->value->SetColor("black");
-		
-		// Add colored edges to the 3D pies
-		// NOTE: You can't have exploded slices with edges!
-		$p1->SetEdge("black");
-		
-		$p1->SetLegends(array( mb_convert_encoding(_tr("Incoming Calls").":\n", 'ISO-8859-1', 'UTF-8').SecToHHMMSS($arrResult[0]),
-		                       mb_convert_encoding(_tr("Outcoming Calls").":\n", 'ISO-8859-1', 'UTF-8').SecToHHMMSS($arrResult[1])));
-		
-		$graph->Add($p1);
-		$graph->Stroke();
+
+		gdchart_pie(400, 170,
+			_tr("Total Time"),
+			array($usoDisco, $freeDisco),
+			array(_tr("Incoming Calls").": ".SecToHHMMSS($arrResult[0]),
+			      _tr("Outcoming Calls").": ".SecToHHMMSS($arrResult[1])),
+			0.3, 140, 16);
 	}
 	else
 	{
-		$graph = new CanvasGraph(400,140,"auto");
-		$title = new Text(mb_convert_encoding(_tr("Total Time"), 'ISO-8859-1', 'UTF-8'));
-		$title->ParagraphAlign('center');
-		$title->SetFont(FF_FONT2,FS_BOLD);
-		$title->SetMargin(3);
-		$title->SetAlign('center');
-		$title->Center(0,400,70);
-		$graph->AddText($title);
-
-		$t1 = new Text(mb_convert_encoding(_tr("There are no data to present"), 'ISO-8859-1', 'UTF-8'));
-		$t1->SetBox("white","black",true);
-		$t1->ParagraphAlign("center");
-		$t1->SetColor("black");
-
-		$graph->AddText($t1);
-		$graph->img->SetColor('navy');
-		$graph->img->SetTextAlign('center','bottom');
-		$graph->img->Rectangle(0,0,399,139);
-		$graph->Stroke();
-	}
-}
+		gdchart_nodata(400, 140,
+			_tr("Total Time"),
+			_tr("There are no data to present"));
+	}}
 
 function SecToHHMMSS($sec)
 {
@@ -747,81 +574,19 @@ function grafic_trunk2(&$pDB_ast_cdr, &$pDB_ast, $module_name, $trunk, $dti, $dt
 	if( $tot != 0 )
 	{
 		$freeDisco = 100 - $usoDisco;
-		
-		// Some data
-		$data = array($usoDisco, $freeDisco);
-		
-		// Create the Pie Graph.
-		$graph = new PieGraph(400, 170,"auto");
-		//$graph->SetShadow();
-		$graph->SetMarginColor('#fafafa');
-		$graph->SetFrame(true,'#999999');
-		
-		$graph->legend->SetFillColor("#fafafa");
-		//$graph->legend->Pos(0.012, 0.5, "right","center");
-		$graph->legend->SetColor("#444444", "#999999");
-		$graph->legend->SetShadow('gray@0.6',4);
-		
-		//$graph->title->SetColor("#444444");
-		
-		// Set A title for the plot
-		$graph->title->Set(mb_convert_encoding(_tr("Number of Calls"), 'ISO-8859-1', 'UTF-8'));
-		//$graph->title->SetFont(FF_VERDANA,FS_BOLD,18);
-		$graph->title->SetColor("#444444");
-		$graph->legend->Pos(0.04,0.2);
-		
-		// Create 3D pie plot
-		$p1 = new PiePlot3d($data);
-		//$p1->SetTheme("water");
-		$p1->SetSliceColors( array("#3333cc", "#9999cc", "#CC3333", "#72394a", "#aa3424") ); 
-		$p1->SetCenter(0.3);
-		$p1->SetSize(80);
-		
-		// Adjust projection angle
-		$p1->SetAngle(45);
-		
-		// Adjsut angle for first slice
-		$p1->SetStartAngle(45);
-		
-		// Display the slice values
-		//$p1->value->SetFont(FF_ARIAL,FS_BOLD,11);
-		//$p1->value->SetColor("navy");
-		$p1->value->SetColor("black");
-		
-		// Add colored edges to the 3D pies
-		// NOTE: You can't have exploded slices with edges!
-		$p1->SetEdge("black");
-		
-		$p1->SetLegends(array( mb_convert_encoding(_tr("Incoming Calls").":  ", 'ISO-8859-1', 'UTF-8').$arrResult[0],
-		                       mb_convert_encoding(_tr("Outcoming Calls").": ", 'ISO-8859-1', 'UTF-8').$arrResult[1] ));
-		
-		$graph->Add($p1);
-		$graph->Stroke();
+
+		gdchart_pie(400, 170,
+			_tr("Number of Calls"),
+			array($usoDisco, $freeDisco),
+			array(_tr("Incoming Calls").":  ".$arrResult[0],
+			      _tr("Outcoming Calls").": ".$arrResult[1]),
+			0.3, 140, 16);
 	}
 	else
 	{
-
-		$graph = new CanvasGraph(400,140,"auto");
-		$title = new Text(mb_convert_encoding(_tr("Number of Calls"), 'ISO-8859-1', 'UTF-8'));
-		$title->ParagraphAlign('center');
-		$title->SetFont(FF_FONT2,FS_BOLD);
-		$title->SetMargin(3);
-		$title->SetAlign('center');
-		$title->Center(0,400,70);
-		$graph->AddText($title);
-
-		$t1 = new Text(mb_convert_encoding(_tr("There are no data to present"), 'ISO-8859-1', 'UTF-8'));
-		$t1->SetBox("white","black",true);
-		$t1->ParagraphAlign("center");
-		$t1->SetColor("black");
-
-		$graph->AddText($t1);
-		$graph->img->SetColor('navy');
-		$graph->img->SetTextAlign('center','bottom');
-		$graph->img->Rectangle(0,0,399,139);
-		$graph->Stroke();
-
-	}
-}
+		gdchart_nodata(400, 140,
+			_tr("Number of Calls"),
+			_tr("There are no data to present"));
+	}}
 
 ?>
