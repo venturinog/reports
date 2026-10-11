@@ -1,3 +1,15 @@
+/* Chart.js v2: colores de texto/líneas según el tema (claro/oscuro) */
+var issDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+var issFg = issDark ? '#e6e9ee' : '#667382';
+var issGrid = issDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.10)';
+if (window.Chart && Chart.defaults) {
+  if (Chart.defaults.global) Chart.defaults.global.defaultFontColor = issFg;
+  if (Chart.defaults.scale && Chart.defaults.scale.gridLines) {
+    Chart.defaults.scale.gridLines.color = issGrid;
+    Chart.defaults.scale.gridLines.zeroLineColor = issGrid;
+  }
+}
+
 $(document).ready( function () {
   console.log(noData);
   if (noData == 0) {
@@ -27,7 +39,7 @@ function buildChart(chartType) {
       labels: chartLabels.split(","),
       datasets: [
         {
-        backgroundColor: ["#522b76", "#3498db"],
+        backgroundColor: ["#572364", "#3498db"],
         data: chartData.split(","),
         },
       ],
@@ -67,7 +79,7 @@ function buildChart(chartType) {
       labels: chartLabels.split(","),
       datasets: [
         {
-        backgroundColor: "#522b76",
+        backgroundColor: "#572364",
         data: chartData.split(","),
         },
       ],
@@ -110,7 +122,7 @@ function buildChart(chartType) {
       labels: chartLabels.split(","),
       datasets: [
         {
-        backgroundColor: ["#522b76", "#3498db"],
+        backgroundColor: ["#572364", "#3498db"],
         data: chartData.split(","),
         },
       ],
@@ -163,7 +175,7 @@ function buildChart(chartType) {
       labels: chartLabels.split(","),
       datasets: [
         {
-        backgroundColor: ["#522b76", "#3498db"],
+        backgroundColor: ["#572364", "#3498db"],
         data: chartData2.split(","),
         },
       ],

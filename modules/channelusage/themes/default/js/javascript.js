@@ -10,6 +10,9 @@ function buildChart() {
         ) {
         window.myChart1.destroy();
     }
+  var issDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+  var issFg = issDark ? '#e6e9ee' : '#667382';
+  var issGrid = issDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.10)';
   var ctx = document.getElementById("myChart").getContext('2d');
   window.myChart1 = new Chart(ctx, {
     type: 'line',
@@ -19,8 +22,8 @@ function buildChart() {
         {
         label: 'Total',
         data: total,
-        borderColor: "#522b76",
-        backgroundColor: "#522b76",
+        borderColor: "#572364",
+        backgroundColor: "#572364",
         fill: false,
         },
         {
@@ -61,6 +64,7 @@ function buildChart() {
       ],
     },
     options: {
+        legend: { labels: { fontColor: issFg } },
         scales: {
           xAxes: [{
           type: 'time',
@@ -68,7 +72,13 @@ function buildChart() {
             timezone: localtz,
             unit: 'minute',
             tooltipFormat: 'lll',
-            }
+            },
+          ticks: { fontColor: issFg },
+          gridLines: { color: issGrid, zeroLineColor: issGrid }
+          }],
+          yAxes: [{
+          ticks: { beginAtZero: true, fontColor: issFg },
+          gridLines: { color: issGrid, zeroLineColor: issGrid }
           }]
        }, 
     scaleShowValues: true,

@@ -5,7 +5,7 @@
 }
 .table-striped > tbody > tr.selected > td,
 .table-striped > tbody > tr.selected > th {
-background-color: #522b76;
+background-color: #572364;
 background-image: linear-gradient(#cccccc, #b3b3b3, #8c8c8c, #737373);
 }
 </style>
@@ -25,7 +25,7 @@ var module = "{$module_name}";
         #loader {
             border: 8px solid #f3f3f3;
             border-radius: 50%;
-            border-top: 8px solid #522b76;
+            border-top: 8px solid #572364;
             width: 30px;
             height: 30px;
             animation: spin 1s linear infinite;
@@ -55,7 +55,7 @@ mark {
       color: white;
 }
 #myChart{
-               background-color:white; 
+               background-color: var(--tblr-bg-surface, #fff);
                }
 
 </style>

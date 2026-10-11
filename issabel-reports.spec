@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 3
+Release: 4
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Sat Oct 10 2026 Issabel Foundation <info@issabel.org> - 6.0.0-4
+- Reports: make the CDR, Channel Usage and Graphic Report charts follow the dark
+  theme (canvas background and Chart.js text/grid colours) and use the official
+  Issabel brand purple (#572364).
+
 * Fri Oct 09 2026 Issabel Foundation <info@issabel.org> - 6.0.0-3
 - Require the unversioned PHP packages (php-*, 8.3 on EL10) instead of the
   versioned php8.4-*, which conflict with the PHP 8.3 in the netinstall base.
