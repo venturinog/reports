@@ -101,7 +101,7 @@
                     <a href="{$url}&exportcsv=yes&rawmode=yes">
             <div class="menuItem" role="menuitem" id="CSV" aria-disabled="false">
                 <div>
-                <i style="color:#99c" class="fa fa-file-text-o"></i>&nbsp;&nbsp;CSV
+                <i style="color: var(--iss-text-muted)" class="fa fa-file-text-o"></i>&nbsp;&nbsp;CSV
                 </div>
             </div>
             </a>
@@ -126,7 +126,7 @@
         <div class="neo-table-header-row-navigation">
             {if $pagingShow and $numPage>1}
                 {if $start<=1}
-                    <i class="fa fa-step-backward" style="color:#ccc;"></i>&nbsp;<i class="fa fa-backward" style="color:#ccc"></i>
+                    <i class="fa fa-step-backward" style="color: var(--iss-text-dim);"></i>&nbsp;<i class="fa fa-backward" style="color: var(--iss-text-dim)"></i>
                 {else}
                     <a href="{$url}&nav=start&start={$start}" class="fa fa-step-backward neo-navigation-arrow-active" alt='{$lblStart}'></a>
                     <a href="{$url}&nav=previous&start={$start}" class="fa fa-backward neo-navigation-arrow-active" alt='{$lblPrevious}'></a>
@@ -135,7 +135,7 @@
                 <input type="text"  value="{$currentPage}" size="2" align="absmiddle" name="page" id="pageup" />&nbsp;{$lblof}&nbsp;{$numPage}
                 <input type="hidden" value="bypage" name="nav" />
                 {if $end==$total}
-                    <i class="fa fa-forward" style="color:#ccc;"></i>&nbsp;<i class="fa fa-step-forward" style="color:#ccc"></i>
+                    <i class="fa fa-forward" style="color: var(--iss-text-dim);"></i>&nbsp;<i class="fa fa-step-forward" style="color: var(--iss-text-dim)"></i>
                 {else}
                     <a href="{$url}&nav=next&start={$start}" class="fa fa-forward neo-navigation-arrow-active" alt='{$lblNext}'></a>
                     <a href="{$url}&nav=end&start={$start}" class="fa fa-step-forward neo-navigation-arrow-active" alt='{$lblEnd}'></a>
@@ -155,7 +155,7 @@
             {foreach from=$arrFiltersControl key=k item=filterc name=filtersctrl}
                 <span class="neo-filter-control"><i>{$filterc.msg}</i>&nbsp;
                 {if $filterc.defaultFilter eq no}
-                    <a href="{$url}&name_delete_filters={$filterc.filters}" style="color:#ccc;text-decoration:none;"><i class="fa fa-remove"></i></a>
+                    <a href="{$url}&name_delete_filters={$filterc.filters}" style="color: var(--iss-text-dim);text-decoration:none;"><i class="fa fa-remove"></i></a>
                 {/if}
                 </span>
             {/foreach}
@@ -189,7 +189,7 @@
             <div class="neo-table-header-row-navigation">
             {if $pagingShow and $numPage>1}
                 {if $start<=1}
-                    <i class="fa fa-step-backward" style="color:#ccc;"></i>&nbsp;<i class="fa fa-backward" style="color:#ccc"></i>
+                    <i class="fa fa-step-backward" style="color: var(--iss-text-dim);"></i>&nbsp;<i class="fa fa-backward" style="color: var(--iss-text-dim)"></i>
                 {else}
                     <a href="{$url}&nav=start&start={$start}" class="fa fa-step-backward neo-navigation-arrow-active" alt='{$lblStart}'></a>
                     <a href="{$url}&nav=previous&start={$start}" class="fa fa-backward neo-navigation-arrow-active" alt='{$lblPrevious}'></a>
@@ -198,7 +198,7 @@
                 <input type="text"  value="{$currentPage}" size="2" align="absmiddle" name="page" id="pagedown" />&nbsp;{$lblof}&nbsp;{$numPage}
                 <input type="hidden" value="bypage" name="nav" />
                 {if $end==$total}
-                    <i class="fa fa-forward" style="color:#ccc;"></i>&nbsp;<i class="fa fa-step-forward" style="color:#ccc"></i>
+                    <i class="fa fa-forward" style="color: var(--iss-text-dim);"></i>&nbsp;<i class="fa fa-step-forward" style="color: var(--iss-text-dim)"></i>
                 {else}
                     <a href="{$url}&nav=next&start={$start}" class="fa fa-forward neo-navigation-arrow-active" alt='{$lblNext}'></a>
                     <a href="{$url}&nav=end&start={$start}" class="fa fa-step-forward neo-navigation-arrow-active" alt='{$lblEnd}'></a>

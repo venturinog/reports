@@ -78,7 +78,7 @@
         <td class="table_title_row" align="center">{$Status}</td>
     </tr>
     {foreach from=$arrRates key=id item=rate name=rates}
-         <tr onmouseout="this.style.backgroundColor='#ffffff';" onmouseover="this.style.backgroundColor='#f2f2f2';" style="background-color: #FFFFFF;">
+         <tr onmouseout="this.style.backgroundColor='var(--iss-surface)';" onmouseover="this.style.backgroundColor='var(--iss-surface-2)';" style="background-color: var(--iss-surface);">
         {if $smarty.foreach.rates.first}
             {foreach from=$rate key=id2 item=rate2 name=rates2}
             {if $id2 neq 'id'}

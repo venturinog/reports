@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 4
+Release: 5
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,10 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Sun Oct 11 2026 Issabel Foundation <info@issabel.org> - 6.0.0-5
+- Remove hardcoded light/dark colours from the asterisk_log and billing_rates
+  templates so they follow the theme in dark mode.
+
 * Sat Oct 10 2026 Issabel Foundation <info@issabel.org> - 6.0.0-4
 - Reports: make the CDR, Channel Usage and Graphic Report charts follow the dark
   theme (canvas background and Chart.js text/grid colours) and use the official
