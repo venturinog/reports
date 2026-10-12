@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 7
+Release: 8
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Mon Oct 12 2026 Issabel Foundation <info@issabel.org> - 6.0.0-8
+- Switch the CDR filter to the Bootstrap 5 collapse attribute
+  (data-bs-toggle); the BS3 data-toggle was ignored by the modern theme,
+  leaving the Show Filter button dead.
+
 * Mon Oct 12 2026 Issabel Foundation <info@issabel.org> - 6.0.0-7
 - Bind the CDR "Show Filter" button as well (it had no click handler, only
   the caret did) and add the missing datatables.en.json language file so
