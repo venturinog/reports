@@ -79,9 +79,9 @@
         {/foreach}
 
         {if !empty($contentFilter)}
-            <button type='button' class="neo-table-button-filter-left">
+            <button type='button' class="neo-table-button-filter-left" id="neo-table-button-filter-left">
                 {if $AS_OPTION eq 0} <i class='fa fa-filter'></i> {/if}
-                {if $AS_OPTION} {$MORE_OPTIONS} {else} {$FILTER_GRID_SHOW} {/if}
+                <span id="neo-table-label-filter">{if $AS_OPTION} {$MORE_OPTIONS} {else} {$FILTER_GRID_SHOW} {/if}</span>
             </button>
             <button type='button' class='neo-table-button-filter-right' id="neo-table-filter-button-arrow">
                <i class='fa fa-caret-down'></i>
@@ -239,7 +239,9 @@ $(document).ready(function() {
             $("#pageup").val(val);
     });
 
-    $("#neo-table-filter-button-arrow").click(function() {
+    /* Toggle también desde el botón con el texto ("Show Filter"), no sólo
+     * desde el caret: el label es el target natural del usuario. */
+    $("#neo-table-button-filter-left, #neo-table-filter-button-arrow").click(function() {
 {/literal}
     {if $AS_OPTION}
         var filter_show = "{$MORE_OPTIONS}";

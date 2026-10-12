@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 6
+Release: 7
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Mon Oct 12 2026 Issabel Foundation <info@issabel.org> - 6.0.0-7
+- Bind the CDR "Show Filter" button as well (it had no click handler, only
+  the caret did) and add the missing datatables.en.json language file so
+  the CDR report stops requesting it with a 404.
+
 * Sun Oct 11 2026 Issabel Foundation <info@issabel.org> - 6.0.0-5
 - Remove hardcoded light/dark colours from the asterisk_log and billing_rates
   templates so they follow the theme in dark mode.
