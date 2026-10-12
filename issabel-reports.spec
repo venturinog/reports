@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 8
+Release: 9
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Mon Oct 12 2026 Issabel Foundation <info@issabel.org> - 6.0.0-9
+- Convert the CDR filter form to the Modern form kit (labels above fields,
+  section card, Filter button on the card footer) and dress the jQuery UI
+  datepicker trigger alongside the input.
+
 * Mon Oct 12 2026 Issabel Foundation <info@issabel.org> - 6.0.0-8
 - Switch the CDR filter to the Bootstrap 5 collapse attribute
   (data-bs-toggle); the BS3 data-toggle was ignored by the modern theme,
