@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 9
+Release: 10
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -48,7 +48,7 @@ mv menu.xml                          $RPM_BUILD_ROOT/usr/share/issabel/module_in
 mkdir -p /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/
 touch /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
 if [ $1 -eq 2 ]; then
-    rpm -q --queryformat='%{VERSION}-%{RELEASE}' %{name} > /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
+    rpm -q --queryformat='%%{VERSION}-%%{RELEASE}' %{name} > /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
 fi
 
 %post
@@ -95,6 +95,12 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Fri Oct 16 2026 Issabel Foundation <info@issabel.org> - 6.0.0-10
+- Escape the rpm queryformat used to record the pre-version on upgrade.
+  The VERSION and RELEASE macros were expanded at build time, so %pre always
+  wrote the new version and issabel-dbprocess skipped every version_sql
+  migration. They are now escaped so rpm expands them at run time.
+
 * Mon Oct 12 2026 Issabel Foundation <info@issabel.org> - 6.0.0-9
 - Convert the CDR filter form to the Modern form kit (labels above fields,
   section card, Filter button on the card footer) and dress the jQuery UI
