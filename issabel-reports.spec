@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 30
+Release: 31
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -41,6 +41,7 @@ mv setup/paloSantoCDR.class.php      $RPM_BUILD_ROOT/var/www/html/libs/
 mv setup/paloSantoTrunk.class.php    $RPM_BUILD_ROOT/var/www/html/libs/
 mv setup/paloSantoRate.class.php     $RPM_BUILD_ROOT/var/www/html/libs/
 mv setup/paloSantoQueue.class.php    $RPM_BUILD_ROOT/var/www/html/libs/
+mv setup/issabelReportForm.class.php $RPM_BUILD_ROOT/var/www/html/libs/
 mv setup/                            $RPM_BUILD_ROOT/usr/share/issabel/module_installer/%{name}-%{version}-%{release}/
 mv menu.xml                          $RPM_BUILD_ROOT/usr/share/issabel/module_installer/%{name}-%{version}-%{release}/
 
@@ -95,6 +96,13 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-31
+- Add the shared form helper of the report modules. The validation of
+  the filters and the forms follows the same pattern in the ten report
+  pages: an array of errors per field, the page rendered again without a
+  redirect and the failing field marked with is-invalid. The helper does
+  the marking and the messages.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-30
 - Bring the billing rate screens onto the theme. The view screen mixed
   the values and the controls, the edit screen wrote the colour of the
