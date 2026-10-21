@@ -68,5 +68,8 @@ $arrLangModule = array(
 "50.000" => "50 000",
 "100.000" => "100 000",
 "Destination" => "Destination",
+"Show/hide columns" => "Visa/dölj kolumner",
+"Select all rows" => "Markera alla rader",
+"Deselect all rows" => "Avmarkera inga rader",
 );
 ?>

@@ -68,5 +68,8 @@ $arrLangModule = array(
 "50.000" => "50.000",
 "100.000" => "100.000",
 "Account Code" => "Številka računa",
+"Show/hide columns" => "Prikaži ali skrij stolpce",
+"Select all rows" => "Izberi vse vrstice",
+"Deselect all rows" => "Prekliči izbiro vseh vrstic",
 );
 ?>

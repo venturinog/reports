@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 54
+Release: 55
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,13 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-55
+- Give the CDR report buttons the icons of the theme. The three buttons
+  that only carry an icon used the Bootstrap 3 glyphicons, which the modern
+  theme does not carry: they fell back to the question mark glyph. They now
+  use the Tabler icons of the theme and get a translated name, which they
+  did not have for the screen readers.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-54
 - Drop the hidden fields the graphic report filter carried over from the
   grid. Nothing read them and two of them were never even filled in, so

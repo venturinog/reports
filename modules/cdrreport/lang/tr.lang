@@ -72,5 +72,8 @@ $arrLangModule=array(
 "20.000" => "20.000",
 "50.000" => "50.000",
 "100.000" => "100.000",
+"Show/hide columns" => "Sütunları göster/gizle",
+"Select all rows" => "Tüm satırları seç",
+"Deselect all rows" => "Tüm satır seçimini kaldır",
 );
 ?>

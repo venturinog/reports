@@ -68,5 +68,8 @@ $arrLangModule = array(
 "50.000" => "50,000",
 "100.000" => "100,000",
 "Account Code" => "账户代码",
+"Show/hide columns" => "显示/隐藏列",
+"Select all rows" => "选择所有行",
+"Deselect all rows" => "取消选择所有行",
 );
 ?>

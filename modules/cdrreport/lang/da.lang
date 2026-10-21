@@ -68,5 +68,8 @@ $arrLangModule = array(
 "100.000" => "100.000",
 "Account Code" => "Kontonummer",
 "Destination" => "Destination",
+"Show/hide columns" => "Vis/skjul kolonner",
+"Select all rows" => "Vælg alle rækker",
+"Deselect all rows" => "Fravælg alle rækker",
 );
 ?>

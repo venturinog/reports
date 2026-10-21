@@ -71,5 +71,8 @@ $arrLangModule=array(
 "Recording" => "Recording",
 "UniqueID" => "UniqueID",
 "User Field" => "User Field",
+"Show/hide columns" => "Show/hide columns",
+"Select all rows" => "Select all rows",
+"Deselect all rows" => "Deselect all rows",
 );
 ?>

@@ -456,6 +456,10 @@ function _moduleContent(&$smarty, $module_name)
     $arrColumns = array(_tr("Date"), _tr("Source"), _tr("Ring Group"), _tr("Destination"), _tr("Src. Channel"),_tr("Account Code"),_tr("Dst. Channel"),_tr("Status"),_tr("Duration"),_tr("UniqueID"),_tr("Recording"), _tr("Cnum"),_tr("Cnam"), _tr("Outbound Cnum"), _tr("DID"), _tr("User Field"));
     $smarty->assign("SHOW",        _tr("Show"));
     $smarty->assign("DELMSG",      _tr("Are you sure you wish to delete CDR(s) Report(s)?"));
+    // Los tres botones que solo llevan icono necesitan un nombre accesible.
+    $smarty->assign("TITLE_COLUMNS",     json_encode(_tr("Show/hide columns")));
+    $smarty->assign("TITLE_SELECT_ALL",  json_encode(_tr("Select all rows")));
+    $smarty->assign("TITLE_SELECT_NONE", json_encode(_tr("Deselect all rows")));
     $smarty->assign("COLUMNS",     $arrColumns);
     $smarty->assign("FILTER_SHOW", _tr("Show Filter"));
     $smarty->assign("PRINT", _tr("Print"));

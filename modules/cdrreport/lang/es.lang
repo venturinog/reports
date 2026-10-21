@@ -68,5 +68,8 @@ $arrLangModule = array(
 "20.000" => "20.000",
 "50.000" => "50.000",
 "100.000" => "100.000",
+"Show/hide columns" => "Mostrar u ocultar columnas",
+"Select all rows" => "Seleccionar todas las filas",
+"Deselect all rows" => "Deseleccionar todas las filas",
 );
 ?>

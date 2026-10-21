@@ -3,6 +3,9 @@ var cdrs = {$CDR};
 var lang = "{$LANG}";
 var DELMSG = "{$DELMSG}";
 var module = "{$module_name}";
+var TITLE_COLUMNS = {$TITLE_COLUMNS};
+var TITLE_SELECT_ALL = {$TITLE_SELECT_ALL};
+var TITLE_SELECT_NONE = {$TITLE_SELECT_NONE};
 </script>
 
 <script>

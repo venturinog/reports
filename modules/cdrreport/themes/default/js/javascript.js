@@ -48,7 +48,7 @@ $(document).ready( function () {
     buttons: [
        {
            className: 'btn-danger',
-           text: '<i class="fa fa-eraser"></i> '+'Delete',
+           text: '<i class="ti ti-eraser"></i> '+'Delete',
            action: function () {
                var data = table.rows( { selected: true } ).data();
                var uniqueids=[];
@@ -86,12 +86,14 @@ $(document).ready( function () {
        },
        {
        className: 'btn',
-       text: '&nbsp'+'<i class="glyphicon glyphicon-eye-open"></i>'+'&nbsp',
+       text: '&nbsp'+'<i class="ti ti-eye"></i>'+'&nbsp',
+       titleAttr: TITLE_COLUMNS,
        extend: 'colvis'
        },
        {
        className: 'btn',
-       text: '&nbsp'+'<i class="glyphicon glyphicon-check"></i>'+'&nbsp',
+       text: '&nbsp'+'<i class="ti ti-check"></i>'+'&nbsp',
+       titleAttr: TITLE_SELECT_ALL,
        action: function() {
        table.rows().deselect();
        table.rows({
@@ -101,7 +103,8 @@ $(document).ready( function () {
        },
        {
        className: 'btn',
-       text: '&nbsp'+'<i class="glyphicon glyphicon-unchecked"></i>'+'&nbsp',
+       text: '&nbsp'+'<i class="ti ti-square"></i>'+'&nbsp',
+       titleAttr: TITLE_SELECT_NONE,
        extend: 'selectNone'
        },
        {

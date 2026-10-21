@@ -68,5 +68,8 @@ $arrLangModule = array(
 "20.000" => "20,000",
 "50.000" => "50,000",
 "100.000" => "100,000",
+"Show/hide columns" => "列の表示/非表示",
+"Select all rows" => "すべての行を選択",
+"Deselect all rows" => "すべての行の選択を解除",
 );
 ?>

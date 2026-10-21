@@ -68,5 +68,8 @@ $arrLangModule = array(
 "Date" => "Date",
 "Destination" => "Destination",
 "Source" => "Source",
+"Show/hide columns" => "Afficher ou masquer les colonnes",
+"Select all rows" => "Sélectionner toutes les lignes",
+"Deselect all rows" => "Désélectionner toutes les lignes",
 );
 ?>

@@ -68,5 +68,8 @@ $arrLangModule = array(
 "50.000" => "50 000",
 "100.000" => "100 000",
 "Account Code" => "Kod konta",
+"Show/hide columns" => "Pokaż lub ukryj kolumny",
+"Select all rows" => "Zaznacz wszystkie wiersze",
+"Deselect all rows" => "Odznacz wszystkie wiersze",
 );
 ?>
