@@ -1,3 +1,4 @@
+<form method="POST" action="?menu={$module_name}">
 <table width="99%" border="0" cellspacing="0" cellpadding="4" align="center">
     <tr class="letra12">
         <td width="30%" align="right">{$date_from.LABEL}:</b></td>
@@ -29,6 +30,7 @@
 <input type="hidden" name="phone_id" id="phone_id" value="" />
 
 </br>
+</form>
 
 {literal}
 <script type= "text/javascript">

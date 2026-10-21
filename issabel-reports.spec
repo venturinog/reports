@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 13
+Release: 14
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,12 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-14
+- Send the CSRF token with the graphic report filter. The form was
+  built in the PHP wrapper, so paloForm found no form tag to inject the
+  token into and the page was saved without one. The form now lives in
+  the template.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-13
 - Render the summary call details with the theme Chart.js.
   The pop-up asked the server for two PNG images drawn with jpgraph,

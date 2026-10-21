@@ -336,7 +336,10 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
     $smarty->assign("icon","modules/$module_name/images/reports_graphic_reports.png");
     $htmlForm = $oFilterForm->fetchForm("$local_templates_dir/filter.tpl", _tr("Graphic Report"), $_POST);
 
-    $contenidoModulo = "<form  method='POST' style='margin-bottom:0;' action='?menu=$module_name'>".$htmlForm."</form>";
+    // El <form> vive en la plantilla, no aqui: si el envoltorio de PHP monta el
+    // formulario, paloForm no encuentra ninguna etiqueta <form> donde inyectar
+    // el token CSRF y la pagina se guarda sin token.
+    $contenidoModulo = $htmlForm;
 
     //$chartLabels = '"'._tr("Incoming Calls").'"'.', '.'"'._tr("Outcoming Calls").'"';
     //$chartData = $numIn.', '.$numOut;
