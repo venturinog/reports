@@ -146,7 +146,7 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
             "EDITABLE"               => "yes",
             "VALIDATION_EXTRA_PARAM" => ""),
         "classify_by"       => array(
-            "LABEL"                  => "",
+            "LABEL"                  => _tr("Classify by"),
             "REQUIRED"               => "no",
             "INPUT_TYPE"             => "SELECT",
             "INPUT_EXTRA_PARAM"      => array("Number"=>_tr('Extension (Number)'),"Queue"=>_tr('Queue'),"Trunk"=>_tr('Trunk')),
@@ -163,7 +163,7 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
             "EDITABLE"               => "yes",
             "VALIDATION_EXTRA_PARAM" => ""),
         "trunks"            => array(
-            "LABEL"                  => "Trunk",
+            "LABEL"                  => _tr("Trunk"),
             "REQUIRED"               => "no",
             "INPUT_TYPE"             => "SELECT",
             "INPUT_EXTRA_PARAM"      => loadTrunks($pDB_ext),
@@ -175,6 +175,7 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
     $oFilterForm = new paloForm($smarty, $arrFormElements);
     $smarty->assign("SHOW", _tr("Show"));
     $smarty->assign("HERE", _tr("Here"));
+    $smarty->assign("FILTER_TITLE", _tr("Show Filter"));
 
     $date_ini = getParameter("date_from");
     $date_fin = getParameter("date_to");
@@ -187,8 +188,15 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
     $option = "";
     if( isset($_POST["classify_by"]) ){
         $option = $_POST["classify_by"];
-        $smarty->assign("classify_by",$option);
+    } elseif (isset($_GET["classify_by"])) {
+        $option = $_GET["classify_by"];
     }
+    if (!in_array($option, array("Number", "Queue", "Trunk"), true)) $option = "";
+    // El formulario se pinta con el criterio elegido; si todavia no hay ninguno
+    // se muestra el primero, que es el que el navegador deja seleccionado.
+    $optionVisible = $option !== '' ? $option : "Number";
+    $smarty->assign("class_number", $optionVisible === "Number" ? '' : ' neo-display-none');
+    $smarty->assign("class_trunk", $optionVisible === "Trunk" ? '' : ' neo-display-none');
 
     if( getAction() == "show" ){
         $smarty->assign("date_from", $date_ini);

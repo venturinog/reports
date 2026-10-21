@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 20
+Release: 21
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,12 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-21
+- Use the theme grid in the graphic report filter. The filter was a legacy
+  table with the labels on the side, and the field of the extension and
+  the one of the trunk were shown and hidden with inline styles decided
+  by the browser.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-20
 - Use the theme grid in the billing report filter. The filter was a legacy
   table, the units of the duration were written in Spanish in the English
