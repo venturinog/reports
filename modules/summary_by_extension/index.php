@@ -134,13 +134,15 @@ function reportReportCall($smarty, $module_name, $local_templates_dir, &$pDB_cdr
         foreach($arrResult as $key => $val){
             $ext = $val['extension'];
 
-            $arrTmp[0] = $ext;
-            $arrTmp[1] = $val['user_name'];
-            $arrTmp[2] = $val['num_incoming_call'];
-            $arrTmp[3] = $val['num_outgoing_call'];
-            $arrTmp[4] = "<label style='color: green;' title='{$val['duration_incoming_call']} "._tr('seconds')."'>".$pReportCall->Sec2HHMMSS($val['duration_incoming_call'])."</label>";
-            $arrTmp[5] = "<label style='color: green;' title='{$val['duration_outgoing_call']} "._tr('seconds')."'>".$pReportCall->Sec2HHMMSS($val['duration_outgoing_call'])."</label>";
-            $arrTmp[6] = "<a href='javascript: popup_ventana(\"?menu=$module_name&action=graph&rawmode=yes&ext=$ext&dini=$date_ini&dfin=$date_end\");'>".
+            // Los datos vienen de la base de datos y la grilla los pinta como
+            // HTML: hay que escaparlos.
+            $arrTmp[0] = htmlspecialchars($ext, ENT_COMPAT, 'UTF-8');
+            $arrTmp[1] = htmlspecialchars($val['user_name'], ENT_COMPAT, 'UTF-8');
+            $arrTmp[2] = htmlspecialchars($val['num_incoming_call'], ENT_COMPAT, 'UTF-8');
+            $arrTmp[3] = htmlspecialchars($val['num_outgoing_call'], ENT_COMPAT, 'UTF-8');
+            $arrTmp[4] = "<span class='iss-sev-ok' title='".htmlspecialchars($val['duration_incoming_call'], ENT_COMPAT, 'UTF-8')." "._tr('seconds')."'>".$pReportCall->Sec2HHMMSS($val['duration_incoming_call'])."</span>";
+            $arrTmp[5] = "<span class='iss-sev-ok' title='".htmlspecialchars($val['duration_outgoing_call'], ENT_COMPAT, 'UTF-8')." "._tr('seconds')."'>".$pReportCall->Sec2HHMMSS($val['duration_outgoing_call'])."</span>";
+            $arrTmp[6] = "<a href='javascript: popup_ventana(\"?menu=$module_name&action=graph&rawmode=yes&ext=".urlencode($ext)."&dini=".urlencode($date_ini)."&dfin=".urlencode($date_end)."\");'>".
                     ""._tr('Call Details')."</a>";
 
             $arrData[] = $arrTmp;

@@ -139,13 +139,13 @@ function reportBillingRates($smarty, $module_name, $local_templates_dir, &$pDB, 
         $arrResult = $pBillingRates->getBillingRates($limit, $offset);
         if(is_array($arrResult) && $totalBillingRates>0){
             foreach($arrResult as $key => $value){
-                $arrTmp[0] = (isset($value['prefix'])&$value['prefix']!="")?$value['prefix']:"*";
-                $arrTmp[1] = (isset($value['name'])&$value['name']!="")?$value['name']:"-";
-                $arrTmp[2] = (isset($value['rate'])&$value['rate']!="")?$value['rate']:"-";
-                $arrTmp[3] = (isset($value['rate_offset'])&$value['rate_offset']!="")?$value['rate_offset']:"-";
-                $arrTmp[4] = (isset($value['hided_digits'])&$value['hided_digits']!="")?$value['hided_digits']:"-";
-                $arrTmp[5] = (isset($value['trunk'])&$value['trunk']!="")?$value['trunk']:"*";
-                $arrTmp[6] = (isset($value['fecha_creacion'])&$value['fecha_creacion']!="")?$value['fecha_creacion']:"-";
+                $arrTmp[0] = (isset($value['prefix']) && $value['prefix']!="") ? htmlspecialchars($value['prefix'], ENT_COMPAT, 'UTF-8') : "*";
+                $arrTmp[1] = (isset($value['name']) && $value['name']!="") ? htmlspecialchars($value['name'], ENT_COMPAT, 'UTF-8') : "-";
+                $arrTmp[2] = (isset($value['rate']) && $value['rate']!="") ? htmlspecialchars($value['rate'], ENT_COMPAT, 'UTF-8') : "-";
+                $arrTmp[3] = (isset($value['rate_offset']) && $value['rate_offset']!="") ? htmlspecialchars($value['rate_offset'], ENT_COMPAT, 'UTF-8') : "-";
+                $arrTmp[4] = (isset($value['hided_digits']) && $value['hided_digits']!="") ? htmlspecialchars($value['hided_digits'], ENT_COMPAT, 'UTF-8') : "-";
+                $arrTmp[5] = (isset($value['trunk']) && $value['trunk']!="") ? htmlspecialchars($value['trunk'], ENT_COMPAT, 'UTF-8') : "*";
+                $arrTmp[6] = (isset($value['fecha_creacion']) && $value['fecha_creacion']!="") ? htmlspecialchars($value['fecha_creacion'], ENT_COMPAT, 'UTF-8') : "-";
                 $arrData[] = $arrTmp;
             }
         }
@@ -160,23 +160,23 @@ function reportBillingRates($smarty, $module_name, $local_templates_dir, &$pDB, 
             foreach($arrResult as $key => $value){
                 if($value['name']=="Default"){
                     $default = _tr('Default');
-                    $arrTmp[0] = "<font color='green'>*</font>";
-                    $arrTmp[1] = "<font color='green'>".$default."</font>";
-                    $arrTmp[2] = "<font color='green'>".$value['rate']."</font>";
-                    $arrTmp[3] = "<font color='green'>".$value['rate_offset']."</font>";
-                    $arrTmp[4] = "<font color='green'>".$value['hided_digits']."</font>";
-                    $arrTmp[5] = "<font color='green'>*</font>";
-                    $arrTmp[6] = "<font color='green'>".$value['fecha_creacion']."</font>";
-                    $arrTmp[7] = "<a href='?menu=$module_name&action=view&id=".$value['id']."'>"._tr("View")."</a>";
+                    $arrTmp[0] = "<span class='iss-sev-ok'>*</span>";
+                    $arrTmp[1] = "<span class='iss-sev-ok'>".htmlspecialchars($default, ENT_COMPAT, 'UTF-8')."</span>";
+                    $arrTmp[2] = "<span class='iss-sev-ok'>".htmlspecialchars($value['rate'], ENT_COMPAT, 'UTF-8')."</span>";
+                    $arrTmp[3] = "<span class='iss-sev-ok'>".htmlspecialchars($value['rate_offset'], ENT_COMPAT, 'UTF-8')."</span>";
+                    $arrTmp[4] = "<span class='iss-sev-ok'>".htmlspecialchars($value['hided_digits'], ENT_COMPAT, 'UTF-8')."</span>";
+                    $arrTmp[5] = "<span class='iss-sev-ok'>*</span>";
+                    $arrTmp[6] = "<span class='iss-sev-ok'>".htmlspecialchars($value['fecha_creacion'], ENT_COMPAT, 'UTF-8')."</span>";
+                    $arrTmp[7] = "<a href='?menu=$module_name&action=view&id=".(int)$value['id']."'>"._tr("View")."</a>";
                 }else{
-                    $arrTmp[0] = $value['prefix'];
-                    $arrTmp[1] = $value['name'];
-                    $arrTmp[2] = $value['rate'];
-                    $arrTmp[3] = $value['rate_offset'];
-                    $arrTmp[4] = $value['hided_digits'];
-                    $arrTmp[5] = $value['trunk'];
-                    $arrTmp[6] = $value['fecha_creacion'];
-                    $arrTmp[7] = "<a href='?menu=$module_name&action=view&id=".$value['id']."'>"._tr("View")."</a>";
+                    $arrTmp[0] = htmlspecialchars($value['prefix'], ENT_COMPAT, 'UTF-8');
+                    $arrTmp[1] = htmlspecialchars($value['name'], ENT_COMPAT, 'UTF-8');
+                    $arrTmp[2] = htmlspecialchars($value['rate'], ENT_COMPAT, 'UTF-8');
+                    $arrTmp[3] = htmlspecialchars($value['rate_offset'], ENT_COMPAT, 'UTF-8');
+                    $arrTmp[4] = htmlspecialchars($value['hided_digits'], ENT_COMPAT, 'UTF-8');
+                    $arrTmp[5] = htmlspecialchars($value['trunk'], ENT_COMPAT, 'UTF-8');
+                    $arrTmp[6] = htmlspecialchars($value['fecha_creacion'], ENT_COMPAT, 'UTF-8');
+                    $arrTmp[7] = "<a href='?menu=$module_name&action=view&id=".(int)$value['id']."'>"._tr("View")."</a>";
                 }
                 $arrData[] = $arrTmp;
             }

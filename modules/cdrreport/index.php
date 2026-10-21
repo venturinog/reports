@@ -337,31 +337,33 @@ function _moduleContent(&$smarty, $module_name)
 
     if(is_array($arrResult['cdrs']) && $total>0) {
         foreach($arrResult['cdrs'] as $key => $value) {
-            $arrTmp[0] = $value[0];
-            $arrTmp[1] = $value[1];
-            $arrTmp[2] = $value[11];
-            $arrTmp[3] = $value[2];
-            $arrTmp[4] = $value[3];
-            $arrTmp[5] = $value[9];
-            $arrTmp[6] = $value[4];
+            // Los valores del CDR vienen de la base de datos y la tabla los
+            // pinta como HTML: hay que escaparlos.
+            $arrTmp[0] = htmlspecialchars($value[0], ENT_COMPAT, 'UTF-8');
+            $arrTmp[1] = htmlspecialchars($value[1], ENT_COMPAT, 'UTF-8');
+            $arrTmp[2] = htmlspecialchars($value[11], ENT_COMPAT, 'UTF-8');
+            $arrTmp[3] = htmlspecialchars($value[2], ENT_COMPAT, 'UTF-8');
+            $arrTmp[4] = htmlspecialchars($value[3], ENT_COMPAT, 'UTF-8');
+            $arrTmp[5] = htmlspecialchars($value[9], ENT_COMPAT, 'UTF-8');
+            $arrTmp[6] = htmlspecialchars($value[4], ENT_COMPAT, 'UTF-8');
 
-            if ($value[5] == "ANSWERED") {
-               $value[5] = "<font color=green>"._tr($value[5])."</font>";
+            // El estado lleva su color, que sale de los tokens del tema.
+            $estado = htmlspecialchars(_tr($value[5]), ENT_COMPAT, 'UTF-8');
+            switch ($value[5]) {
+                case "ANSWERED":
+                    $arrTmp[7] = '<span class="iss-sev-ok">'.$estado.'</span>';
+                    break;
+                case "BUSY":
+                    $arrTmp[7] = '<span class="iss-sev-warning">'.$estado.'</span>';
+                    break;
+                case "NO ANSWER":
+                case "FAILED":
+                    $arrTmp[7] = '<span class="iss-sev-critical">'.$estado.'</span>';
+                    break;
+                default:
+                    $arrTmp[7] = '<span class="iss-sev-unknown">'.$estado.'</span>';
+                    break;
             }
-            elseif ($value[5] == "NO ANSWER") {
-               $value[5] = "<font color=red>"._tr($value[5])."</font>";
-            }
-            elseif ($value[5] == "BUSY") {
-                $value[5] = "<font color=ambar>"._tr($value[5])."</font>";
-            }
-            elseif ($value[5] == "FAILED") {
-                $value[5] = "<font color=red>"._tr($value[5])."</font>";
-            }
-            else {
-                $value[5] = "<font color=red>$value[5]</font>";
-            }
-
-            $arrTmp[7] = $value[5];
             $iDuracion = $value[8];
 
             if ($timeInSecs == "on") {
@@ -376,12 +378,12 @@ function _moduleContent(&$smarty, $module_name)
                 }
             }
             $arrTmp[8]  = $sTiempo;
-            $arrTmp[9]  = $value[6];  // uniqueid
-            $arrTmp[10] = $value[17]; // userfield
-            $arrTmp[11] = $value[16]; // did
+            $arrTmp[9]  = htmlspecialchars($value[6], ENT_COMPAT, 'UTF-8');  // uniqueid
+            $arrTmp[10] = htmlspecialchars($value[17], ENT_COMPAT, 'UTF-8'); // userfield
+            $arrTmp[11] = htmlspecialchars($value[16], ENT_COMPAT, 'UTF-8'); // did
 
             if(!$disableCel) {
-                $arrTmp[12] = '<a onclick="showCel(\''.$value[6].'\')"> <i class="ti ti-list" aria-hidden="true"></i> </a>';
+                $arrTmp[12] = '<a onclick="showCel(\''.htmlspecialchars($value[6], ENT_QUOTES, 'UTF-8').'\')"> <i class="ti ti-list" aria-hidden="true"></i> </a>';
             }
             
             $arrData[] = $arrTmp;
@@ -463,7 +465,9 @@ function _moduleContent(&$smarty, $module_name)
     $smarty->assign("LANG",$lang);
     $smarty->assign("module_name", "cdrreport");
     $smarty->assign($arrFormElements); 
-    $smarty->assign("CDR", json_encode($arrData));
+    // Los datos van a un bloque JSON: se escapan las comillas y los angulos
+    // para que ningun valor del CDR pueda cerrar el bloque de codigo.
+    $smarty->assign("CDR", json_encode($arrData, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP));
     $paramFiltro['date_start'] = date('d M Y', strtotime($paramFiltro['date_start']));
     $paramFiltro['date_end']   = date('d M Y', strtotime($paramFiltro['date_end']));
     $content = $oFilterForm->fetchForm("$local_templates_dir/filter.tpl", "", $paramFiltro);

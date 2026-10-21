@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 49
+Release: 50
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-50
+- Escape the values of the report grids. The values come from the database
+  and the grids print them as HTML, so a CDR with a script in it ended up
+  in the page of the user.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-49
 - Send the id of the rate as a query parameter. The id came from the
   URL and went into the query as it was, and the hidden digits of the

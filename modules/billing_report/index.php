@@ -255,7 +255,9 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
 	    $rate_offset_default = $rates_default['rate_offset'];
 	    if(is_array($arrResult) && $totalbilling_report>0){
 		    foreach($arrResult as $key => $value){
-			    $arrTmp[0] = $value['Date'];
+			    // Los datos vienen de la base de datos y la grilla los pinta
+			    // como HTML: hay que escaparlos.
+			    $arrTmp[0] = htmlspecialchars($value['Date'], ENT_COMPAT, 'UTF-8');
                 $hidden_digits = $value['digits'];
 
 				if($value['Rate_applied'] == null){
@@ -270,7 +272,7 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
                     $rate_applied = _tr('default');
                 else
                     $rate_applied = $value['Rate_applied'];
-                $arrTmp[1] = $rate_applied;
+                $arrTmp[1] = htmlspecialchars($rate_applied, ENT_COMPAT, 'UTF-8');
                 if($value['Rate_value'] == null)
                     $rate_value = $rate;
                 else
@@ -294,11 +296,11 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
                     }
                 }
 
-			    $arrTmp[2] = $rate_value;
-			    $arrTmp[3] = $value['Src'];
-			    $arrTmp[4] = $destination;
-			    $arrTmp[5] = $value['Dst_channel'];
-                $arrTmp[6] = $value['accountcode'];
+			    $arrTmp[2] = htmlspecialchars($rate_value, ENT_COMPAT, 'UTF-8');
+			    $arrTmp[3] = htmlspecialchars($value['Src'], ENT_COMPAT, 'UTF-8');
+			    $arrTmp[4] = htmlspecialchars($destination, ENT_COMPAT, 'UTF-8');
+			    $arrTmp[5] = htmlspecialchars($value['Dst_channel'], ENT_COMPAT, 'UTF-8');
+                $arrTmp[6] = htmlspecialchars($value['accountcode'], ENT_COMPAT, 'UTF-8');
 
 			    $iDuracion = $value['duration'];
                 $iSec = $iDuracion % 60; $iDuracion = (int)(($iDuracion - $iSec) / 60);
@@ -332,7 +334,7 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
         $rate_offset_default = $rates_default['rate_offset'];
         if(is_array($arrResult) && $totalbilling_report>0){
             foreach($arrResult as $key => $value){
-                $arrTmp[0] = $value['Date'];
+                $arrTmp[0] = htmlspecialchars($value['Date'], ENT_COMPAT, 'UTF-8');
                 $hidden_digits = $value['digits'];
 
                 if($value['Rate_applied'] == null){
@@ -347,7 +349,7 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
                     $rate_applied = _tr('default');
                 else
                     $rate_applied = $value['Rate_applied'];
-                $arrTmp[1] = $rate_applied;
+                $arrTmp[1] = htmlspecialchars($rate_applied, ENT_COMPAT, 'UTF-8');
                 if($value['Rate_value'] == null)
                     $rate_value = $rate;
                 else
@@ -371,9 +373,9 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
                     }
                 }
 
-                $arrTmp[2] = $rate_value;
+                $arrTmp[2] = htmlspecialchars($rate_value, ENT_COMPAT, 'UTF-8');
                 $arrTmp[3] = $value['Src'];
-                $arrTmp[4] = $destination;
+                $arrTmp[4] = htmlspecialchars($destination, ENT_COMPAT, 'UTF-8');
                 $arrTmp[5] = $value['Dst_channel'];
                 $arrTmp[6] = $value['accountcode'];
 

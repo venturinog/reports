@@ -260,8 +260,10 @@ SQL_MISSING_CALLS;
                     	$reportPos[$src][$dst] = count($report);
                         $report[] = array(
                             date('d-M-Y H:i:s', strtotime($tupla['calldate'])),
-                            (($src == 'UNKNOWN') ? _tr('UNKNOWN') : $src),
-                            (($dst == 'UNKNOWN') ? _tr('UNKNOWN') : $dst),
+                            // Los numeros vienen de la base de datos y la grilla
+                            // los pinta como HTML: hay que escaparlos.
+                            (($src == 'UNKNOWN') ? _tr('UNKNOWN') : htmlspecialchars($src, ENT_COMPAT, 'UTF-8')),
+                            (($dst == 'UNKNOWN') ? _tr('UNKNOWN') : htmlspecialchars($dst, ENT_COMPAT, 'UTF-8')),
                             $this->getTimeToLastCall($tupla['calldate']),   // tiempo desde fallo más reciente hasta ahora
                             0,      // Número de fallas
                             $failcause,
