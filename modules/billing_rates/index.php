@@ -104,7 +104,7 @@ function reportBillingRates($smarty, $module_name, $local_templates_dir, &$pDB, 
     $rate_offset_new = getParameter("Rate_offset");
     $trunk_new       = getParameter("Trunk");
     $hidden_digits   = getParameter("Hidden_Digits");
-    $id              = getParameter("id");
+    $id              = (int)getParameter("id");
 
 
           //exists Default rate in rate.db // actualizar los rates por defecto en settings
@@ -236,7 +236,7 @@ function reportBillingNewRate($smarty, $module_name, $local_templates_dir, &$pDB
 function reportBillingEditRate($smarty, $module_name, $local_templates_dir, &$pDB, &$pDB2, &$pDB3, $arrConf, $arrForm = null){
      //begin, Form data persistence to errors and other events.
      $_DATA  = $_POST;
-     $id = getParameter("id");
+     $id = (int)getParameter("id");
      $pBillingRates = new paloSantoBillingRates($pDB);
      $arrData = $pBillingRates->getBillingRatesById($id); //obtain the rate
      $arrTrunks = $pBillingRates->getTrunks($pDB2); //obtain the trunks for billing
@@ -303,7 +303,7 @@ function reportBillingImportRate($smarty, $module_name, $local_templates_dir, &$
 function reportBillingViewRate($smarty, $module_name, $local_templates_dir, &$pDB, &$pDB2, &$pDB3, $arrConf){
     //begin, Form data persistence to errors and other events.
     $_DATA  = $_POST;
-    $id = getParameter("id");
+    $id = (int)getParameter("id");
     $pBillingRates = new paloSantoBillingRates($pDB);
     $arrData = $pBillingRates->getBillingRatesById($id); //obtain the rate
     $arrTrunks = $pBillingRates->getTrunks($pDB2);
@@ -358,7 +358,7 @@ function obtainResultOperationRate($smarty, $module_name, $local_templates_dir, 
      $rate_offset_new = htmlspecialchars(getParameter("Rate_offset"));
      $trunk_new       = htmlspecialchars(getParameter("Trunk"));
      $hidden_digits   = htmlspecialchars(getParameter("Hidden_Digits"));
-     $id              = getParameter("id");
+     $id              = (int)getParameter("id");
      $edit            = getParameter("namerate");
      $varUpdate       = getParameter("checkUpdate");
      //exists Default rate in rate.db
@@ -593,6 +593,7 @@ function obtainResultOperationRate($smarty, $module_name, $local_templates_dir, 
                 }
                 if(count($arrErrorMsg) > 0){
                     $pDB->rollBack();
+                    $strErrorMsg = '';
                     foreach ($arrErrorMsg as $Error_type => $on_line)
                     {
                         $strErrorMsg.= "<B>".$Error_type.":</B><BR>";

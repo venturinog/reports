@@ -75,9 +75,11 @@ class paloSantoBillingRates {
 
     function getBillingRatesById($id)
     {
-        $query = "SELECT * FROM rate WHERE id=$id";
+        // El id va como parametro: si viene de la URL no se puede poner en la
+        // consulta tal cual.
+        $query = "SELECT * FROM rate WHERE id = ?";
 
-        $result=$this->_DB->getFirstRowQuery($query,true);
+        $result=$this->_DB->getFirstRowQuery($query,true,array((int)$id));
 
         if($result==FALSE){
             $this->errMsg = $this->_DB->errMsg;
@@ -213,10 +215,11 @@ class paloSantoBillingRates {
 
      function updateDefaultRate($rate_new,$rate_offset_new,$hidden_digits){
         $set ="";
-        if($hidden_digits!=""){
-            $set = ", hided_digits=$hidden_digits ";
-        }
         $data = array($rate_new, $rate_offset_new);
+        if($hidden_digits!=""){
+            $set = ", hided_digits=? ";
+            $data[] = $hidden_digits;
+        }
         $query = "UPDATE rate SET rate=?, rate_offset=? $set WHERE name='Default'";
 
         $result = $this->_DB->genQuery($query,$data);

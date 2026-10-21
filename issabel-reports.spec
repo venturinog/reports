@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 48
+Release: 49
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-49
+- Send the id of the rate as a query parameter. The id came from the
+  URL and went into the query as it was, and the hidden digits of the
+  default rate were pasted into the statement.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-48
 - Filter the missed calls by the extension of the user. The name of the
   field to filter by went into the query without a list, and the privilege
