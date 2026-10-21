@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 46
+Release: 47
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,13 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-47
+- Drop the dead files of the report modules. The CDR module kept a second
+  copy of the DataTables libraries and a SOAP scenario that nothing loaded,
+  the summary kept a template that no page printed, and two modules kept a
+  style sheet whose rules no longer matched any element and that wrote the
+  colours by hand.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-46
 - Add the missing languages to the report modules. The graphic report,
   the missed calls and the summary only had seven or eight languages, so
