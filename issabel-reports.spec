@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 51
+Release: 52
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,10 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-52
+- Always paint the map of field errors. The templates ask for the message
+  of every field, so the map has to be there even when there is no error.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-51
 - Name the date validators of the report modules after the convention of
   the style guide, which prefixes the validators with valid.

@@ -83,6 +83,7 @@ function _moduleContent(&$smarty, $module_name)
     $smarty->assign("REQUIRED_FIELD", _tr("Required field"));
     $smarty->assign("CARD_TITLE", _tr("Default Rate Configuration"));
     $smarty->assign("VIEW", $arrDefaultRate);
+    $smarty->assign("ERRORS", issabelReportErrorMap($arrForm, array()));
     $strReturn = $oForm->fetchForm("$local_templates_dir/default_rate.tpl", _tr("Default Rate Configuration"), $arrDefaultRate);
 
     if(isset($_POST['cancel'])) {

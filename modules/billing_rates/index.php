@@ -218,6 +218,7 @@ function reportBillingNewRate($smarty, $module_name, $local_templates_dir, &$pDB
 
     $smarty->assign("CANCEL", _tr("CANCEL"));
     $smarty->assign("SAVE", _tr("SAVE"));
+    if (!isset($ERRORS)) $smarty->assign("ERRORS", issabelReportErrorMap($arrForm, array()));
     $smarty->assign("REQUIRED_FIELD", _tr("REQUIRED_FIELD"));
     $smarty->assign("EDIT", _tr("EDIT"));
     $smarty->assign("DELETE", _tr("DELETE"));
@@ -254,6 +255,7 @@ function reportBillingEditRate($smarty, $module_name, $local_templates_dir, &$pD
 
      $smarty->assign("CANCEL", _tr("CANCEL"));
      $smarty->assign("APPLY_CHANGES", _tr("APPLY_CHANGES"));
+     if (!isset($ERRORS)) $smarty->assign("ERRORS", issabelReportErrorMap($arrForm, array()));
      $smarty->assign("REQUIRED_FIELD", _tr("REQUIRED_FIELD"));
      $smarty->assign("EDIT", _tr("EDIT"));
      $smarty->assign("module_name", $module_name);
@@ -290,6 +292,7 @@ function reportBillingImportRate($smarty, $module_name, $local_templates_dir, &$
 
     $smarty->assign("CANCEL", _tr("CANCEL"));
     $smarty->assign("SAVE", _tr("SAVE"));
+    if (!isset($ERRORS)) $smarty->assign("ERRORS", issabelReportErrorMap($arrForm, array()));
     $smarty->assign("REQUIRED_FIELD", _tr("REQUIRED_FIELD"));
     $smarty->assign("module_name", $module_name);
     $smarty->assign("by_min",_tr("by_min"));
@@ -326,6 +329,7 @@ function reportBillingViewRate($smarty, $module_name, $local_templates_dir, &$pD
     }
     $smarty->assign("CANCEL", _tr("CANCEL"));
     $smarty->assign("SAVE", _tr("SAVE"));
+    if (!isset($ERRORS)) $smarty->assign("ERRORS", issabelReportErrorMap($arrForm, array()));
     $smarty->assign("REQUIRED_FIELD", _tr("REQUIRED_FIELD"));
     $smarty->assign("EDIT", _tr("EDIT"));
     $smarty->assign("DELETE", _tr("DELETE"));
