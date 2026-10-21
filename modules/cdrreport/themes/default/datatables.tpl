@@ -85,6 +85,8 @@ var module = "{$module_name}";
 <div class="iss-chart iss-chart--short">
   <canvas id="myChart"></canvas>
 </div>
+<script src="{$WEBPATH}themes/{$THEMENAME}/js/chart.umd.min.js"></script>
+<script src="{$WEBPATH}themes/{$THEMENAME}/js/issabel-charts.js"></script>
 
 <div class="iss-form__toolbar">
   <div class="iss-form__buttons">

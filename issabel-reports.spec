@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 25
+Release: 26
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,12 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-26
+- Use the theme Chart.js in the CDR report. The module shipped its own
+  Chart.js 2.7.2 and drew the series with colours written by hand, which
+  break in dark mode. The chart now uses the copy of the theme, with the
+  API of the version 4.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-25
 - Bring the CDR report page onto the theme. The page carried its own
   styles with hardcoded colours, a Bootstrap 3 modal that never opened

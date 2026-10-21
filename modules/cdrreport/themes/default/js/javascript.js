@@ -184,85 +184,80 @@ document.onreadystatechange = function() {
         }
     };
 }
-//BuildChart(dates, descrip, ALL_count, ANSWERED_count,NOANSWER_count, BUSY_count, FAILED_count);
+/* Grafica del CDR. Usa el Chart.js del tema (STYLE.md §10): los colores de
+ * las series salen de la paleta del tema y los del texto y la grilla los
+ * aplica el wrapper issabel-charts.js. */
 function BuildChart(labels, datalabels, all, answered, noanswer, busy, failed) {
-  if (
-        window.myChart1 !== undefined
-        &&
-        window.myChart1 !== null
-        ) {
+    if (window.myChart1 !== undefined && window.myChart1 !== null) {
         window.myChart1.destroy();
     }
-  var issDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
-  var issFg = issDark ? '#e6e9ee' : '#667382';
-  var issGrid = issDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.10)';
-  var ctx = document.getElementById("myChart").getContext('2d');
-  window.myChart1 = new Chart(ctx, {
+    var canvas = document.getElementById("myChart");
+    if (!canvas || typeof window.Chart === 'undefined') return null;
+
+    var palette = (window.IssabelCharts && window.IssabelCharts.palette)
+        ? window.IssabelCharts.palette(5) : [];
+    var color = function (i) { return palette.length ? palette[i % palette.length] : undefined; };
+
+    var ctx = canvas.getContext('2d');
+    window.myChart1 = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: labels, // Our labels
-      datasets: [
+        labels: labels,
+        datasets: [
         {
-        label: datalabels[1], // Name the series
-        data: answered, // Our values
-        borderColor: "#00cc44",
-        backgroundColor: "#00cc44",
+        label: datalabels[1],
+        data: answered,
+        borderColor: color(0),
+        backgroundColor: color(0),
         fill: false,
         type: 'line'
         },
         {
-        label: datalabels[2], // Name the series
-        data: busy, // Our values
-        borderColor: "#e68a00",
-        backgroundColor: "#e68a00",
+        label: datalabels[2],
+        data: busy,
+        borderColor: color(1),
+        backgroundColor: color(1),
         fill: false,
         type: 'line'
         },
         {
-        label: datalabels[3], // Name the series
-        data: failed, // Our values
-        borderColor: "#e62e00",
-        backgroundColor: "#e62e00",
+        label: datalabels[3],
+        data: failed,
+        borderColor: color(2),
+        backgroundColor: color(2),
         fill: false,
         type: 'line'
         },
         {
-        label: datalabels[4], // Name the series
-        data: noanswer, // Our values
-        borderColor: "#e6e600",
-        backgroundColor: "#e6e600",
+        label: datalabels[4],
+        data: noanswer,
+        borderColor: color(3),
+        backgroundColor: color(3),
         fill: false,
         type: 'line'
         },
         {
-        label: datalabels[0], // Name the series
-        data: all, // Our values
-        backgroundColor: "#572364",
+        label: datalabels[0],
+        data: all,
+        backgroundColor: color(4),
         borderWidth: 1
         },
      ]
     },
     options: {
-      responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behavior of full-width/height
-      legend: { labels: { fontColor: issFg } },
+      responsive: true,
+      maintainAspectRatio: false,
       scales: {
-        xAxes: [{
-            ticks: { fontColor: issFg },
-            gridLines: { color: issGrid, zeroLineColor: issGrid }
-        }],
-        yAxes: [{
-            ticks: {
-                beginAtZero: true,
-                precision: 2,
-                fontColor: issFg,
-            },
-            gridLines: { color: issGrid, zeroLineColor: issGrid }
-        }],
+        x: {
+            grid: { display: false }
+        },
+        y: {
+            beginAtZero: true
+        }
       },
     }
   });
-  return myChart1;
+  return window.myChart1;
 }
 
 function buildData() {
