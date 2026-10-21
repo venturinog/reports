@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 31
+Release: 32
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-32
+- Add the date validators to the shared form helper. The report filters
+  take the dates as text, in the format the datepicker writes, and the
+  server has to check them before using them in the query.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-31
 - Add the shared form helper of the report modules. The validation of
   the filters and the forms follows the same pattern in the ten report

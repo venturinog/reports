@@ -81,3 +81,26 @@ function issabelReportError($label, $required = false, $valid = true)
     if (!$valid) return sprintf(_tr('%s is invalid'), $label);
     return '';
 }
+
+/**
+ * Valida una fecha con el formato "d M Y", por ejemplo "21 Oct 2026".
+ *
+ * @param string $value
+ * @return bool
+ */
+function issabelReportValidDate($value)
+{
+    return preg_match('/^[[:digit:]]{1,2}[[:space:]]+[[:alnum:]]{3}[[:space:]]+[[:digit:]]{4}$/', (string)$value) === 1;
+}
+
+/**
+ * Valida una fecha con hora, con el formato "d M Y H:i", por ejemplo
+ * "21 Oct 2026 09:45".
+ *
+ * @param string $value
+ * @return bool
+ */
+function issabelReportValidDateTime($value)
+{
+    return preg_match('/^[[:digit:]]{1,2}[[:space:]]+[[:alnum:]]{3}[[:space:]]+[[:digit:]]{4}[[:space:]]+[[:digit:]]{1,2}:[[:digit:]]{1,2}$/', (string)$value) === 1;
+}
