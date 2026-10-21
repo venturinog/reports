@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 42
+Release: 43
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-43
+- Fill the missing keys of the asterisk log language files. The Portuguese
+  file was also missing a comma, so it was not even valid PHP and the module
+  broke with that language.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-42
 - Complete the English language file of the report modules. The pages used
   strings that were not in the base file, so they fell back to the key, and

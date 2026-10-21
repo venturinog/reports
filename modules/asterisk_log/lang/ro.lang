@@ -28,5 +28,9 @@ $arrLangModule = array(
     "Message" => "Mesaje",
     "Type" => "Tip",
     "Source" => "Sursa",
+"Asterisk Logs" => "Jurnalele Asterisk",
+"Search next" => "Cautare următoarea",
+"Search string" => "Text de căutare",
+"offset" => "decalaj",
 );
 ?>

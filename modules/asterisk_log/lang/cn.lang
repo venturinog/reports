@@ -26,5 +26,11 @@ $arrLangModule = array(
     "Show" => "显示",
     "Type" => "类型",
     "Source" => "来源",
+"Asterisk Logs" => "Asterisk 日志",
+"Message" => "消息",
+"Search" => "搜索",
+"Search next" => "查找下一个",
+"Search string" => "搜索字符串",
+"offset" => "偏移量",
 );
 ?>

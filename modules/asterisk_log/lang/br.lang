@@ -27,9 +27,10 @@ $arrLangModule = array(
     "Type" => "Tipos",
     "Source" => "Origem",
     "Search" => "Pesquisar",
-	  "Search string" => "Campo Pesquisa"
+	  "Search string" => "Campo Pesquisa",
     "Search next" => 'Próxima Pesquisa',
     "offset" => "offset",
     "Asterisk Logs" => "Logs Asterisk",
+"Message" => "Mensagem",
 );
 ?>

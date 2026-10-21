@@ -31,5 +31,6 @@ $arrLangModule = array(
     "Message" => "Mensaje",
     "Type" => "Tipo",
     "Source" => "Fuente",
+"offset" => "desplazamiento",
 );
 ?>

@@ -26,5 +26,11 @@ $arrLangModule = array(
     "Show" => "보기",
     "Type" => "타입",
     "Source" => "자원",
+"Asterisk Logs" => "Asterisk 로그",
+"Message" => "메시지",
+"Search" => "검색",
+"Search next" => "다음 검색",
+"Search string" => "검색 문자열",
+"offset" => "오프셋",
 );
 ?>

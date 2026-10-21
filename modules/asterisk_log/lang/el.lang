@@ -28,5 +28,9 @@ $arrLangModule = array(
     "Message" => "Μήνυμα",
     "Type" => "Τύπος",
     "Source" => "Πηγή",
+"Asterisk Logs" => "Αρχεία καταγραφής Asterisk",
+"Search next" => "Αναζήτηση επόμενου",
+"Search string" => "Κείμενο αναζήτησης",
+"offset" => "μετατόπιση",
 );
 ?>

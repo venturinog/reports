@@ -28,5 +28,9 @@ $arrLangModule = array(
     "Message" => "Poruka",
     "Type" => "Tipovi",
     "Source" => "Izvorište",
+"Asterisk Logs" => "Asterisk zapisi",
+"Search next" => "Traži sljedeći",
+"Search string" => "Tekst za pretragu",
+"offset" => "pomak",
 );
 ?>

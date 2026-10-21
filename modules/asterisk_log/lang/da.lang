@@ -25,5 +25,12 @@ $arrLangModule = array(
     "Date" => "Dato",
     "Show" => "Vis",
     "Source" => "Kilde",
+"Asterisk Logs" => "Asterisk-logfiler",
+"Message" => "Besked",
+"Search" => "Søg",
+"Search next" => "Søg næste",
+"Search string" => "Søgestreng",
+"Type" => "Type",
+"offset" => "forskydning",
 );
 ?>

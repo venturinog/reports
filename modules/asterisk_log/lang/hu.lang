@@ -27,5 +27,10 @@ $arrLangModule = array(
     "Message" => "Üzenet",
     "Type" => "Típus",
     "Source" => "Forrás",
+"Asterisk Logs" => "Asterisk naplók",
+"Search" => "Keresés",
+"Search next" => "Következő keresése",
+"Search string" => "Keresési kifejezés",
+"offset" => "eltolás",
 );
 ?>

@@ -26,5 +26,11 @@ $arrLangModule = array(
     "Show" => "Показать",
     "Type" => "Тип",
     "Source" => "От кого",
+"Asterisk Logs" => "Журналы Asterisk",
+"Message" => "Сообщение",
+"Search" => "Поиск",
+"Search next" => "Искать далее",
+"Search string" => "Искомая строка",
+"offset" => "смещение",
 );
 ?>

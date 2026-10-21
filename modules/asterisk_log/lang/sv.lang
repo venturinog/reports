@@ -28,5 +28,9 @@ $arrLangModule = array(
     "Message" => "Meddelande",
     "Type" => "Typ",
     "Source" => "Källa",
+"Asterisk Logs" => "Asterisk-loggar",
+"Search next" => "Sök nästa",
+"Search string" => "Söksträng",
+"offset" => "förskjutning",
 );
 ?>

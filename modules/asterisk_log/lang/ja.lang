@@ -28,5 +28,9 @@ $arrLangModule = array(
     "Message" => "メッセージ",
     "Type" => "タイプ",
     "Source" => "発信元",
+"Asterisk Logs" => "Asterisk ログ",
+"Search next" => "次を検索",
+"Search string" => "検索文字列",
+"offset" => "オフセット",
 );
 ?>

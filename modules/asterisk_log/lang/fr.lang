@@ -28,5 +28,9 @@ $arrLangModule = array(
     "offset" => "Offset",
     "Asterisk Logs" => "Traces Asterisk",
     "Show" => "Afficher",
+"Date" => "Date",
+"Message" => "Message",
+"Source" => "Source",
+"Type" => "Type",
 );
 ?>
