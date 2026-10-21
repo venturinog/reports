@@ -78,13 +78,22 @@ function _moduleContent(&$smarty, $module_name) {
     $arrH323  = getData(6);
     $arrLocal = getData(7);
     $smarty->assign("timezone", $timezone);
-    $smarty->assign("hoursJSON", json_encode($arrHours));
-    $smarty->assign("totalJSON", json_encode($arrTotal));
-    $smarty->assign("dahdiJSON", json_encode($arrDahdi));
-    $smarty->assign("sipJSON",   json_encode($arrSIP));
-    $smarty->assign("iaxJSON",   json_encode($arrIAX));
-    $smarty->assign("h323JSON",  json_encode($arrH323));
-    $smarty->assign("localJSON", json_encode($arrLocal));
+    $smarty->assign("CHART_TITLE", _tr("Channels Usage Report"));
+    $smarty->assign("PRINT", _tr("Print"));
+    // Los datos de la grafica van en un bloque JSON: asi el navegador los
+    // recibe como datos y no como codigo.
+    $smarty->assign("CHART_DATA", json_encode(array(
+        'timezone' => $timezone,
+        'hours'    => $arrHours,
+        'series'   => array(
+            'total' => array('label' => _tr('Total Channels'),    'data' => $arrTotal),
+            'dahdi' => array('label' => _tr('Zap Channels'),     'data' => $arrDahdi),
+            'sip'   => array('label' => _tr('SIP Channels'),     'data' => $arrSIP),
+            'iax'   => array('label' => _tr('IAX Channels'),     'data' => $arrIAX),
+            'h323'  => array('label' => _tr('H323 Channels'),    'data' => $arrH323),
+            'local' => array('label' => _tr('Local Channels'),   'data' => $arrLocal),
+        ),
+    ), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP));
     return $smarty->fetch("$local_templates_dir/charts.tpl");
 }
 ?>

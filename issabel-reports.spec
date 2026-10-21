@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 23
+Release: 24
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,13 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-24
+- Use the theme grid and the theme Chart.js in the channel usage page. The
+  module shipped its own Chart.js 2.7.2, a copy of Moment and a copy of
+  pdfMake, all loaded on every visit, and the chart drew its series with
+  colours written by hand. The PDF button now prints the page, the way
+  the grid exports do.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-23
 - Use the theme grid in the summary filter. The filter was a legacy table
   with the labels on the side. The Spanish language file also had two

@@ -33,6 +33,7 @@ $arrLangModule=array(
 "Simultaneous H323 Channels"=>"Simultaneous H323 Channels",
 "Simultaneous Local Channels"=>"Simultaneous Local Channels",
 "Total Channels"=>"Total Channels",
+"Print"=>"Print",
 "Zap Channels"=>"Zap Channels",
 "SIP Channels"=>"SIP Channels",
 "IAX Channels"=>"IAX Channels",

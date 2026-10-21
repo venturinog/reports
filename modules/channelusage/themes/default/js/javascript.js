@@ -1,109 +1,79 @@
-$(document).ready( function () {
-  var chart=buildChart();
-});
+/*
+ * Grafica de uso de canales: Chart.js del tema (STYLE.md §10).
+ *
+ * La libreria y el wrapper de color los carga la plantilla; este fichero
+ * solo lee los datos y dibuja.
+ */
+(function () {
+    'use strict';
 
-function buildChart() {
-  if (  
-        window.myChart1 !== undefined
-        &&
-        window.myChart1 !== null
-        ) {
-        window.myChart1.destroy();
+    function readData() {
+        var el = document.getElementById('issabelChannelUsage');
+        if (!el) return null;
+        try {
+            return JSON.parse(el.textContent);
+        } catch (e) {
+            return null;
+        }
     }
-  var issDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
-  var issFg = issDark ? '#e6e9ee' : '#667382';
-  var issGrid = issDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.10)';
-  var ctx = document.getElementById("myChart").getContext('2d');
-  window.myChart1 = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: hours,
-      datasets: [
-        {
-        label: 'Total',
-        data: total,
-        borderColor: "#572364",
-        backgroundColor: "#572364",
-        fill: false,
-        },
-        {
-        label: 'DAHDI',
-        data: dahdi,
-        borderColor: "#0000ff",
-        backgroundColor: "#0000ff",
-        fill: false,
-        },
-        {
-        label: 'SIP',
-        data: sip,
-        borderColor: "#00cc66",
-        backgroundColor: "#00cc66",
-        fill: false,
-        },
-        {
-        label: 'IAX',
-        data: iax,
-        borderColor: "#ff9900",
-        backgroundColor: "#ff9900",
-        fill: false,
-        },
-        {
-        label: 'H323',
-        data: h323,
-        borderColor: "#ff99bb",
-        backgroundColor: "#ff99bb",
-        fill: false,
-        },
-        {
-        label: 'Local',
-        data: local,
-        borderColor: "#ffff00",
-        backgroundColor: "#ffff00",
-        fill: false,
-        },
-      ],
-    },
-    options: {
-        legend: { labels: { fontColor: issFg } },
-        scales: {
-          xAxes: [{
-          type: 'time',
-          time: {
-            timezone: localtz,
-            unit: 'minute',
-            tooltipFormat: 'lll',
+
+    function buildChart(data) {
+        var canvas = document.getElementById('myChart');
+        if (!canvas || typeof window.Chart === 'undefined') return;
+
+        var palette = (window.IssabelCharts && window.IssabelCharts.palette)
+            ? window.IssabelCharts.palette(Object.keys(data.series).length)
+            : [];
+
+        var datasets = [];
+        var i = 0;
+        Object.keys(data.series).forEach(function (key) {
+            var serie = data.series[key];
+            var color = palette.length ? palette[i % palette.length] : undefined;
+            datasets.push({
+                label: serie.label,
+                data: serie.data,
+                borderColor: color,
+                backgroundColor: color,
+                fill: false
+            });
+            i++;
+        });
+
+        window.channelUsageChart = new window.Chart(canvas.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: data.hours,
+                datasets: datasets
             },
-          ticks: { fontColor: issFg },
-          gridLines: { color: issGrid, zeroLineColor: issGrid }
-          }],
-          yAxes: [{
-          ticks: { beginAtZero: true, fontColor: issFg },
-          gridLines: { color: issGrid, zeroLineColor: issGrid }
-          }]
-       }, 
-    scaleShowValues: true,
-    responsive: true, // Instruct chart js to respond nicely.
-    maintainAspectRatio: false, // Add to prevent default behavior of full-width/height 
-    },
-  });
-  return myChart1;
-} 
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            timezone: data.timezone,
+                            unit: 'minute',
+                            tooltipFormat: 'lll'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
 
-function downloadPDF2() {
-        var newCanvas = document.querySelector('#myChart');
-        var newCanvasImg = newCanvas.toDataURL("image/jpeg", 1.0);
-        var data = newCanvas.toDataURL();
-        var docDefinition = {
-            pageOrientation: 'landscape',
-            pageSize: 'A4',
-            content: [
-                {text: 'Issabel Channel Usage', headlineLevel: 1},
-                 " ",
-                {
-                 image: data,
-                 width: 750
-                }]
-         };
-         pdfMake.createPdf(docDefinition).download("channel-usage.pdf");
-}
+    $(document).ready(function () {
+        var data = readData();
+        if (data) buildChart(data);
+    });
 
+    /* La exportacion a PDF la hace el propio navegador: el tema imprime la
+     * pagina y la grafica sale con el resto. */
+    window.printChart = function () {
+        window.print();
+    };
+})();
