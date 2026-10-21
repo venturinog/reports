@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 27
+Release: 28
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,12 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-28
+- Drop the server side images of the graphic report. The module drew
+  the charts with GD and put the images in a variable that no template
+  printed, so the code was unreachable. The charts are drawn in the
+  browser with the Chart.js of the theme.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-27
 - Use the theme Chart.js in the graphic report. The module shipped its
   own Chart.js 2.7.2, a plugin of data labels for the version 2, a copy of
