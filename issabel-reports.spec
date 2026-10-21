@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 40
+Release: 41
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,13 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-41
+- Validate the billing rate forms field by field. The errors went to a
+  global message that named the fields by their label, and the import of a
+  CSV file never committed: the check of the error array against a string
+  was always true, so every import was rolled back and the page ended
+  blank.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-40
 - Validate the default rate field by field. The error was a single
   global message that did not say which of the two values was wrong.

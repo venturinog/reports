@@ -15,6 +15,7 @@
       <div class="iss-field">
         <span class="iss-field__label">{$importcsv.LABEL}&nbsp;<span class="iss-required">*</span></span>
         <span class="iss-field__control">{$importcsv.INPUT}&nbsp;&nbsp;<a class='tooltip' title='{$alert_import}'><img src='modules/{$module_name}/images/img_info.png' width='15' height='15' alt='info' longdesc='{$IMPORT_INFO}' /></a></span>
+        {if $ERRORS.importcsv}<div class="invalid-feedback d-block">{$ERRORS.importcsv}</div>{/if}
       </div>
     </div>
   </section>

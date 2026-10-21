@@ -27,6 +27,7 @@ include_once "libs/paloSantoForm.class.php";
 include_once "libs/paloSantoTrunk.class.php";
 include_once "libs/paloSantoRate.class.php";
 include_once "libs/misc.lib.php";
+require_once "libs/issabelReportForm.class.php";
 
 function _moduleContent(&$smarty, $module_name)
 {
@@ -203,7 +204,7 @@ function reportBillingRates($smarty, $module_name, $local_templates_dir, &$pDB, 
     return $content;
 }
 
-function reportBillingNewRate($smarty, $module_name, $local_templates_dir, &$pDB, &$pDB2, &$pDB3, $arrConf){
+function reportBillingNewRate($smarty, $module_name, $local_templates_dir, &$pDB, &$pDB2, &$pDB3, $arrConf, $arrForm = null){
     //begin, Form data persistence to errors and other events.
     $_DATA  = $_POST;
     $pBillingRates = new paloSantoBillingRates($pDB);
@@ -212,7 +213,7 @@ function reportBillingNewRate($smarty, $module_name, $local_templates_dir, &$pDB
         $currency = "$";
     }
     $arrTrunks = $pBillingRates->getTrunks($pDB2); //obtain the trunks for billing
-    $arrForm = createFormNew($arrTrunks);
+    if ($arrForm === null) $arrForm = createFormNew($arrTrunks);
     $oForm = new paloForm($smarty,$arrForm);
 
     $smarty->assign("CANCEL", _tr("CANCEL"));
@@ -232,14 +233,14 @@ function reportBillingNewRate($smarty, $module_name, $local_templates_dir, &$pDB
     return $htmlForm;
 }
 
-function reportBillingEditRate($smarty, $module_name, $local_templates_dir, &$pDB, &$pDB2, &$pDB3, $arrConf){
+function reportBillingEditRate($smarty, $module_name, $local_templates_dir, &$pDB, &$pDB2, &$pDB3, $arrConf, $arrForm = null){
      //begin, Form data persistence to errors and other events.
      $_DATA  = $_POST;
      $id = getParameter("id");
      $pBillingRates = new paloSantoBillingRates($pDB);
      $arrData = $pBillingRates->getBillingRatesById($id); //obtain the rate
      $arrTrunks = $pBillingRates->getTrunks($pDB2); //obtain the trunks for billing
-     $arrForm = createEditForm($arrTrunks);
+     if ($arrForm === null) $arrForm = createEditForm($arrTrunks);
      $oForm = new paloForm($smarty,$arrForm);
      $currency = $pBillingRates->getCurrency($pDB3);
      if($currency == null || $currency == ""){
@@ -282,9 +283,9 @@ function reportBillingEditRate($smarty, $module_name, $local_templates_dir, &$pD
      return $htmlForm;
 }
 
-function reportBillingImportRate($smarty, $module_name, $local_templates_dir, &$pDB, &$pDB2, &$pDB3, $arrConf){
+function reportBillingImportRate($smarty, $module_name, $local_templates_dir, &$pDB, &$pDB2, &$pDB3, $arrConf, $arrForm = null){
     $_DATA  = $_POST;
-    $arrForm = createImportForm();
+    if ($arrForm === null) $arrForm = createImportForm();
     $oForm = new paloForm($smarty,$arrForm);
 
     $smarty->assign("CANCEL", _tr("CANCEL"));
@@ -368,18 +369,14 @@ function obtainResultOperationRate($smarty, $module_name, $local_templates_dir, 
      if($action=="save_new"){
         $arrTrunks = $pBillingRates->getTrunks($pDB2);
         $arrFormNew = createFormNew($arrTrunks);
-        $oForm = new paloForm($smarty,$arrFormNew);
 
-        if(!$oForm->validateForm($_POST)) {
-            $strErrorMsg = "<b>"._tr('The following fields contain errors').":</b><br/>";
-            $arrErrores = $oForm->arrErroresValidacion;
-            if(is_array($arrErrores) && count($arrErrores) > 0){
-                foreach($arrErrores as $k=>$v) {
-                    $strErrorMsg .= "$k: [$v[mensaje]] <br /> ";
-                }
-            }
-            $smarty->assign("mb_message", $strErrorMsg);
-            $content=reportBillingNewRate($smarty, $module_name, $local_templates_dir, $pDB, $pDB2, $pDB3, $arrConf);
+        /* Validacion por campo: el servidor es la fuente de verdad y la pagina
+         * se vuelve a pintar con el error bajo el campo que falla. */
+        $errors = validateBillingRate($arrFormNew, $_POST);
+        if(count($errors) > 0) {
+            issabelReportMarkInvalid($arrFormNew, $errors);
+            $smarty->assign("ERRORS", issabelReportErrorMap($arrFormNew, $errors));
+            $content=reportBillingNewRate($smarty, $module_name, $local_templates_dir, $pDB, $pDB2, $pDB3, $arrConf, $arrFormNew);
             return $content;
         }else{
             $result = create_rate($pBillingRates,$prefix_new,$name_new,$rate_new,$rate_offset_new,$trunk_new,$hidden_digits);
@@ -423,23 +420,18 @@ function obtainResultOperationRate($smarty, $module_name, $local_templates_dir, 
      if($action=="save_edit"){
           $arrTrunks = $pBillingRates->getTrunks($pDB2);
           $arrFormEdit = createEditForm($arrTrunks);
-          $oForm = new paloForm($smarty,$arrFormEdit);
           if($edit == 'Default'){
               $trunk_new = isset($trunk_new)?$trunk_new:"";
               $prefix_new = isset($prefix_new)?$prefix_new:"";
               $name_new = isset($name_new)?$name_new:"Default";
           }
-          if(!$oForm->validateForm($_POST)) {
-              $strErrorMsg = "<b>"._tr('The following fields contain errors').":</b><br/>";
-              $arrErrores = $oForm->arrErroresValidacion;
-              if(is_array($arrErrores) && count($arrErrores) > 0){
-                  foreach($arrErrores as $k=>$v) {
-                      $strErrorMsg .= "$k: [$v[mensaje]] <br /> ";
-                  }
-              }
-              //into to edit rate but the field are empty
-              $smarty->assign("mb_message", $strErrorMsg);
-              $content = reportBillingEditRate($smarty, $module_name, $local_templates_dir, $pDB, $pDB2, $pDB3, $arrConf);
+          /* Validacion por campo: el servidor es la fuente de verdad y la pagina
+           * se vuelve a pintar con el error bajo el campo que falla. */
+          $errors = validateBillingRate($arrFormEdit, $_POST);
+          if(count($errors) > 0) {
+              issabelReportMarkInvalid($arrFormEdit, $errors);
+              $smarty->assign("ERRORS", issabelReportErrorMap($arrFormEdit, $errors));
+              $content = reportBillingEditRate($smarty, $module_name, $local_templates_dir, $pDB, $pDB2, $pDB3, $arrConf, $arrFormEdit);
               return $content;
           }else{
               if($varUpdate == "on"){
@@ -531,18 +523,29 @@ function obtainResultOperationRate($smarty, $module_name, $local_templates_dir, 
      }
      if($action=="save_import"){
         $arrErrorMsg = array();
-        if(!preg_match('/.*\.csv$/', $_FILES['importcsv']['name'])){
-            $smarty->assign("mb_message", _tr("Invalid_file_extension"));
-            $content = reportBillingImportRate($smarty, $module_name, $local_templates_dir, $pDB, $pDB2, $pDB3, $arrConf);
+        $arrFormImport = createImportForm();
+
+        /* Validacion por campo: el servidor es la fuente de verdad. */
+        $errors = array();
+        $fichero = isset($_FILES['importcsv']['name']) ? (string)$_FILES['importcsv']['name'] : '';
+        if ($fichero === '') {
+            $errors['importcsv'] = issabelReportError(_tr('import_rate'), true);
+        } else if (!preg_match('/.*\.csv$/i', $fichero)) {
+            $errors['importcsv'] = _tr("Invalid_file_extension");
+        }
+        if (count($errors) > 0) {
+            issabelReportMarkInvalid($arrFormImport, $errors);
+            $smarty->assign("ERRORS", issabelReportErrorMap($arrFormImport, $errors));
+            $content = reportBillingImportRate($smarty, $module_name, $local_templates_dir, $pDB, $pDB2, $pDB3, $arrConf, $arrFormImport);
             return $content;
         }else{
-            if(is_uploaded_file($_FILES['importcsv']['tmp_name']))
+            if(isset($_FILES['importcsv']['tmp_name']) && is_uploaded_file($_FILES['importcsv']['tmp_name']))
             {
                 $arrTrunks = $pBillingRates->getTrunks($pDB2); //obtain the trunks for billing
                 $arrForm = createFormNew($arrTrunks);
                 $oForm = new paloForm($smarty,$arrForm);
 
-                //$count=0;
+                $count = 1;
                 $row = 1;
                 if ($handle = fopen($_FILES['importcsv']['tmp_name'], "r")) {
                     $rate_val = fgetcsv($handle, 4096);
@@ -580,30 +583,33 @@ function obtainResultOperationRate($smarty, $module_name, $local_templates_dir, 
                                 $content = reportBillingImportRate($smarty, $module_name, $local_templates_dir, $pDB, $pDB2, $pDB3, $arrConf);
                                 return $content;
                             }
-                        }else
-                            $arrErrorMsg[_tr("Validation Error")][$count] = $oForm->arrErroresValidacion;
+                        }else{
+                            $erroresFila = validateBillingRate($arrForm, $record);
+                            $arrErrorMsg[_tr("Validation Error")][$count] = $erroresFila;
+                            $count++;
+                        }
                     }
                     fclose($handle);
                 }
-                if($arrErrorMsg!=""){
+                if(count($arrErrorMsg) > 0){
                     $pDB->rollBack();
                     foreach ($arrErrorMsg as $Error_type => $on_line)
                     {
-                        $strErrorMsg.= "<B><font color=\"red\">".$Error_type.":</font></B><BR>";
+                        $strErrorMsg.= "<B>".$Error_type.":</B><BR>";
                         foreach ($on_line as $line=>$error_msg)
                         {
-                                if (is_array($error_msg)) foreach ($error_msg as $k=>$msg)
-                                {
-                                    if (!is_array($msg)) $error_msg=$msg;
-                                    else foreach ($msg as $v) $error_msg= $k." has ".$v;
-                                }
-                                    $strErrorMsg.= _tr("Error on line").": ". $line."  ".$error_msg."<br>";
+                            if (is_array($error_msg)) {
+                                $mensajes = array();
+                                foreach ($error_msg as $k=>$msg) $mensajes[] = $k.": ".$msg;
+                                $error_msg = implode('; ', $mensajes);
+                            }
+                            $strErrorMsg.= _tr("Error on line").": ". $line."  ".$error_msg."<br>";
                         }
                         $strErrorMsg.='<BR>';
                     }
                     if($strErrorMsg!=""){
                         $smarty->assign("mb_message", $strErrorMsg);
-                        $content = reportBillingImportRate($smarty, $module_name, $local_templates_dir, $pDB, $pDB2, $pDB3, $arrConf);
+                        $content = reportBillingImportRate($smarty, $module_name, $local_templates_dir, $pDB, $pDB2, $pDB3, $arrConf, $arrFormImport);
                         return $content;
                     }
                 }else{
@@ -619,6 +625,34 @@ function obtainResultOperationRate($smarty, $module_name, $local_templates_dir, 
             }
         }
      }
+}
+
+/* Validacion por campo del formulario de tarifa. Devuelve los errores con la
+ * clave del campo y el mensaje ya traducido. */
+function validateBillingRate($arrForm, $data)
+{
+    $errors = array();
+    $campos = array(
+        'Prefix'        => 'text',
+        'Rate'          => 'numeric',
+        'Name'          => 'text',
+        'Rate_offset'   => 'numeric',
+        'Trunk'         => 'text',
+        'Hidden_Digits' => 'numeric',
+    );
+    foreach ($campos as $campo => $tipo) {
+        if (!isset($arrForm[$campo])) continue;
+        $valor = isset($data[$campo]) ? trim((string)$data[$campo]) : '';
+        $etiqueta = $arrForm[$campo]['LABEL'];
+        if ($valor === '') {
+            $errors[$campo] = issabelReportError($etiqueta, true);
+            continue;
+        }
+        if ($tipo === 'numeric' && !is_numeric($valor)) {
+            $errors[$campo] = issabelReportError($etiqueta, false, false);
+        }
+    }
+    return $errors;
 }
 
 function createFieldFilter(){
