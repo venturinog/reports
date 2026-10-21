@@ -31,7 +31,6 @@ function _moduleContent(&$smarty, $module_name)
     require_once "libs/misc.lib.php";
     include_once "libs/paloSantoRate.class.php";
     include_once "libs/paloSantoTrunk.class.php";
-    include_once "libs/paloSantoGraphImage.lib.php";
 
     //include module files
     include_once "modules/$module_name/configs/default.conf.php";
@@ -153,14 +152,7 @@ function _moduleContent(&$smarty, $module_name)
                 array('date_start' => date("d M Y"), 'date_end' => date("d M Y"), 'criteria'=>'minutes'));
     }
 
-    if (isset($_GET['action']) && $_GET['action'] == 'image') {
-        ejecutarGrafico($value_criteria, $date_start, $date_end);
-        return '';
-    }
-
     //obtener los datos a mostrar
-
-
 
     $type_graph=$value_criteria;
 
@@ -169,15 +161,14 @@ function _moduleContent(&$smarty, $module_name)
     $data_graph = leerDatosGrafico($type_graph, $date_start, $date_end);
     $title_sumary = $data_graph['title_sumary'];
 
-    //contruir la tabla de sumario
-    $smarty->assign('URL_GRAPHIC', construirURL(array(
-                    'module'    =>  $module_name,
-                    'rawmode'   =>  'yes',
-                    'action'    =>  'image',
-                    'criteria'  =>  $value_criteria,
-                    'date_start'=>  date('d M Y', strtotime($date_start)),
-                    'date_end'  =>  date('d M Y', strtotime($date_end)),
-                    )));
+    // La grafica se dibuja en el navegador con Chart.js del tema, asi que solo
+    // hay que pasarle los datos. Antes se generaba una imagen PNG en el servidor
+    // con jpgraph, que no existe en Rocky Linux 10.
+    $smarty->assign("CHART_DATA", json_encode(array(
+        'labels' => $data_graph["legend"],
+        'values' => array_values($data_graph["values"]),
+        'title'  => $data_graph["title"],
+    ), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP));
 
     if (count($data_graph["values"])>0){
         $mostrarSumario=TRUE;
@@ -201,6 +192,7 @@ function _moduleContent(&$smarty, $module_name)
     }else
         $mostrarSumario=FALSE;
     $smarty->assign("mostrarSumario", $mostrarSumario);
+    $smarty->assign("NO_DATA", $mostrarSumario ? "" : _tr("No records found"));
     $smarty->assign("contentFilter", $htmlFilter);
     $smarty->assign("title", _tr('Destination Distribution'));
     $smarty->assign("icon","images/bardoc.png");
@@ -392,86 +384,4 @@ function leerDatosGrafico($type_graph, $date_start, $date_end)
             );
     return $data_graph;
 }
-
-function ejecutarGrafico($value_criteria, $date_start, $date_end)
-{
-    $data_graph = leerDatosGrafico($value_criteria, $date_start, $date_end);
-
-    if (count($data_graph["values"])>0){
-        // Create the Pie Graph.
-        $graph = new PieGraph(630, 220,"auto");
-        $graph->SetUserFont('../liberation-sans/LiberationSans-Regular.ttf');
-        $graph->SetMarginColor('#fafafa');
-        $graph->SetFrame(true,'#999999');
-
-        $graph->legend->SetFillColor("#fafafa");
-        $graph->legend->SetColor("#444444", "#999999");
-        $graph->legend->SetShadow('gray@0.6',4);
-
-        // Set A title for the plot
-        //$graph->title->Set(utf8_decode($data_graph["title"]));
-        $graph->title->Set($data_graph["title"]);
-        $graph->title->SetColor("#444444");
-        $graph->legend->Pos(0.1,0.2);
-        $graph->legend->SetFont(FF_USERFONT);
-
-        // Create 3D pie plot
-        $p1 = new PiePlot3d($data_graph["values"]);
-        $p1->SetCenter(0.4);
-        $p1->SetSize(100);
-
-        // Adjust projection angle
-        $p1->SetAngle(60);
-
-        // Adjsut angle for first slice
-        $p1->SetStartAngle(45);
-
-        // Display the slice values
-        $p1->value->SetColor("black");
-
-        // Add colored edges to the 3D pie
-        // NOTE: You can't have exploded slices with edges!
-        $p1->SetEdge("black");
-
-        $p1->SetLegends($data_graph["legend"]);
-        $graph->Add($p1);
-        $graph->Stroke();
-    }else{
-        $graph = new CanvasGraph(630,220,"auto");
-        $graph->SetUserFont('../liberation-sans/LiberationSans-Regular.ttf');
-        //$title = new Text(utf8_decode($data_graph["title"]));
-        $title = new Text($data_graph["title"]);
-        $title->ParagraphAlign('center');
-        //$title->SetFont(FF_FONT2,FS_BOLD);
-        $title->SetFont(FF_USERFONT);
-        $title->SetMargin(3);
-        $title->SetAlign('center');
-        $title->Center(0,630,110);
-        $graph->AddText($title);
-
-        //$t1 = new Text(utf8_decode(_tr("No records found")));
-        $t1 = new Text(_tr("No records found"));
-        $t1->SetBox("white","black",true);
-        $t1->ParagraphAlign("center");
-        $t1->SetColor("black");
-        $t1->SetFont(FF_USERFONT);
-
-        $graph->AddText($t1);
-        $graph->img->SetColor('navy');
-        $graph->img->SetTextAlign('center','bottom');
-        $graph->img->Rectangle(0,0,629,219);
-        $graph->Stroke();
-        /*
-        //no hay datos - por ahora muestro una imagen en blanco con mensaje no records found
-        header('Content-type: image/png');
-        $titulo=utf8_decode($data_graph["title"]);
-        $im = imagecreate(630, 220);
-        $background_color = imagecolorallocate($im, 255, 255, 255);
-        $text_color = imagecolorallocate($im, 233, 14, 91);
-        imagestring($im, 10, 5, 5, $titulo. "  -  No records found", $text_color);
-        imagepng($im);
-        imagedestroy($im);*/
-    }
-}
-
 ?>

@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 11
+Release: 12
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,13 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-12
+- Render the destination distribution chart with the theme Chart.js.
+  The page required jpgraph, which does not exist in Rocky Linux 10, and
+  answered HTTP 500 on every visit. The pie chart is now drawn in the
+  browser with the Chart.js copy of the theme, and the read-only image
+  request is gone.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-11
 - Drop the dead jpgraph include from the channel usage page. The
   library was never used there: the chart is drawn in the browser. It

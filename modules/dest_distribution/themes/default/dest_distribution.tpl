@@ -9,7 +9,13 @@
       <br>
       <div class="iss-field iss-field--full">
         <span class="iss-field__control">
-          <p align='center'><img alt="Graphic" src="{$URL_GRAPHIC}" /></p>
+          {if $mostrarSumario}
+          <div class="iss-chart">
+            <canvas id="myChart"></canvas>
+          </div>
+          {else}
+          <p align="center">{$NO_DATA}</p>
+          {/if}
         </span>
       </div>
       {if $mostrarSumario}
@@ -35,3 +41,8 @@
     </div>
   </section>
 </div>
+{if $mostrarSumario}
+<script src="{$WEBPATH}themes/{$THEMENAME}/js/chart.umd.min.js"></script>
+<script src="{$WEBPATH}themes/{$THEMENAME}/js/issabel-charts.js"></script>
+<script type="application/json" id="issabelDestDistributionChart">{$CHART_DATA}</script>
+{/if}
