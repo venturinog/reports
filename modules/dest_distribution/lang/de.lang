@@ -38,5 +38,7 @@ $arrLangModule = array(
     "default" => "defaut",
     "Duration in seconds" => "Dauer in Sekunden",
     "Cost" => "Kosten",
+"Filter" => "Filter",
+"No records found" => "Keine Datensätze gefunden",
 );
 ?>

@@ -25,5 +25,9 @@ $arrLangModule = array(
     "Billing Capable" => "mögliche Berechnung",
     "Trunk Bill Configuration" => "Konfiguration des Bündelsystems",
     "Trunk" => "Bündel",
+"Default Rate" => "Standardsatz",
+"Default Rate Configuration" => "Konfiguration des Standardsatzes",
+"Default Rate Offset" => "Versatz des Standardsatzes",
+"Error when saving default rate" => "Fehler beim Speichern des Standardsatzes",
 );
 ?>

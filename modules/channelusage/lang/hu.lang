@@ -35,5 +35,7 @@ $arrLangModule = array(
     "IAX Channels" => "IAX csatorna",
     "H323 Channels" => "H323 csatorna",
     "Local Channels" => "Lokális Csatorna",
+"Nothing to show yet" => "Még nincs mit megjeleníteni",
+"Print" => "Nyomtatás",
 );
 ?>

@@ -28,5 +28,6 @@ $arrLangModule = array(
     "Default Rate Offset" => "Domyślna opłata za rozpoczęcie rozmowy",
     "Trunk Bill Configuration" => "Konfiguracja billingu traktu",
     "Trunk" => "Trakt",
+"Error when saving default rate" => "Błąd podczas zapisywania stawki domyślnej",
 );
 ?>

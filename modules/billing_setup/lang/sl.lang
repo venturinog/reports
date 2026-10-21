@@ -25,5 +25,9 @@ $arrLangModule = array(
     "Billing Capable" => "sposobno plačevanja",
     "Trunk Bill Configuration" => "konfiguracija debelnega računa",
     "Trunk" => "deblo",
+"Default Rate" => "Privzeta tarifa",
+"Default Rate Configuration" => "Nastavitev privzete tarife",
+"Default Rate Offset" => "Zamik privzete tarife",
+"Error when saving default rate" => "Napaka pri shranjevanju privzete tarife",
 );
 ?>

@@ -49,6 +49,12 @@ $arrLangModule=array(
 "The extension" => "Abone",
 "does not have calls yet" => "Henüz çağrı yok",
 "The extension must be numeric and can not start with zero" => "Abone numarası yazılmalı ve 0 ile başlayamaz.",
-"Extention(number)" => "Abone(numara)"
+"Extention(number)" => "Abone(numara)",
+"Classify by" => "Sınıflandırma ölçütü",
+"Extension (Number)" => "Dahili numara (numara)",
+"Invalid extension" => "Geçersiz dahili numara",
+"Print" => "Yazdır",
+"Queue" => "Kuyruk",
+"Trunk" => "Hat",
 );
 ?>

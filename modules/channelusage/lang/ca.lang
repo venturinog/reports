@@ -34,5 +34,8 @@ $arrLangModule = array(
     "IAX Channels" => "Canals IAX",
     "H323 Channels" => "Canals H323",
     "Local Channels" => "Canals Locals",
+"Channels Usage Report" => "Informe d'ús de canals",
+"Nothing to show yet" => "Encara no hi ha res a mostrar",
+"Print" => "Imprimir",
 );
 ?>

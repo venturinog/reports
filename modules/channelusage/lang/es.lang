@@ -36,5 +36,6 @@ $arrLangModule = array(
     "H323 Channels" => "Canales H323",
     "Local Channels" => "Canales Locales",
     "Nothing to show yet" => "Nada que mostrar todavía",
+"Print" => "Imprimir",
 );
 ?>

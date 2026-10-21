@@ -28,5 +28,6 @@ $arrLangModule = array(
     "Default Rate Offset" => "Надбавка Тарифа по Умолчанию",
     "Trunk Bill Configuration" => "Биллинговые настройки по транкам",
     "Trunk" => "Транк",
+"Error when saving default rate" => "Ошибка при сохранении тарифа по умолчанию",
 );
 ?>

@@ -42,5 +42,6 @@ $arrLangModule=array(
 	"Nothing to show yet" => "Показати ще нічого",
 	"Total" => "Всього",
 	"Local" => "Локальні",
+"Print" => "Друк",
 );
 ?>

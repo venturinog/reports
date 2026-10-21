@@ -37,5 +37,8 @@ $arrLangModule = array(
     "default" => "osnovna",
     "Duration in seconds" => "trajanje v sekundah",
     "Cost" => "cena",
+"Destination Distribution" => "Razporeditev po cilju",
+"Filter" => "Filter",
+"No records found" => "Ni najdenih zapisov",
 );
 ?>

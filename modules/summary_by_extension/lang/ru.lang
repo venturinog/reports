@@ -45,5 +45,13 @@ $arrLangModule = array(
     "records" => "записей",
     "of" => "из",
     "No records match the filter criteria" => "Нет записей, соответствующих критериям фильтра",
+"External #" => "Внешний номер",
+"No data to display" => "Нет данных для отображения",
+"Other calls" => "Другие звонки",
+"Top 10 (Incoming) ext" => "Топ-10 (входящие) внутр.",
+"Top 10 (Outgoing) ext" => "Топ-10 (исходящие) внутр.",
+"call" => "звонок",
+"calls" => "звонки",
+"Value" => "Значение",
 );
 ?>

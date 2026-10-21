@@ -28,5 +28,6 @@ $arrLangModule = array(
     "Default Rate Offset" => "Offsetul Ratei Implicite",
     "Trunk Bill Configuration" => "Configurare Facturare Trunchiuri",
     "Trunk" => "Trunchi",
+"Error when saving default rate" => "Eroare la salvarea tarifului implicit",
 );
 ?>

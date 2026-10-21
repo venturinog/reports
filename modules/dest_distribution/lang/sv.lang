@@ -38,5 +38,7 @@ $arrLangModule = array(
     "default" => "Standard",
     "Duration in seconds" => "Längd i sekunder",
     "Cost" => "Kostnad",
+"Filter" => "Filter",
+"No records found" => "Inga poster hittades",
 );
 ?>

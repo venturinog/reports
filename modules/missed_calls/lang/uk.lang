@@ -47,5 +47,6 @@ $arrLangModule=array(
 	"ANSWERED" => "ВІДПОВІДЬ",
 	"The following fields contain errors" => "Наступні поля містять помилки",
 	"No extension for missed calls. Contact your administrator." => "Не вказано внутрішній номер для пропущених дзвінків. Зв'яжіться зі своїм адміністратором.",
+"Value" => "Значення",
 );
 ?>

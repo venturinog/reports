@@ -28,5 +28,6 @@ $arrLangModule = array(
     "Default Rate Offset" => "Tarifa de conexió per defecte",
     "Trunk Bill Configuration" => "Configuració de Troncals per Facturació",
     "Trunk" => "Troncal",
+"Error when saving default rate" => "Error en desar la tarifa per defecte",
 );
 ?>

@@ -32,5 +32,6 @@ $arrLangModule=array(
 	"Default Rate Offset" => "Зміщення Тарифу За замовчуванням",
 	"Trunk Bill Configuration" => "Білінгові Налаштування за Транками",
 	"Trunk" => "Транк",
+"Error when saving default rate" => "Помилка під час збереження тарифу за замовчуванням",
 );
 ?>

@@ -47,6 +47,9 @@ $arrLangModule=array(
 "call" => "تماس",
 "No data to display" => "اطلاعاتی یافت نشد",
 
-"Details" => "جزئيات"
+"Details" => "جزئيات",
+"End Date" => "تاریخ پایان",
+"Start Date" => "تاریخ شروع",
+"Value" => "مقدار",
 );
 ?>

@@ -45,6 +45,9 @@ $arrLangModule=array(
 "calls" => "Cagri",
 "call" => "Cagri",
 "No data to display" => "Veri Yok",
-"Details" => "Detaylar"
+"Details" => "Detaylar",
+"End Date" => "Bitiş tarihi",
+"Start Date" => "Başlangıç tarihi",
+"Value" => "Değer",
 );
 ?>

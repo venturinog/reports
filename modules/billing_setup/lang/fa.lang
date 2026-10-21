@@ -33,5 +33,6 @@ $arrLangModule=array(
 "Trunk Bill Configuration" => "تنظیم صورت حساب ترانک",
 "Trunk" => "ترانک",
 "Billing Capable"=>"صورت حساب قابل پرداخت",
+"Error when saving default rate" => "خطا هنگام ذخیره نرخ پیش‌فرض",
 );
 ?>

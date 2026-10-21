@@ -28,5 +28,6 @@ $arrLangModule = array(
     "Default Rate Offset" => "Alapértelmezett Tarifa Eltérés",
     "Trunk Bill Configuration" => "Trönk számla konfigurálása",
     "Trunk" => "Trönk  ",
+"Error when saving default rate" => "Hiba az alapérték mentésekor",
 );
 ?>

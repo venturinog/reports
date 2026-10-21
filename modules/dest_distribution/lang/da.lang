@@ -37,5 +37,8 @@ $arrLangModule = array(
     "default" => "Standardværdi",
     "Duration in seconds" => "Tid i sekunder",
     "Cost" => "Pris",
+"Destination Distribution" => "Fordeling efter destination",
+"Filter" => "Filter",
+"No records found" => "Ingen poster fundet",
 );
 ?>

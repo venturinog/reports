@@ -45,5 +45,6 @@ $arrLangModule=array(
 "ANSWERED" => "Cevaplanmış",
 "The following fields contain errors" => "Hatalı alanlar var",
 'No extension for missed calls. Contact your administrator.' => 'Cevapsız çağrılar için tanımlı değil. Yöneticiyle görüşün.',
+"Value" => "Değer",
 );
 ?>

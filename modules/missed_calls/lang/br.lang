@@ -46,5 +46,6 @@ $arrLangModule=array(
 'No extension for missed calls. Contact your administrator.' => 'Nenhum ramal com ligações perdidas. Contate seu administrador.',
 "Show Filter" => "Exibir Filtro",
 "Page" => "Página",
+"Value" => "Valor",
 );
 ?>

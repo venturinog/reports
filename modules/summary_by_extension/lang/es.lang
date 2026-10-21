@@ -45,5 +45,6 @@ $arrLangModule = array(
     "Details" => "Detalles",
     "End Date" => "Fecha Fin",
     "Start Date" => "Fecha Inicio",
+"Value" => "Valor",
 );
 ?>

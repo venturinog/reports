@@ -27,5 +27,7 @@ $arrLangModule = array(
     "Default Rate" => "Standard Taxa",
     "Default Rate Offset" => "Standard Taxa Majoritet",
     "Trunk Bill Configuration" => "Trunk Kostnads Konfiguration",
+"Error when saving default rate" => "Fel vid sparande av standardtaxa",
+"Trunk" => "Trunk",
 );
 ?>

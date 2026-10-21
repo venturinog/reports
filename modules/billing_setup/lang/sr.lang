@@ -25,5 +25,9 @@ $arrLangModule = array(
     "Billing Capable" => "Obracun moguc",
     "Trunk Bill Configuration" => "Konfiguracija obracunske linije",
     "Trunk" => "Linija",
+"Default Rate" => "Подразумевана тарифа",
+"Default Rate Configuration" => "Подешавање подразумеване тарифе",
+"Default Rate Offset" => "Померање подразумеване тарифе",
+"Error when saving default rate" => "Грешка при чувању подразумеване тарифе",
 );
 ?>

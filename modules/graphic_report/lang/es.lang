@@ -47,5 +47,11 @@ $arrLangModule = array(
     "Extension (Number)" => "Extensión (Número)",
     "Queue" => "Cola",
     "Trunk" => "Línea Troncal",
+"Classify by" => "Clasificar por",
+"Extention(number)" => "Extensión(número)",
+"In calls:" => "Llamadas entrantes:",
+"Invalid extension" => "Extensión no válida",
+"Out calls:" => "Llamadas salientes:",
+"Print" => "Imprimir",
 );
 ?>

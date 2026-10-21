@@ -46,5 +46,7 @@ $arrLangModule=array(
 "UNKNOWN" => "ناشناخته",
 "ANSWERED" => "پاسخ داده شده",
 "The following fields contain errors" => "فیلد های زیر دارای خطا هستند",
+"No extension for missed calls. Contact your administrator." => "برای تماس‌های از دست رفته هیچ داخلی وجود ندارد. با مدیر سیستم تماس بگیرید.",
+"Value" => "مقدار",
 );
 ?>

@@ -28,5 +28,6 @@ $arrLangModule = array(
     "Default Rate Offset" => "Taxa Padrão Offset",
     "Trunk Bill Configuration" => "Configuração Fatura do Tronco",
     "Trunk" => "Tronco",
+"Error when saving default rate" => "Erro ao salvar a tarifa padrão",
 );
 ?>

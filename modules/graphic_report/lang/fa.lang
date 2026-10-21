@@ -47,5 +47,16 @@ $arrLangModule=array(
 "Show"=>"نمايش",
 "No records found"=>"هيچ فايل صوتي يافت نشد",
 "No exist calls for this number" => "No exist calls for this number",
+"Classify by" => "دسته‌بندی بر اساس",
+"Extension (Number)" => "داخلی (شماره)",
+"Extention(number)" => "داخلی(شماره)",
+"Invalid extension" => "داخلی نامعتبر",
+"Number of calls extension" => "تعداد تماس‌های داخلی",
+"Print" => "چاپ",
+"Queue" => "صف",
+"The extension" => "داخلی مورد نظر",
+"The extension must be numeric and can not start with zero" => "داخلی باید عددی باشد و نباید با صفر شروع شود",
+"Trunk" => "ترانک",
+"does not have calls yet" => "هنوز تماسی ندارد",
 );
 ?>

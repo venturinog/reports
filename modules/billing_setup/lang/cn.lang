@@ -28,5 +28,6 @@ $arrLangModule = array(
     "Default Rate Offset" => "默认费率偏移量",
     "Trunk Bill Configuration" => "干线银帐配置",
     "Trunk" => "干线",
+"Error when saving default rate" => "保存默认费率时出错",
 );
 ?>

@@ -36,5 +36,9 @@ $arrLangModule = array(
     "default" => "по подразбиране",
     "Duration in seconds" => "Продължителност в Секунди",
     "Cost" => "Стойност",
+"Distribution by Cost" => "Разпределение по разход",
+"Distribution by Number of Calls" => "Разпределение по брой разговори",
+"Distribution by Time" => "Разпределение по време",
+"No records found" => "Не са намерени записи",
 );
 ?>

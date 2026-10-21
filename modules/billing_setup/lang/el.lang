@@ -26,5 +26,8 @@ $arrLangModule = array(
     "Default Rate" => "Προεπιλεγμένη τιμή",
     "Trunk Bill Configuration" => "Ρύθμιση Χρέωσης Κορμού (Trunk)",
     "Trunk" => "Κορμός (Trunk)",
+"Default Rate Configuration" => "Διαμόρφωση προεπιλεγμένης χρέωσης",
+"Default Rate Offset" => "Μετατόπιση προεπιλεγμένης χρέωσης",
+"Error when saving default rate" => "Σφάλμα κατά την αποθήκευση της προεπιλεγμένης χρέωσης",
 );
 ?>

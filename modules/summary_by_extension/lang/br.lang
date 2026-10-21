@@ -42,6 +42,9 @@ $arrLangModule=array(
 "calls" => "chamadas",
 "call" => "chamada",
 "No data to display" => "Não há dados para exibir",
-"Details" => "Gerar Gráfico"
+"Details" => "Gerar Gráfico",
+"End Date" => "Data final",
+"Start Date" => "Data inicial",
+"Value" => "Valor",
 );
 ?>

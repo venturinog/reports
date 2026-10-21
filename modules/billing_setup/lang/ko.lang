@@ -25,5 +25,9 @@ $arrLangModule = array(
     "Billing Capable" => "요금부과 가능",
     "Trunk Bill Configuration" => "국선 요금 내역",
     "Trunk" => "국선",
+"Default Rate" => "기본 요금",
+"Default Rate Configuration" => "기본 요금 설정",
+"Default Rate Offset" => "기본 요금 오프셋",
+"Error when saving default rate" => "기본 요금 저장 중 오류가 발생했습니다",
 );
 ?>

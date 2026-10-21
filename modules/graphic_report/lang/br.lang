@@ -52,6 +52,12 @@ $arrLangModule=array(
 "does not have calls yet" => "ainda não tem chamadas.",
 "The extension must be numeric and can not start with zero" => "A extensão deve ser numérica e não pode começar com zero.",
 "Extention(number)" => "Ramal",
-"Validation Error" => "Erro"
+"Validation Error" => "Erro",
+"Classify by" => "Classificar por",
+"Extension (Number)" => "Ramal (número)",
+"Invalid extension" => "Ramal inválido",
+"Print" => "Imprimir",
+"Queue" => "Fila",
+"Trunk" => "Tronco",
 );
 ?>

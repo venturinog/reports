@@ -28,5 +28,6 @@ $arrLangModule = array(
     "Default Rate Offset" => "Tarifa de conexión por omisión",
     "Trunk Bill Configuration" => "Configuración de Troncales para Facturación",
     "Trunk" => "Línea Troncal",
+"Error when saving default rate" => "Error al guardar la tarifa por defecto",
 );
 ?>

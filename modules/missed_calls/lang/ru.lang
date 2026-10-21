@@ -50,5 +50,7 @@ $arrLangModule = array(
     "No records match the filter criteria" => "Нет записей, соответствующих критериям фильтра",
     "Time since last call" => "Прошло времени с последнего вызова",
     "Download" => "Скачать",
+"No extension for missed calls. Contact your administrator." => "Нет внутреннего номера для пропущенных вызовов. Обратитесь к администратору.",
+"Value" => "Значение",
 );
 ?>

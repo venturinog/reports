@@ -35,5 +35,7 @@ $arrLangModule = array(
     "IAX Channels" => "IAX频道",
     "H323 Channels" => "H323频道",
     "Local Channels" => "本地频道",
+"Nothing to show yet" => "暂无内容显示",
+"Print" => "打印",
 );
 ?>

@@ -28,5 +28,6 @@ $arrLangModule = array(
     "Default Rate Offset" => "Такса Свързване",
     "Trunk Bill Configuration" => "Използване за Градска Линия",
     "Trunk" => "Градска Линия",
+"Error when saving default rate" => "Грешка при записване на стандартната тарифа",
 );
 ?>

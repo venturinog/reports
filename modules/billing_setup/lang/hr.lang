@@ -28,5 +28,6 @@ $arrLangModule = array(
     "Default Rate Offset" => "Pretpostavljena zarada po cjeniku",
     "Trunk Bill Configuration" => "Konfiguracija računa za glavni kanal",
     "Trunk" => "Glavni kanal",
+"Error when saving default rate" => "Greška pri spremanju zadane tarife",
 );
 ?>

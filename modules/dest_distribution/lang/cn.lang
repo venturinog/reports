@@ -39,5 +39,6 @@ $arrLangModule = array(
     "default" => "默认设置",
     "Duration in seconds" => "持续时间(秒)",
     "Cost" => "花费金额",
+"No records found" => "未找到记录",
 );
 ?>

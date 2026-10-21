@@ -47,5 +47,8 @@ $arrLangModule=array(
 	"call" => "дзвінок",
 	"No data to display" => "Немає даних для відображення",
 	"Details" => "Подробиці",
+"End Date" => "Дата завершення",
+"Start Date" => "Дата початку",
+"Value" => "Значення",
 );
 ?>

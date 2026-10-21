@@ -39,5 +39,6 @@ $arrLangModule = array(
     "default" => "Εξορισμού",
     "Duration in seconds" => "Διάρκεια Σε Δευτερόλεπτα",
     "Cost" => "Κόστος",
+"No records found" => "Δεν βρέθηκαν εγγραφές",
 );
 ?>

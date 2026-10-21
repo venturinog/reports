@@ -37,5 +37,8 @@ $arrLangModule = array(
     "Rate Name" => "Nom de Tarifa",
     "default" => "Per defecte",
     "Duration in seconds" => "Duració en segons",
+"Cost" => "Cost",
+"ERROR" => "ERROR",
+"No records found" => "No s'han trobat registres",
 );
 ?>

@@ -25,5 +25,9 @@ $arrLangModule = array(
     "Billing Capable" => "Kan takseres",
     "Trunk Bill Configuration" => "Konfiguration af takstberegning på linier",
     "Trunk" => "Linie",
+"Default Rate" => "Standardtarif",
+"Default Rate Configuration" => "Konfiguration af standardtarif",
+"Default Rate Offset" => "Standardtarif-forskydning",
+"Error when saving default rate" => "Fejl ved lagring af standardtarif",
 );
 ?>

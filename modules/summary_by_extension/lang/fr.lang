@@ -43,5 +43,9 @@ $arrLangModule = array(
     "No data to display" => "Aucune donnée à afficher",
     "Show" => "Voir",
     "Details" => "Détails",
+"End Date" => "Date de fin",
+"Start Date" => "Date de début",
+"Extension" => "Extension",
+"Value" => "Valeur",
 );
 ?>

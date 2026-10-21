@@ -27,5 +27,7 @@ $arrLangModule = array(
     "Default Rate" => "Tarif par défaut",
     "Default Rate Offset" => "Tarif de connexion par défaut",
     "Trunk Bill Configuration" => "Configuration des Trunks Facturables",
+"Error when saving default rate" => "Erreur lors de l'enregistrement du tarif par défaut",
+"Trunk" => "Tronc",
 );
 ?>
