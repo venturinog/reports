@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 17
+Release: 18
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,13 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-18
+- Bring the asterisk log page onto the theme grid. The module shipped a
+  frozen copy of the pre-restyle grid template with fifteen hardcoded
+  colours, a Bootstrap 3 modal and Font Awesome 4 icons, none of which
+  the modern theme defines. The page now uses the theme grid and the log
+  levels take the severity colours of the theme.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-17
 - Send the CSRF token with the destination distribution filter. The form
   is served outside paloForm, so the helper had no form tag to inject the

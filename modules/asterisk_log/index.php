@@ -103,6 +103,7 @@ function report_AsteriskLogs($smarty, $module_name, $local_templates_dir)
 
     $smarty->assign("SHOW", _tr("Show"));
     $smarty->assign("SEARCHNEXT", _tr('Search'));
+    $smarty->assign("FILTER_TITLE", _tr("Show Filter"));
     $field_pattern = getParameter("filter");
     $busqueda = getParameter('busqueda');
     if (is_null($busqueda) || trim($busqueda) == '') $busqueda = '';
@@ -264,34 +265,43 @@ function report_AsteriskLogs($smarty, $module_name, $local_templates_dir)
     $arrData = null;
     if(is_array($arrResult) && $totalBytes>0){
         foreach($arrResult as $key => $value){
-            //$partes = preg_split("/\[/",$value['tipo']);
-            $l     = $value['tipo'];
-            $linea = $value['fecha'].' '.$value['tipo'].' '.$value['origen'].' '.$value['linea'];
+            $linea = $value['linea'];
+            $tipo  = $value['tipo'];
+
+            /* El nivel del registro se pinta con las clases de severidad del
+             * tema, que toman el color de los tokens --iss-sev-* y por tanto
+             * se adaptan al modo claro y oscuro. */
+            $clase = '';
             switch (true) {
-                case strpos($l, 'INFO'):
-                    $linea = '<span class="beige">' . $linea . '</span>';
+                case strpos($tipo, 'INFO'):
+                    $clase = '';
                     break;
-                case strpos($linea, 'WARNING'):
-                    $linea = '<span class="orange">' . $linea . '</span>';
+                case strpos($tipo, 'WARNING'):
+                    $clase = 'iss-sev-warning';
                     break;
-                case strpos($linea, 'DEBUG'):
-                    $linea = '<span class="green">' . $linea . '</span>';
+                case strpos($tipo, 'DEBUG'):
+                    $clase = 'iss-sev-unknown';
                     break;
-                case strpos($linea, 'UPDATE'):
-                case strpos($linea, 'NOTICE'):
-                    $linea = '<span class="cyan">' . $linea . '</span>';
+                case strpos($tipo, 'UPDATE'):
+                case strpos($tipo, 'NOTICE'):
+                    $clase = 'iss-sev-ok';
                     break;
-                case strpos($linea, 'FATAL'):
-                case strpos($linea, 'CRITICAL'):
-                case strpos($linea, 'ERROR'):
-                    $linea = '<span class="red">' . $linea . '</span>';
+                case strpos($tipo, 'FATAL'):
+                case strpos($tipo, 'CRITICAL'):
+                case strpos($tipo, 'ERROR'):
+                    $clase = 'iss-sev-critical';
                     break;
                 default:
-                    $linea = $linea;
+                    $clase = '';
                     break;
             }
 
-            $arrTmp[0] = $linea;
+            $arrTmp[0] = htmlspecialchars($value['fecha'], ENT_COMPAT, 'UTF-8');
+            $arrTmp[1] = $clase === ''
+                ? htmlspecialchars($tipo, ENT_COMPAT, 'UTF-8')
+                : '<span class="'.$clase.'">'.htmlspecialchars($tipo, ENT_COMPAT, 'UTF-8').'</span>';
+            $arrTmp[2] = htmlspecialchars($value['origen'], ENT_COMPAT, 'UTF-8');
+            $arrTmp[3] = htmlspecialchars($linea, ENT_COMPAT, 'UTF-8');
             $arrData[] = $arrTmp;
         }
     }
@@ -304,7 +314,6 @@ function report_AsteriskLogs($smarty, $module_name, $local_templates_dir)
 
     $htmlFilter = $oFilterForm->fetchForm("$local_templates_dir/filter.tpl", "", $_POST);
     $oGrid->showFilter(trim($htmlFilter));
-    $oGrid->setTplFile("modules/$module_name/themes/default/loglist.tpl"); 
 
     $arrGrid = array("title"    => _tr("Asterisk Logs"),
                     "url"      => $url,

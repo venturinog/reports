@@ -1,15 +1,24 @@
-<table width="99%" border="0" cellspacing="0" cellpadding="0" align="center">
-    <tr class="letra12">
-        <td width="7%" align="right">{$filter.LABEL}: </td>
-        <td width="10%" align="left" nowrap>{$filter.INPUT}</td>
-        <td align="left"><input class="button" type="submit" name="show" value="{$SHOW}"></td>
-    </tr>
-    <tr class="letra12">
-        <td align="right">{$busqueda.LABEL}:</td>
-        <td align="left">{$busqueda.INPUT}</td>
-        <td align="left"><input class="button" type="submit" name="searchnext" value="{$SEARCHNEXT}"></td>
-    </tr>
-</table>
+<div class="iss-form">
+  <section class="iss-card">
+    <header class="iss-card__header"><i class="ti ti-filter"></i> {$FILTER_TITLE}</header>
+    <div class="iss-card__body iss-formgrid">
+      <div class="iss-field">
+        <span class="iss-field__label">{$filter.LABEL}</span>
+        <span class="iss-field__control">{$filter.INPUT}</span>
+      </div>
+      <div class="iss-field">
+        <span class="iss-field__label">{$busqueda.LABEL}</span>
+        <span class="iss-field__control">{$busqueda.INPUT}</span>
+      </div>
+    </div>
+    <div class="iss-form__toolbar">
+      <div class="iss-form__buttons">
+        <input class="button" type="submit" name="show" value="{$SHOW}">
+        <input class="button" type="submit" name="searchnext" value="{$SEARCHNEXT}">
+      </div>
+    </div>
+  </section>
+</div>
 {$ultima_busqueda.INPUT}
 {$ultimo_offset.INPUT}
 {$offset.INPUT}

@@ -71,7 +71,9 @@ class paloSantoAsteriskLogs {
                 $l['linea'] = htmlentities($l['linea']);
                 //$l['linea'] = str_replace("\n", "<br/>", $l['linea']);
                 if (!is_null($sCadenaHighlight) && trim($sCadenaHighlight) != '') {
-                    $l['linea'] = str_replace($sCadenaHighlight, "<span style=\"background:#ffff00; color:#000;\">$sCadenaHighlight</span>", $l['linea']);
+                    // El resaltado usa la etiqueta <mark>, que el tema ya
+                    // pinta con su propio color: sin color escrito a mano.
+                    $l['linea'] = str_replace($sCadenaHighlight, "<mark>$sCadenaHighlight</mark>", $l['linea']);
                 }
                 $lineas[] = $l;
             }
