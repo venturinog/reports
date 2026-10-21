@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 47
+Release: 48
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,12 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-48
+- Filter the missed calls by the extension of the user. The name of the
+  field to filter by went into the query without a list, and the privilege
+  to see the calls of everybody was never applied, so an operator saw the
+  missed calls of every extension.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-47
 - Drop the dead files of the report modules. The CDR module kept a second
   copy of the DataTables libraries and a SOAP scenario that nothing loaded,

@@ -47,18 +47,32 @@ class paloSantoMissedCalls{
 
     /*HERE YOUR FUNCTIONS*/
 
+    /* Campos por los que se puede filtrar. El nombre del campo va a la
+     * consulta, asi que tiene que salir de esta lista y no del parametro. */
+    function getFilterFields()
+    {
+        return array('src', 'dst');
+    }
+
     function getNumCallingReport($date_start, $date_end, $filter_field, $filter_value, $sExtension)
     {
-	$where = "";
-	$arrParam = array();
-        if(isset($filter_field) & $filter_field !=""){
+        $where = "";
+        $arrParam = array();
+        if (!empty($filter_field) && in_array($filter_field, $this->getFilterFields(), true)) {
             $where = " AND $filter_field like ? ";
-	    $arrParam = array("$filter_value%");
-	}
-	$dates = array($date_start, $date_end);
-	$arrParam = array_merge($dates,$arrParam);
+            $arrParam = array("$filter_value%");
+        }
+        // Sin permiso para ver las llamadas de todos, solo las de la extension
+        // propia: el filtro no puede mirar las de los demas.
+        if ($sExtension !== '' && $sExtension !== NULL) {
+            $where .= " AND (src = ? OR dst = ?) ";
+            $arrParam[] = $sExtension;
+            $arrParam[] = $sExtension;
+        }
+        $dates = array($date_start, $date_end);
+        $arrParam = array_merge($dates,$arrParam);
 
-	$query   = "select COUNT(*) from cdr where (lastapp = 'Dial' OR lastapp = 'Hangup' OR lastapp = 'Voicemail') AND calldate >= ? AND calldate <= ? $where order by calldate desc;";
+        $query   = "select COUNT(*) from cdr where (lastapp = 'Dial' OR lastapp = 'Hangup' OR lastapp = 'Voicemail') AND calldate >= ? AND calldate <= ? $where;";
         $result=$this->_DB->getFirstRowQuery($query, false, $arrParam);
 
         if($result==FALSE){
@@ -72,11 +86,18 @@ class paloSantoMissedCalls{
     {
         $paramSQL = array($date_start, $date_end);
         $filtercond = '1';
-        if (empty($filter_value) || !in_array($filter_field, array('src', 'dst')))
+        if (empty($filter_value) || !in_array($filter_field, $this->getFilterFields(), true))
             $filter_field = NULL;
         if (!is_null($filter_field)) {
         	$filtercond = "cdr.$filter_field LIKE ?";
             $paramSQL[] = "$filter_value%";
+        }
+        // Sin permiso para ver las llamadas de todos, solo las de la extension
+        // propia: el filtro no puede mirar las de los demas.
+        if ($sExtension !== '' && $sExtension !== NULL) {
+            $filtercond = "($filtercond) AND (cdr.src = ? OR cdr.dst = ?)";
+            $paramSQL[] = $sExtension;
+            $paramSQL[] = $sExtension;
         }
 
         $paramSQL = array_merge($paramSQL, array($date_start, $date_end, $date_start, $date_end));
