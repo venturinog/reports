@@ -62,13 +62,7 @@ function _moduleContent(&$smarty, $module_name)
 
     switch($accion){
         case 'graph':
-            $content = graphLinks($smarty, $module_name, $local_templates_dir);
-            break;
-        case 'imageTop10Salientes':
-        case 'imageTop10Entrantes':
-            // The following outputs image data directly and depends on rawmode=yes
-            executeImage($module_name, $accion);
-            $content = '';
+            $content = graphPage($smarty, $module_name, $local_templates_dir, $pDB_cdr);
             break;
         default:
             $content = reportReportCall($smarty, $module_name, $local_templates_dir, $pDB_cdr, $pDB_billing, $arrConf);
@@ -262,52 +256,35 @@ function createFieldForm(){
     return $arrFormElements;
 }
 
-function graphLinks($smarty, $module_name, $local_templates_dir)
+/*
+ * Ventana de detalle de llamadas: dos graficas de torta (10 principales
+ * entrantes y salientes). Antes esta pagina pedia dos imagenes PNG al servidor
+ * con jpgraph, que no existe en Rocky Linux 10, y las dos quedaban rotas.
+ */
+function graphPage($smarty, $module_name, $local_templates_dir, &$pDB_cdr)
 {
-    $getParams = array('ext', 'dini', 'dfin');
-    foreach ($getParams as $k) if (!isset($_GET[$k])) $_GET[$k] = '';
-    $urlEntrantes = construirURL(array(
-        'module'    =>  $module_name,
-        'rawmode'   =>  'yes',
-        'action'    =>  'imageTop10Entrantes',
-        'ext'       =>  $_GET['ext'],
-        'dini'      =>  $_GET['dini'],
-        'dfin'      =>  $_GET['dfin'],
-    ));
-    $urlSalientes = construirURL(array(
-        'module'    =>  $module_name,
-        'rawmode'   =>  'yes',
-        'action'    =>  'imageTop10Salientes',
-        'ext'       =>  $_GET['ext'],
-        'dini'      =>  $_GET['dini'],
-        'dfin'      =>  $_GET['dfin'],
-    ));
-    $sPlantilla = <<<PLANTILLA_GRAPH
-<html>
-<head><title>Top 10</title></head>
-<body>
-<table width='100%' border='0' cellspacing='0' cellpadding='0' align='center'>
-<tr><td align='center'><img alt='imageTop10Entrantes' src='$urlEntrantes' /></td></tr>
-<tr><td align='center'><img alt='imageTop10Salientes' src='$urlSalientes' /></td></tr>
-</table>
-</body>
-</html>
-PLANTILLA_GRAPH;
-    return $sPlantilla;
-}
+    $pReportCall = new paloSantoReportCall($pDB_cdr);
 
-function executeImage($module_name, $sImage)
-{
-    require_once "libs/paloSantoGraphImage.lib.php";
+    $ext  = (string)getParameter('ext');
+    $dini = (string)getParameter('dini');
+    $dfin = (string)getParameter('dfin');
 
-    $arrParameterCallbyGraph = array();
-    $getParams = array('dini', 'dfin', 'ext');
-    foreach ($getParams as $k) $arrParameterCallbyGraph[] = isset($_GET[$k]) ? $_GET[$k] : '';
+    $entrantes = $pReportCall->callbackTop10Entrantes($dini, $dfin, $ext);
+    $salientes = $pReportCall->callbackTop10Salientes($dini, $dfin, $ext);
 
-    if ($sImage == 'imageTop10Entrantes')
-        displayGraph($module_name,"paloSantoReportCall","callbackTop10Entrantes",$arrParameterCallbyGraph);
-    if ($sImage == 'imageTop10Salientes')
-        displayGraph($module_name,"paloSantoReportCall","callbackTop10Salientes",$arrParameterCallbyGraph);
+    $smarty->assign("LANG", get_language());
+    $smarty->assign("CHART_TITLE", _tr("Call Details"));
+    $smarty->assign("CHART_DATA", json_encode(array(
+        'incoming' => $entrantes,
+        'outgoing' => $salientes,
+        'text' => array(
+            'noData'   => _tr("No data to display"),
+            'unitOne'  => _tr("call"),
+            'unitMany' => _tr("calls"),
+        ),
+    ), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP));
+
+    return $smarty->fetch("file:$local_templates_dir/summary_charts.tpl");
 }
 
 function getAction()
@@ -318,10 +295,6 @@ function getAction()
         return "show";
     else if(getParameter("action")=="graph") //Get parameter by GET (command pattern, links)
         return "graph";
-    else if(getParameter("action")=="imageTop10Entrantes")
-        return "imageTop10Entrantes";
-    else if(getParameter("action")=="imageTop10Salientes")
-        return "imageTop10Salientes";
     else
         return "report";
 }

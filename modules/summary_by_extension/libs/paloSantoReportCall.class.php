@@ -159,11 +159,11 @@ SQL_DEVICES;
         return $result;
     }
 
-    //PARA PLOT3D
+    //PARA GRAFICA DE TORTA
     function callbackTop10Salientes($date_ini, $date_end, $ext)
     {
         $data = $this->_listarTopN($date_ini, $date_end, $ext, 10, 'src');
-        return $this->_formatPlot3d(_tr('Top 10 (Outgoing) ext')." ".$ext, $ext, $data['data'], $data['all'], $data['total']);
+        return $this->_formatPie(_tr('Top 10 (Outgoing) ext')." ".$ext, $data['data'], $data['all'], $data['total']);
     }
 
 ////////
@@ -173,7 +173,7 @@ SQL_DEVICES;
         foreach (array_keys($data['data']) as $i) {
             if ($data['data'][$i][1] == '') $data['data'][$i][1] = _tr('External #');
         }
-        return $this->_formatPlot3d(_tr('Top 10 (Incoming) ext')." ".$ext, $ext, $data['data'], $data['all'], $data['total']);
+        return $this->_formatPie(_tr('Top 10 (Incoming) ext')." ".$ext, $data['data'], $data['all'], $data['total']);
     }
 
     private function _listarTopN($date_ini, $date_end, $ext, $n, $sel)
@@ -218,57 +218,33 @@ TOP_N_LLAMADAS;
     }
 
 
-    private function _formatPlot3d($title, $ext, &$result, $num_total, $numTopCalls)
+    /* Datos para la grafica de torta (Chart.js). Antes esta funcion armaba una
+     * estructura para jpgraph; ahora devuelve las etiquetas y los valores que
+     * consume la grafica del navegador. */
+    private function _formatPie($title, &$result, $num_total, $numTopCalls)
     {
-        if($num_total > 0)
+        $labels = array();
+        $values = array();
+
+        foreach ($result as $arrR) {
+            if ($num_total <= 0) break;
+            $labels[] = $arrR[1];
+            $values[] = $arrR[0];
+        }
+
+        if ($num_total > 0) {
             $numCallNoTop = $num_total - $numTopCalls;
-        $arrColor = array('blue','red','yellow','brown','green','orange','pink','purple','gray','white','violet');
-
-        $arrT = array();
-        $i = 0;
-        foreach( $result as $num => $arrR ){
-            if($num_total <= 0){
-                $arrT["DAT_$i"] = array('VALUES' => array('VALUE'=>0),
-                                        'STYLE'  => array('COLOR'=>$arrColor[$i], 'LEYEND'=>" (0 "._tr('calls').")"));
-                break;
-            }else{
-                if($arrR[0]==1){
-                    $arrT["DAT_$i"] = array('VALUES' => array('VALUE'=>$arrR[0]),
-                                            'STYLE'  => array('COLOR'=>$arrColor[$i], 'LEYEND'=>"$arrR[1] ($arrR[0] "._tr('call').")"));
-                }else{
-                    $arrT["DAT_$i"] = array('VALUES' => array('VALUE'=>$arrR[0]),
-                                            'STYLE'  => array('COLOR'=>$arrColor[$i], 'LEYEND'=>"$arrR[1] ($arrR[0] "._tr('calls').")"));
-                }
-            }
-            $i++;
-        }
-        
-        if($num_total > 0){
-            if($numCallNoTop == 1){
-                $arrT["DAT_$i"] = array('VALUES' => array('VALUE'=>$numCallNoTop),
-                                        'STYLE'  => array('COLOR'=>$arrColor[10], 'LEYEND'=>_tr('Other calls')." (".$numCallNoTop." "._tr('call').")"));
-            }else{
-                $arrT["DAT_$i"] = array('VALUES' => array('VALUE'=>$numCallNoTop),
-                                        'STYLE'  => array('COLOR'=>$arrColor[10], 'LEYEND'=>_tr('Other calls')." (".$numCallNoTop." "._tr('calls').")"));
+            if ($numCallNoTop > 0) {
+                $labels[] = _tr('Other calls');
+                $values[] = $numCallNoTop;
             }
         }
-        
 
-        return array( 
-            'ATTRIBUTES' => array(
-                //NECESARIOS
-                'TITLE'   => $title,
-                'TYPE'    => 'plot3d',
-                'SIZE'    => "700,250", 
-                'MARGIN'  => "5,70,15,20",
-            ),
-
-            'MESSAGES'  => array(
-                'ERROR' => 'Error', 
-                'NOTHING_SHOW' => _tr('No data to display')
-            ),
-            //DATOS A DIBUJAR
-            'DATA' => $arrT );
+        return array(
+            'title'  => $title,
+            'labels' => $labels,
+            'values' => $values,
+        );
     }
 
     function Sec2HHMMSS($sec)
