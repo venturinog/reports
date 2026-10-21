@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 16
+Release: 17
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-17
+- Send the CSRF token with the destination distribution filter. The form
+  is served outside paloForm, so the helper had no form tag to inject the
+  token into and every filter request was logged as a missing token.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-16
 - Handle the cancel button in the billing setup page. The button had no
   branch, so the page fell through and re-rendered the form instead of

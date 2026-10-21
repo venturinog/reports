@@ -2,6 +2,7 @@
   <section class="iss-card">
     <div class="iss-card__body">
       <form method="POST" style="margin-bottom:0;" action="?menu={$menu}">
+          {$ISSABEL_CSRF_FIELD}
           <table width="100%" border="0" cellspacing="0" cellpadding="0" >
               <tr class="letra12">{$contentFilter}</tr>
           </table>
