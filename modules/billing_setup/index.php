@@ -72,12 +72,16 @@ function _moduleContent(&$smarty, $module_name)
 
 
     $oForm = new paloForm($smarty, $arrForm);
+    // Modo vista: la plantilla pinta los valores como texto plano, asi que los
+    // controles del formulario no llegan a imprimirse.
     $oForm->setViewMode();
     //obtener el valor de la tarifa por defecto
     $arrDefaultRate['default_rate']=get_key_settings($pDBSetting,"default_rate");
     $arrDefaultRate['default_rate_offset']=get_key_settings($pDBSetting,"default_rate_offset");
     $smarty->assign("EDIT", _tr("Edit"));
     $smarty->assign("REQUIRED_FIELD", _tr("Required field"));
+    $smarty->assign("CARD_TITLE", _tr("Default Rate Configuration"));
+    $smarty->assign("VIEW", $arrDefaultRate);
     $strReturn = $oForm->fetchForm("$local_templates_dir/default_rate.tpl", _tr("Default Rate Configuration"), $arrDefaultRate);
 
     if(isset($_POST['cancel'])) {
@@ -93,6 +97,8 @@ function _moduleContent(&$smarty, $module_name)
         $smarty->assign("CANCEL", _tr("Cancel"));
         $smarty->assign("SAVE", _tr("Save"));
         $smarty->assign("REQUIRED_FIELD", _tr("Required field"));
+        $smarty->assign("CARD_TITLE", _tr("Default Rate Configuration"));
+        $smarty->assign("VIEW", $arrDefaultRate);
         $strReturn = $oForm->fetchForm("$local_templates_dir/default_rate.tpl", _tr("Default Rate Configuration"), $arrDefaultRate);
 
     }
@@ -116,6 +122,8 @@ function _moduleContent(&$smarty, $module_name)
             $smarty->assign("CANCEL", _tr("Cancel"));
             $smarty->assign("SAVE", _tr("Save"));
             $smarty->assign("REQUIRED_FIELD", _tr("Required field"));
+            $smarty->assign("CARD_TITLE", _tr("Default Rate Configuration"));
+            $smarty->assign("VIEW", $arrDefaultRate);
             $strReturn = $oForm->fetchForm("$local_templates_dir/default_rate.tpl", _tr("Default Rate Configuration"), $arrDefaultRate);
         }
 

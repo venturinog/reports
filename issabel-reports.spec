@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 28
+Release: 29
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,12 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-29
+- Show the default rate as plain text in the billing setup page. The view
+  mode rendered the two values as disabled inputs, which is the pattern
+  the style guide marks as wrong: the view has to be a compact card with
+  the values as text.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-28
 - Drop the server side images of the graphic report. The module drew
   the charts with GD and put the images in a variable that no template
