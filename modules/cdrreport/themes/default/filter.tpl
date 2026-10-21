@@ -1,10 +1,10 @@
 
-<a class="btn btn-primary" data-bs-toggle="collapse" href="#filters" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+<a class="btn btn-primary" id="cdr_filter_toggle" href="#filters" role="button" aria-expanded="false" aria-controls="filters">
 <i class="ti ti-filter"></i> {$FILTER_SHOW}
 <i class="ti ti-chevron-down"></i>
 </a>
 
-<div class="collapse" id="filters">
+<div class="neo-display-none" id="filters">
 <form id=formFilter method="POST" action="">
 <div class="iss-form" style="margin-bottom:1.25rem;">
   <section class="iss-card">
@@ -51,13 +51,22 @@
 </div>
 </form>
 </div>
+{literal}
 <script>
-function timeInSecscheck()
-{
-  if (document.getElementsByName("chkoldtimeInSecs")[0].checked) {
-    document.getElementById("timeInSecs").value="on";
-  } else {
-    document.getElementById("timeInSecs").value="off";
-  }
-}
+/* El tema Modern no trae el JavaScript de Bootstrap, asi que el desplegable
+ * del filtro se abre y se cierra a mano. */
+$(document).ready(function () {
+    var boton = $('#cdr_filter_toggle');
+    var fila = $('#filters');
+    if (boton.length === 0) return;
+
+    boton.on('click', function (e) {
+        e.preventDefault();
+        var oculto = fila.hasClass('neo-display-none');
+        fila.toggleClass('neo-display-none', !oculto);
+        boton.attr('aria-expanded', oculto ? 'true' : 'false');
+        boton.find('i.ti-chevron-down').toggleClass('ti-chevron-down ti-chevron-up', oculto);
+    });
+});
 </script>
+{/literal}

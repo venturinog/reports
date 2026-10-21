@@ -136,6 +136,42 @@ $(document).ready( function () {
 } );
 } );
 
+/* El tema Modern usa Tabler (Bootstrap 5) y no expone el plugin jQuery
+ * .modal() de Bootstrap 3/4. El bundle UMD de Tabler publica su API en
+ * window.tabler (tabler.Modal / tabler.bootstrap.Modal), no en
+ * window.bootstrap; se prueban ambas y, como ultimo recurso, se muestra el
+ * modal a mano. */
+function issabelCdrModal(action) {
+    var el = document.getElementById('gridModal');
+    if (!el) return;
+
+    var modalApi = null;
+    if (window.bootstrap && window.bootstrap.Modal) {
+        modalApi = window.bootstrap.Modal;
+    } else if (window.tabler && window.tabler.bootstrap && window.tabler.bootstrap.Modal) {
+        modalApi = window.tabler.bootstrap.Modal;
+    } else if (window.tabler && window.tabler.Modal) {
+        modalApi = window.tabler.Modal;
+    }
+
+    if (modalApi) {
+        var inst = modalApi.getOrCreateInstance(el);
+        if (action === 'hide') inst.hide(); else inst.show();
+        return;
+    }
+    if ($.fn.modal) {
+        $(el).modal(action);
+        return;
+    }
+    if (action === 'hide') {
+        el.classList.remove('show');
+        el.style.display = 'none';
+    } else {
+        el.classList.add('show');
+        el.style.display = 'block';
+    }
+}
+
 document.onreadystatechange = function() {
 
     if($('#loader').length > 0) {
@@ -295,27 +331,8 @@ function buildData() {
 }
 
 
+/* La exportacion a PDF la hace el propio navegador: el tema imprime la
+ * pagina y la grafica sale con el resto. */
 function downloadPDF2() {
-	var newCanvas = document.querySelector('#myChart');
-    var newCanvasImg = newCanvas.toDataURL("image/jpeg", 1.0);
-    var jsPDF = window.jspdf.jsPDF;
-	var doc = new jsPDF('landscape');
-	doc.setFontSize(20);
-	doc.text(15, 15, "Issabel CDR");
-	doc.addImage(newCanvasImg, 'PNG', 10, 10, 280, 150 );
-                var data = newCanvas.toDataURL();
-                var docDefinition = {
-                    pageOrientation: 'landscape',
-                    pageSize: 'A4',
-                    content: [
-                        {text: 'Issabel CDR Chart', headlineLevel: 1},
-                        " ",
-                        {text: document.getElementById("msgFilter").textContent, headlineLevel: 1},
-                        " ",
-                        {
-                        image: data,
-                        width: 750
-                    }]
-                };
-                pdfMake.createPdf(docDefinition).download("cdr-chart.pdf");
- }
+    window.print();
+}

@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 24
+Release: 25
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,14 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-25
+- Bring the CDR report page onto the theme. The page carried its own
+  styles with hardcoded colours, a Bootstrap 3 modal that never opened
+  because the theme does not ship the Bootstrap JavaScript inside the
+  module frame, Font Awesome 4 and Bootstrap 3 icons, and a link to the
+  Google Fonts CDN. The PDF button now prints the page, the way the grid
+  exports do.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-24
 - Use the theme grid and the theme Chart.js in the channel usage page. The
   module shipped its own Chart.js 2.7.2, a copy of Moment and a copy of

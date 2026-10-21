@@ -348,7 +348,7 @@ function _moduleContent(&$smarty, $module_name)
             $arrTmp[11] = $value[16]; // did
 
             if(!$disableCel) {
-                $arrTmp[12] = '<a onclick="showCel(\''.$value[6].'\')"> <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> </a>';
+                $arrTmp[12] = '<a onclick="showCel(\''.$value[6].'\')"> <i class="ti ti-list" aria-hidden="true"></i> </a>';
             }
             
             $arrData[] = $arrTmp;
@@ -367,7 +367,7 @@ function _moduleContent(&$smarty, $module_name)
     $cel_code = "
         function showCel(uniqueid) {
             $('#celdetails').attr('src','index.php?menu=".$module_name."&rawmode=yes&uniqueid='+uniqueid);
-            $('#gridModal').modal();
+            issabelCdrModal('show');
             alto = parent.document.body.clientHeight - 150;
             $('#gridModal').css('maxHeight',alto);
             $('#gridModal').css('overflow','scroll');
@@ -386,8 +386,8 @@ function _moduleContent(&$smarty, $module_name)
         $('#gridModal').on('hidden.bs.modal', function () {
             $('#celdetails').attr('src','index.php?menu=".$module_name."&rawmode=yes&loading=yes');
         })
-        $('#gridModal').on('shown.bs.modal', function () {
-            $('#myInput').trigger('focus')
+        $('#gridModal').find('[data-bs-dismiss=modal]').on('click', function () {
+            issabelCdrModal('hide');
         })
     ";
 
@@ -395,26 +395,26 @@ function _moduleContent(&$smarty, $module_name)
 
     $valueLimit = $arrFormElements['limit']["INPUT_EXTRA_PARAM"][$paramFiltro['limit']];
     if ($total == $paramFiltro['limit']) {
-        $msgLimit =    '<font color=red>'.
-                       '<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>'." ".
+        $msgLimit =    '<span class="iss-sev-critical">'.
+                       '<i class="ti ti-info-circle" aria-hidden="true"></i>'." ".
                        _tr("Limit")." = ".$valueLimit.
-                       '</font>';
+                       '</span>';
     } else {
-        $msgLimit =    '<font color=green>'.
-                       '<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>'." ".
+        $msgLimit =    '<span class="iss-sev-ok">'.
+                       '<i class="ti ti-info-circle" aria-hidden="true"></i>'." ".
                        _tr("Limit")." = ".$valueLimit.
-                       '</font>';
+                       '</span>';
     }
 
     $MsgFilter = "<b>"._tr("Filter applied: ")."</b>".
-    '<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>'." ".
+    '<i class="ti ti-calendar" aria-hidden="true"></i>'." ".
     _tr("Start Date")." = ".$paramFiltro['date_start'].", "._tr("End Date")." = ".
     $paramFiltro['date_end']." - ".
-    '<span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>'." ".
+    '<i class="ti ti-phone" aria-hidden="true"></i>'." ".
     $valueFieldName." = ".$paramFiltro['field_pattern']. " - ".
-    '<span class="glyphicon glyphicon-tag" aria-hidden="true"></span>'." ".
+    '<i class="ti ti-tag" aria-hidden="true"></i>'." ".
     _tr("Status")." = ".$valueStatus." - ".
-    '<span class="glyphicon glyphicon-list" aria-hidden="true"></span>'." ".
+    '<i class="ti ti-list" aria-hidden="true"></i>'." ".
     _tr("Ring Group")." = ".$valueRingGRoup." - ".
     $msgLimit;
 
@@ -423,6 +423,7 @@ function _moduleContent(&$smarty, $module_name)
     $smarty->assign("DELMSG",      _tr("Are you sure you wish to delete CDR(s) Report(s)?"));
     $smarty->assign("COLUMNS",     $arrColumns);
     $smarty->assign("FILTER_SHOW", _tr("Show Filter"));
+    $smarty->assign("PRINT", _tr("Print"));
     $smarty->assign("FILTER_MSG",  $MsgFilter);
     $smarty->assign("Filter",      _tr("Filter"));
     $lang = get_language();
