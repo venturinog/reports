@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 52
+Release: 53
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,10 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-53
+- Drop the dead filter of the billing rates. The module built a filter
+  with no fields and never showed it, so the template was dead code.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-52
 - Always paint the map of field errors. The templates ask for the message
   of every field, so the map has to be there even when there is no error.

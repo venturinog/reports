@@ -189,14 +189,9 @@ function reportBillingRates($smarty, $module_name, $local_templates_dir, &$pDB, 
     $oGrid->setColumns($arrColumns);
     $oGrid->setData($arrData);
 
-    //begin section filter
-    $arrFormFilterBillingRates = createFieldFilter();
-    $oFilterForm = new paloForm($smarty, $arrFormFilterBillingRates);
     $smarty->assign("import_rate", _tr("import_rate"));
     $smarty->assign("by_min",_tr("by_min"));
     $smarty->assign("Date_close",_tr("Date close"));
-    $htmlFilter = $oFilterForm->fetchForm("$local_templates_dir/filter.tpl","",$_POST);
-    //end section filter
     $oGrid->customAction("import_rate",_tr("import_rate"));
 
     $content = $oGrid->fetchGrid();
@@ -658,11 +653,6 @@ function validateBillingRate($arrForm, $data)
         }
     }
     return $errors;
-}
-
-function createFieldFilter(){
-    $arrFormElements = array();
-    return $arrFormElements;
 }
 
 function create_rate($pBillingRates,$prefix_new,$name_new,$rate_new,$rate_offset_new,$trunk_new,$hidden_digits){
