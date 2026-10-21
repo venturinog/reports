@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 18
+Release: 19
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-19
+- Use the theme grid in the missed calls filter. The filter was a legacy
+  table with the labels on the side and no class of the theme, and the
+  value field had no label at all.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-18
 - Bring the asterisk log page onto the theme grid. The module shipped a
   frozen copy of the pre-restyle grid template with fifteen hardcoded

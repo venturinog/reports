@@ -170,6 +170,7 @@ function reportMissedCalls($smarty, $module_name, $local_templates_dir, &$pDB, $
     //begin section filter
 
     $smarty->assign("SHOW", _tr("Show"));
+    $smarty->assign("FILTER_TITLE", _tr("Show Filter"));
     $htmlFilter  = $oFilterForm->fetchForm("$local_templates_dir/filter.tpl","",$_POST);
     //end section filter
 
@@ -194,7 +195,7 @@ function createFieldFilter(){
                                     "INPUT_EXTRA_PARAM"      => $arrFilter,
                                     "VALIDATION_TYPE"        => "text",
                                     "VALIDATION_EXTRA_PARAM" => ""),
-            "filter_value" => array("LABEL"                  => "",
+            "filter_value" => array("LABEL"                  => _tr("Value"),
                                     "REQUIRED"               => "no",
                                     "INPUT_TYPE"             => "TEXT",
                                     "INPUT_EXTRA_PARAM"      => "",

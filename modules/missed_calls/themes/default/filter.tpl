@@ -1,15 +1,28 @@
-<table width="55%" border="0" cellspacing="0" cellpadding="0">
-    <tr class="letra12">
-        <td width="7%" align="right">{$date_start.LABEL}: <span  class="required">*</span></td>
-        <td width="10%" align="center" nowrap>{$date_start.INPUT}</td>
-	<td width="30%" align="right">
-            {$filter_field.LABEL}:&nbsp;&nbsp;{$filter_field.INPUT}&nbsp;&nbsp;{$filter_value.INPUT}
-            <input class="button" type="submit" name="show" value="{$SHOW}" />
-        </td>
-   </tr>
-   <tr class="letra12">     
-	<td width="7%" align="right">{$date_end.LABEL}: <span  class="required">*</span></td>
-        <td width="10%" align="center" nowrap>{$date_end.INPUT}</td>
-        
-    </tr>
-</table>
+<div class="iss-form">
+  <section class="iss-card">
+    <header class="iss-card__header"><i class="ti ti-filter"></i> {$FILTER_TITLE}</header>
+    <div class="iss-card__body iss-formgrid">
+      <div class="iss-field">
+        <span class="iss-field__label">{$date_start.LABEL}&nbsp;<span class="iss-required">*</span></span>
+        <span class="iss-field__control">{$date_start.INPUT}</span>
+      </div>
+      <div class="iss-field">
+        <span class="iss-field__label">{$date_end.LABEL}&nbsp;<span class="iss-required">*</span></span>
+        <span class="iss-field__control">{$date_end.INPUT}</span>
+      </div>
+      <div class="iss-field">
+        <span class="iss-field__label">{$filter_field.LABEL}</span>
+        <span class="iss-field__control">{$filter_field.INPUT}</span>
+      </div>
+      <div class="iss-field">
+        <span class="iss-field__label">{$filter_value.LABEL}</span>
+        <span class="iss-field__control">{$filter_value.INPUT}</span>
+      </div>
+    </div>
+    <div class="iss-form__toolbar">
+      <div class="iss-form__buttons">
+        <input class="button" type="submit" name="show" value="{$SHOW}">
+      </div>
+    </div>
+  </section>
+</div>
