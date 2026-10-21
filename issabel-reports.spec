@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 38
+Release: 39
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-39
+- Validate the graphic report filter field by field. The only check was
+  the extension, and its error went to a global message and the report
+  went on with the wrong value.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-38
 - Validate the asterisk log filter field by field. A date that was not
   in the list was replaced by the most recent one without telling anybody.

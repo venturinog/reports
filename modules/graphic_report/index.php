@@ -32,6 +32,7 @@ function _moduleContent(&$smarty, $module_name)
     include_once "libs/paloSantoForm.class.php";
     include_once "libs/paloSantoConfig.class.php";
     include_once "libs/paloSantoQueue.class.php";
+    include_once "libs/issabelReportForm.class.php";
 
     //include module files
     include_once "modules/$module_name/configs/default.conf.php";
@@ -189,6 +190,32 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
 
     $pExtention = new paloSantoExtention($pDB_cdr);
 
+    /* Validacion por campo: el servidor es la fuente de verdad. Que campos son
+     * obligatorios lo decide el criterio elegido, no el HTML. */
+    $errors = array();
+    if (trim((string)$date_ini) === '') {
+        $errors['date_from'] = issabelReportError(_tr('Start date'), true);
+    } else if (!issabelReportValidDate($date_ini)) {
+        $errors['date_from'] = issabelReportError(_tr('Start date'), false, false);
+    }
+    if (trim((string)$date_fin) === '') {
+        $errors['date_to'] = issabelReportError(_tr('End date'), true);
+    } else if (!issabelReportValidDate($date_fin)) {
+        $errors['date_to'] = issabelReportError(_tr('End date'), false, false);
+    }
+    if ($option === "Number") {
+        if (trim((string)$ext) === '') {
+            $errors['call_to'] = issabelReportError(_tr('Number'), true);
+        } else if (!preg_match("/^[1-9]{1}[[:digit:]]*$/", $ext)) {
+            $errors['call_to'] = _tr("The extension must be numeric and can not start with zero");
+        }
+    }
+    if (count($errors) > 0) {
+        issabelReportMarkInvalid($arrFormElements, $errors);
+        $oFilterForm = new paloForm($smarty, $arrFormElements);
+    }
+    $smarty->assign("ERRORS", issabelReportErrorMap($arrFormElements, $errors));
+
     $error = false;
     $chartType = "";
     $chartTitle = "";
@@ -198,10 +225,8 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
     $chartData2 = array();
     $noData = _tr("There are no data to present");
     if ($option == "Number") {
-    	if (!preg_match("/^[1-9]{1}[[:digit:]]*$/",$ext) && isset($ext)) {
+    	if (isset($errors['call_to'])) {
     	    $error = true;
-    	    $smarty->assign("mb_title",_tr("Validation Error"));
-    	    $smarty->assign("mb_message",_tr("The extension must be numeric and can not start with zero"));
     	}
         $smarty->assign("SELECTED_1","selected");
         $smarty->assign("SELECTED_2","");
