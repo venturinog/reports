@@ -29,6 +29,7 @@ function _moduleContent(&$smarty, $module_name)
     include_once "libs/paloSantoConfig.class.php";
     include_once "libs/paloSantoCDR.class.php";
     require_once "libs/misc.lib.php";
+    require_once "libs/issabelReportForm.class.php";
     include_once "libs/paloSantoRate.class.php";
     include_once "libs/paloSantoTrunk.class.php";
 
@@ -87,6 +88,7 @@ function _moduleContent(&$smarty, $module_name)
             );
 
     $oFilterForm = new paloForm($smarty, $arrFormElements);
+    $errors = array();
 
     // Por omision las fechas toman el sgte. valor (la fecha de hoy)
     $date_start = date("Y-m-d") . " 00:00:00";
@@ -95,7 +97,23 @@ function _moduleContent(&$smarty, $module_name)
 
 
     if(isset($_POST['filter'])) {
-        if($oFilterForm->validateForm($_POST)) {
+        /* Validacion por campo: el servidor es la fuente de verdad y la pagina
+         * se vuelve a pintar con el error bajo el campo que falla. */
+        if (trim((string)$_POST['date_start']) === '') {
+            $errors['date_start'] = issabelReportError(_tr('Start Date'), true);
+        } else if (!issabelReportValidDate($_POST['date_start'])) {
+            $errors['date_start'] = issabelReportError(_tr('Start Date'), false, false);
+        }
+        if (trim((string)$_POST['date_end']) === '') {
+            $errors['date_end'] = issabelReportError(_tr('End Date'), true);
+        } else if (!issabelReportValidDate($_POST['date_end'])) {
+            $errors['date_end'] = issabelReportError(_tr('End Date'), false, false);
+        }
+        if (!isset($_POST['criteria']) || !isset($arrFormElements['criteria']['INPUT_EXTRA_PARAM'][$_POST['criteria']])) {
+            $errors['criteria'] = issabelReportError(_tr('Criteria'), true);
+        }
+
+        if (count($errors) == 0) {
             // Exito, puedo procesar los datos ahora.
             $date_start = translateDate($_POST['date_start']) . " 00:00:00";
             $date_end   = translateDate($_POST['date_end']) . " 23:59:59";
@@ -108,47 +126,60 @@ function _moduleContent(&$smarty, $module_name)
                 $_POST['date_end']=date("d M Y");
                 $date_start = date("Y-m-d"). " 00:00:00";
                 $date_end   = date("Y-m-d"). " 23:59:59";
-                $smarty->assign("mb_title", _tr("Validation Error"));
-                $smarty->assign("mb_message", ""._tr('Date Range spans maximum number of days').":$MAX_DAYS");
+                $errors['date_start'] = _tr('Date Range spans maximum number of days').': '.$MAX_DAYS;
             }
             $value_criteria = $_POST['criteria'];
             $arrFilterExtraVars = array("date_start" => $_POST['date_start'], "date_end" => $_POST['date_end'],"criteria"=>$_POST['criteria']);
-        } else {
-            // Error
-            $smarty->assign("mb_title", _tr("Validation Error"));
-            $arrErrores=$oFilterForm->arrErroresValidacion;
-            $strErrorMsg = "<b>"._tr('The following fields contain errors').":</b><br>";
-            foreach($arrErrores as $k=>$v) {
-                $strErrorMsg .= "$k, ";
-            }
-            $strErrorMsg .= "";
-            $smarty->assign("mb_message", $strErrorMsg);
         }
+        if (count($errors) > 0) {
+            issabelReportMarkInvalid($arrFormElements, $errors);
+            $oFilterForm = new paloForm($smarty, $arrFormElements);
+        }
+        $smarty->assign("ERRORS", issabelReportErrorMap($arrFormElements, $errors));
         $htmlFilter = $contenidoModulo=$oFilterForm->fetchForm("$local_templates_dir/dest_dist_filter.tpl", "", $_POST);
 
     } else if(isset($_GET['date_start']) && isset($_GET['date_end'])) {
-        //valido que no exista diferencia mayor de 31 dias entre las fechas
-        $date_start = translateDate($_GET['date_start']) . " 00:00:00";
-        $date_end   = translateDate($_GET['date_end']) . " 23:59:59";
+        if (!issabelReportValidDate($_GET['date_start'])) {
+            $errors['date_start'] = issabelReportError(_tr('Start Date'), false, false);
+        }
+        if (!issabelReportValidDate($_GET['date_end'])) {
+            $errors['date_end'] = issabelReportError(_tr('End Date'), false, false);
+        }
+        $value_criteria = (isset($_GET['criteria']) && isset($arrFormElements['criteria']['INPUT_EXTRA_PARAM'][$_GET['criteria']]))
+            ? $_GET['criteria'] : 'minutes';
 
-        $inicio=strtotime($date_start);
-        $fin=strtotime($date_end);
-        $num_dias=($fin-$inicio)/86400;
-        if ($num_dias>$MAX_DAYS){
-            $_GET['date_start']=date("d M Y");
-            $_GET['date_end']=date("d M Y");
+        if (count($errors) == 0) {
+            //valido que no exista diferencia mayor de 31 dias entre las fechas
+            $date_start = translateDate($_GET['date_start']) . " 00:00:00";
+            $date_end   = translateDate($_GET['date_end']) . " 23:59:59";
+
+            $inicio=strtotime($date_start);
+            $fin=strtotime($date_end);
+            $num_dias=($fin-$inicio)/86400;
+            if ($num_dias>$MAX_DAYS){
+                $_GET['date_start']=date("d M Y");
+                $_GET['date_end']=date("d M Y");
+                $date_start = date("Y-m-d"). " 00:00:00";
+                $date_end   = date("Y-m-d"). " 23:59:59";
+                $errors['date_start'] = _tr('Date Range spans maximum number of days').': '.$MAX_DAYS;
+            }
+
+            $arrFilterExtraVars = array("date_start" => $_GET['date_start'], "date_end" => $_GET['date_end'],"criteria"=>$value_criteria);
+        } else {
             $date_start = date("Y-m-d"). " 00:00:00";
             $date_end   = date("Y-m-d"). " 23:59:59";
-            $smarty->assign("mb_title", _tr("Validation Error"));
-            $smarty->assign("mb_message", ""._tr('Date Range spans maximum number of days').":$MAX_DAYS");
         }
-
-        $value_criteria = $_GET['criteria'];
-        $arrFilterExtraVars = array("date_start" => $_GET['date_start'], "date_end" => $_GET['date_end'],"criteria"=>$_GET['criteria']);
+        if (count($errors) > 0) {
+            issabelReportMarkInvalid($arrFormElements, $errors);
+            $oFilterForm = new paloForm($smarty, $arrFormElements);
+        }
+        $smarty->assign("ERRORS", issabelReportErrorMap($arrFormElements, $errors));
         $htmlFilter = $contenidoModulo=$oFilterForm->fetchForm("$local_templates_dir/dest_dist_filter.tpl", "", $_GET);
     } else {
         $date_start = date("Y-m-d"). " 00:00:00";
         $date_end   = date("Y-m-d"). " 23:59:59";
+        $value_criteria = 'minutes';
+        $smarty->assign("ERRORS", issabelReportErrorMap($arrFormElements, $errors));
         $htmlFilter = $contenidoModulo=$oFilterForm->fetchForm("$local_templates_dir/dest_dist_filter.tpl", "",
                 array('date_start' => date("d M Y"), 'date_end' => date("d M Y"), 'criteria'=>'minutes'));
     }
