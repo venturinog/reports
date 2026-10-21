@@ -44,5 +44,5 @@
   </section>
 </div>
 
-<input type="hidden" name="id_rate" value="{$id_rate}">
+<input type="hidden" name="id" value="{$rate_id}">
 </form>

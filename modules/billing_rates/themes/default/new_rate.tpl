@@ -37,5 +37,4 @@
     </div>
   </section>
 </div>
-<input type="hidden" name="id_rate" value="{$id_rate}">
 </form>

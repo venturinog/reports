@@ -225,9 +225,10 @@ function reportBillingNewRate($smarty, $module_name, $local_templates_dir, &$pDB
     $smarty->assign("by_min",_tr("by_min"));
     $smarty->assign("Date_close",_tr("Date close"));
 
+    // El <form> vive en la plantilla: si el envoltorio de PHP lo monta, el
+    // formulario queda anidado y los parametros de la URL se pierden.
     $htmlForm = $oForm->fetchForm("$local_templates_dir/new_rate.tpl",_tr("New_rate"), $_DATA);
-    $content  = "<form  method='POST' style='margin-bottom:0;' action='?menu=$module_name'>".$htmlForm."</form>";
-    return $content;
+    return $htmlForm;
 }
 
 function reportBillingEditRate($smarty, $module_name, $local_templates_dir, &$pDB, &$pDB2, &$pDB3, $arrConf){
@@ -273,9 +274,10 @@ function reportBillingEditRate($smarty, $module_name, $local_templates_dir, &$pD
      $arrRates = setEmptySpaces($arrRates);
      $smarty->assign("arrRates",$arrRates);
 
+     $smarty->assign("rate_id", $id);
+     $smarty->assign("namerate", $arrData['name']);
      $htmlForm = $oForm->fetchForm("$local_templates_dir/edit_rate.tpl",_tr("Edit Rate"), $_DATA);
-     $content  = "<form  method='POST' style='margin-bottom:0;' action='?menu=$module_name&id=$id&namerate=".$arrData['name']."'>".$htmlForm."</form>";
-     return $content;
+     return $htmlForm;
 }
 
 function reportBillingImportRate($smarty, $module_name, $local_templates_dir, &$pDB, &$pDB2, &$pDB3, $arrConf){
@@ -290,8 +292,7 @@ function reportBillingImportRate($smarty, $module_name, $local_templates_dir, &$
     $smarty->assign("by_min",_tr("by_min"));
     $smarty->assign("alert_import",_tr("alert_import"));
     $htmlForm = $oForm->fetchForm("$local_templates_dir/import_rate.tpl",_tr("import_rate"), $_DATA);
-    $content  = "<form  method='POST' enctype='multipart/form-data' style='margin-bottom:0;' action='?menu=$module_name'>".$htmlForm."</form>";
-    return $content;
+    return $htmlForm;
 }
 
 function reportBillingViewRate($smarty, $module_name, $local_templates_dir, &$pDB, &$pDB2, &$pDB3, $arrConf){
@@ -336,9 +337,9 @@ function reportBillingViewRate($smarty, $module_name, $local_templates_dir, &$pD
     $smarty->assign("by_min",_tr("by_min"));
     $smarty->assign("Date_close",_tr("Date close"));
 
+    $smarty->assign("rate_id", $id);
     $htmlForm = $oForm->fetchForm("$local_templates_dir/view_rate.tpl",_tr("View Rate"), $_DATA);
-    $content  = "<form  method='POST' style='margin-bottom:0;' action='?menu=$module_name&id=$id'>".$htmlForm."</form>";
-    return $content;
+    return $htmlForm;
 }
 
 function obtainResultOperationRate($smarty, $module_name, $local_templates_dir, &$pDB, &$pDB2, &$pDB3, $arrConf){

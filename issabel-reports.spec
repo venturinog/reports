@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 14
+Release: 15
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,13 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-15
+- Remove the nested forms from the billing rate screens. Each screen
+  built its form in the PHP wrapper and the template had one too, so the
+  browser discarded the inner tag and the id and namerate parameters only
+  survived by accident. The form now lives only in the template and the
+  parameters travel in hidden fields.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-14
 - Send the CSRF token with the graphic report filter. The form was
   built in the PHP wrapper, so paloForm found no form tag to inject the
