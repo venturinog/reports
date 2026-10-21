@@ -67,12 +67,16 @@ function _moduleContent(&$smarty, $module_name)
     $pDBSQLite = new paloDB($arrConf['dsn_conn_database_2']); //rate
 
 	 if(!empty($pDBSQLite->errMsg)) {
-        echo "ERROR DE DB: $pDB->errMsg <br>";
+        $smarty->assign("mb_title", _tr("ERROR"));
+        $smarty->assign("mb_message", $pDB->errMsg);
+        return '';
     }
 
     $pRate = new paloRate($pDBSQLite);
     if(!empty($pRate->errMsg)) {
-        echo "ERROR DE RATE: $pRate->errMsg <br>";
+        $smarty->assign("mb_title", _tr("ERROR"));
+        $smarty->assign("mb_message", $pRate->errMsg);
+        return '';
     }
 
 	 $smarty->assign("module",$module_name);

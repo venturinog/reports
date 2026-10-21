@@ -53,11 +53,15 @@ function _moduleContent(&$smarty, $module_name)
 
     $pDBACL = new paloDB($arrConf['issabel_dsn']['acl']);
     if (!empty($pDBACL->errMsg)) {
-        return "ERROR DE DB: $pDBACL->errMsg";
+        $smarty->assign("mb_title", _tr("ERROR"));
+        $smarty->assign("mb_message", $pDBACL->errMsg);
+        return '';
     }
     $pACL = new paloACL($pDBACL);
     if (!empty($pACL->errMsg)) {
-        return "ERROR DE ACL: $pACL->errMsg";
+        $smarty->assign("mb_title", _tr("ERROR"));
+        $smarty->assign("mb_message", $pACL->errMsg);
+        return '';
     }
 
     //actions

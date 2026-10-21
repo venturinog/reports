@@ -32,5 +32,6 @@ $arrLangModule=array(
 "Trunk Bill Configuration"=>"Trunk Bill Configuration",
 "Trunk"=>"Trunk",
 "Billing Capable"=>"Billing Capable",
+"Error when saving default rate" => "Error when saving default rate",
 );
 ?>

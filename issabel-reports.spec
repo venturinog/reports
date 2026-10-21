@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 41
+Release: 42
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,12 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-42
+- Complete the English language file of the report modules. The pages used
+  strings that were not in the base file, so they fell back to the key, and
+  the database and ACL errors were printed in Spanish straight into the
+  page. The errors now go through the alert of the theme.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-41
 - Validate the billing rate forms field by field. The errors went to a
   global message that named the fields by their label, and the import of a
