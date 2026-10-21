@@ -25,6 +25,7 @@ include_once "libs/paloSantoGrid.class.php";
 include_once "libs/paloSantoForm.class.php";
 include_once "libs/paloSantoConfig.class.php";
 require_once "libs/misc.lib.php";
+require_once "libs/issabelReportForm.class.php";
 
 function _moduleContent(&$smarty, $module_name)
 {
@@ -86,7 +87,8 @@ function reportMissedCalls($smarty, $module_name, $local_templates_dir, &$pDB, $
     ini_set('max_execution_time', 3600);
 
     $pCallingReport = new paloSantoMissedCalls($pDB);
-    $oFilterForm  = new paloForm($smarty, createFieldFilter());
+    $arrForm = createFieldFilter();
+    $oFilterForm  = new paloForm($smarty, $arrForm);
     $filter_field = getParameter("filter_field");
     $filter_value = getParameter("filter_value");
     $date_start   = getParameter("date_start");
@@ -115,15 +117,24 @@ function reportMissedCalls($smarty, $module_name, $local_templates_dir, &$pDB, $
         "date_end" => $date_end
     );
 
-    if (!$oFilterForm->validateForm($parmFilter)) {
-        $smarty->assign(array(
-            'mb_title'      =>  _tr('Validation Error'),
-            'mb_message'    =>  '<b>'._tr('The following fields contain errors').':</b><br/>'.
-                                implode(', ', array_keys($oFilterForm->arrErroresValidacion)),
-        ));
-        $date_start = date("d M Y").' 00:00';
-        $date_end   = date("d M Y").' 23:59';
+    /* Validacion por campo: el servidor es la fuente de verdad y la pagina se
+     * vuelve a pintar con el error bajo el campo que falla, sin redirigir. */
+    $errors = array();
+    if (trim((string)$date_start) === '') {
+        $errors['date_start'] = issabelReportError(_tr('Start Date'), true);
+    } else if (!issabelReportValidDateTime($date_start)) {
+        $errors['date_start'] = issabelReportError(_tr('Start Date'), false, false);
     }
+    if (trim((string)$date_end) === '') {
+        $errors['date_end'] = issabelReportError(_tr('End Date'), true);
+    } else if (!issabelReportValidDateTime($date_end)) {
+        $errors['date_end'] = issabelReportError(_tr('End Date'), false, false);
+    }
+    if (count($errors) > 0) {
+        issabelReportMarkInvalid($arrForm, $errors);
+        $oFilterForm = new paloForm($smarty, $arrForm);
+    }
+    $smarty->assign("ERRORS", issabelReportErrorMap($arrForm, $errors));
 
     $url = array_merge($url, array('date_start' => $date_start,'date_end' => $date_end));
 

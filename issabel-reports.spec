@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 32
+Release: 33
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-33
+- Validate the missed calls filter field by field. The errors went to a
+  single global message that named the fields by their label, and the page
+  fell back to the current date instead of keeping what the user wrote.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-32
 - Add the date validators to the shared form helper. The report filters
   take the dates as text, in the format the datepicker writes, and the
