@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 36
+Release: 37
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-37
+- Validate the summary filter field by field. The filter was not validated
+  at all and a date that was not a date was silently replaced by the
+  current one, so the report showed another day than the one asked for.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-36
 - Validate the CDR filter field by field. The errors went to a single
   global message that named the fields by their label, and the page fell

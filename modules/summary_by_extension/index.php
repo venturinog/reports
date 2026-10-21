@@ -24,6 +24,7 @@
 include_once "libs/paloSantoGrid.class.php";
 include_once "libs/paloSantoForm.class.php";
 include_once "libs/misc.lib.php";
+include_once "libs/issabelReportForm.class.php";
 
 function _moduleContent(&$smarty, $module_name)
 {
@@ -191,6 +192,28 @@ function reportReportCall($smarty, $module_name, $local_templates_dir, &$pDB_cdr
     //begin section filter
     $arrFormFilterReportCall = createFieldForm();
     $oFilterForm = new paloForm($smarty, $arrFormFilterReportCall);
+
+    /* Validacion por campo: el servidor es la fuente de verdad y la pagina se
+     * vuelve a pintar con el error bajo el campo que falla, sin redirigir. */
+    $errors = array();
+    if (trim((string)$date_from) === '') {
+        $errors['date_from'] = issabelReportError(_tr('Start date'), true);
+    } else if (!issabelReportValidDate($date_from)) {
+        $errors['date_from'] = issabelReportError(_tr('Start date'), false, false);
+    }
+    if (trim((string)$date_to) === '') {
+        $errors['date_to'] = issabelReportError(_tr('End date'), true);
+    } else if (!issabelReportValidDate($date_to)) {
+        $errors['date_to'] = issabelReportError(_tr('End date'), false, false);
+    }
+    if (trim((string)$value) !== '' && !is_numeric($value)) {
+        $errors['value_fil'] = issabelReportError(_tr('Value'), false, false);
+    }
+    if (count($errors) > 0) {
+        issabelReportMarkInvalid($arrFormFilterReportCall, $errors);
+        $oFilterForm = new paloForm($smarty, $arrFormFilterReportCall);
+    }
+    $smarty->assign("ERRORS", issabelReportErrorMap($arrFormFilterReportCall, $errors));
     $_POST['option_fil'] = $type;
     $_POST['value_fil'] = $value;
     $_POST['date_from'] = $date_from;
