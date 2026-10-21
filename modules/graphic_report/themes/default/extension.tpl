@@ -1,24 +1,31 @@
-<script>
-//var lang = "{$LANG}";
-var chartLabels = "{$chartLabels}";
-var chartData = "{$chartData}";
-var chartData2 = "{$chartData2}";
-var chartType = "{$Chart}";
-var chartTitle = "{$chartTitle}";
-var chartTitle2 = "{$chartTitle2}";
-var noData = "{$noData}";
-</script>
-
-<div class="chart-container" id=chart align=center>
-  <canvas id="myChart" height=60></canvas>
+<div class="iss-form">
+  <section class="iss-card">
+    <div class="iss-card__body">
+      <div class="iss-field iss-field--full">
+        <span class="iss-field__control">
+          <div class="iss-chart iss-chart--short">
+            <canvas id="myChart"></canvas>
+          </div>
+        </span>
+      </div>
+      <div class="iss-field iss-field--full">
+        <span class="iss-field__control">
+          <div class="iss-chart iss-chart--short">
+            <canvas id="myChart2"></canvas>
+          </div>
+        </span>
+      </div>
+      <div class="iss-form__toolbar">
+        <div class="iss-form__buttons">
+          <button type="button" class="button" id="download-pdf2" onclick="printGraphic();">
+            <i class="ti ti-printer"></i> {$PRINT}
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
-<div class="chart-container" id=chart2 align=center>
-  <canvas id="myChart2" height=60></canvas>
-</div>
-
-<div class="text-right">
-  <button type="button" class="btn btn-link" id="download-pdf2" onclick="downloadPDF2()">
-    <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
-    PDF
-  </button>
-</div>
+<script type="application/json" id="issabelGraphicReport">{$CHART_DATA}</script>
+<script src="{$WEBPATH}themes/{$THEMENAME}/js/chart.umd.min.js"></script>
+<script src="{$WEBPATH}themes/{$THEMENAME}/js/chartjs-plugin-datalabels.min.js"></script>
+<script src="{$WEBPATH}themes/{$THEMENAME}/js/issabel-charts.js"></script>

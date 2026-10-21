@@ -53,6 +53,7 @@ $arrLangModule=array(
 "Extension (Number)" => "Extension (Number)",
 "Classify by" => "Classify by",
 "Queue" => "Queue",
-"Trunk" => "Trunk"
+"Trunk" => "Trunk",
+"Print" => "Print"
 );
 ?>

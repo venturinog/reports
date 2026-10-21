@@ -176,6 +176,7 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
     $smarty->assign("SHOW", _tr("Show"));
     $smarty->assign("HERE", _tr("Here"));
     $smarty->assign("FILTER_TITLE", _tr("Show Filter"));
+    $smarty->assign("PRINT", _tr("Print"));
 
     $date_ini = getParameter("date_from");
     $date_fin = getParameter("date_to");
@@ -226,6 +227,13 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
 
     $ruta_img = array();
     $error = false;
+    $chartType = "";
+    $chartTitle = "";
+    $chartTitle2 = "";
+    $chartLabels = array();
+    $chartData = array();
+    $chartData2 = array();
+    $noData = _tr("There are no data to present");
     if ($option == "Number") {
     	if (!preg_match("/^[1-9]{1}[[:digit:]]*$/",$ext) && isset($ext)) {
     	    $error = true;
@@ -243,21 +251,14 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
             $numOut = $result['num_outgoing_call'];
             $numTot = $numIn + $numOut;
         }
-        if ($numTot != 0) {
-            $noData = "";
-        } else {
-            $noData = _tr("There are no data to present");
-        }
+        $noData = ($numTot != 0) ? "" : _tr("There are no data to present");
 
         if($numIn != 0) $VALUE = (int)( 100*( $numIn/$numTot ) );
         else $VALUE = 0;
-        $chartLabels = _tr("Incoming Calls").', '._tr("Outcoming Calls");
-        $chartData = $numIn.', '.$numOut;
-        $smarty->assign("chartTitle",_tr("Number of calls extension").' '.$ext2);
-        $smarty->assign("chartLabels", $chartLabels);
-        $smarty->assign("chartData", $chartData);
-        $smarty->assign("Chart","extension");
-        $smarty->assign("noData",$noData);
+        $chartLabels = array(_tr("Incoming Calls"), _tr("Outcoming Calls"));
+        $chartData = array($numIn, $numOut);
+        $chartTitle = _tr("Number of calls extension").' '.$ext2;
+        $chartType = "extension";
         $tpl = "extension.tpl";
 
         $ruta_img = array("?menu={$module_name}&amp;action=grafic&amp;du={$VALUE}%&amp;in={$numIn}&amp;out={$numOut}&amp;ext={$ext2}&amp;tot={$numTot}&amp;rawmode=yes");
@@ -279,11 +280,11 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
             $arrValue[$k] = $arr[0]; /* Y */
         }
         //$dump = grafic_queue($pDB_cdr, $pDB_ext, $queue, $date_ini2, $date_fin2);
-        $smarty->assign("chartTitle",_tr("Number Calls vs Queues"));
-        $smarty->assign("chartLabels",implode(",",$arrQueueName));
-        $smarty->assign("chartData",implode(",",$arrValue));
-        $smarty->assign("Chart","queue");
-        $smarty->assign("noData","");
+        $chartTitle = _tr("Number Calls vs Queues");
+        $chartLabels = array_values($arrQueueName);
+        $chartData = array_values($arrValue);
+        $chartType = "queue";
+        $noData = "";
 
         $ruta_img = array("?menu={$module_name}&amp;action=grafic_queue&amp;queue={$ext2}&amp;dti={$date_ini2}&amp;dtf={$date_fin2}&amp;rawmode=yes");
     } else if($option == "Trunk") {
@@ -314,20 +315,13 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
         $arrTrunkNum = $arrayTemp[0];
 
         $numTot = $arrTrunkNum[0] + $arrTrunkNum[1];
-        if ($numTot != 0) {
-            $noData = "0";
-        } else {
-            $noData = _tr("There are no data to present");
-        }
+        $noData = ($numTot != 0) ? "" : _tr("There are no data to present");
         
 
-        $smarty->assign("chartTitle",$chartTitle);
-        $smarty->assign("chartTitle2",$chartTitle2);
-        $smarty->assign("chartLabels",$chartLabels);
-        $smarty->assign("chartData",implode(",",$arrTrunkMin));
-        $smarty->assign("chartData2",implode(",",$arrTrunkNum));
-        $smarty->assign("Chart","trunk");
-        $smarty->assign("noData",$noData);
+        $chartLabels = array(_tr("Incoming Calls"), _tr("Outcoming Calls"));
+        $chartData = array_values($arrTrunkMin);
+        $chartData2 = array_values($arrTrunkNum);
+        $chartType = "trunk";
 
         $ruta_img  = array(
             "?menu={$module_name}&amp;action=grafic_trunk&amp;trunk={$trunkT}&amp;dti={$date_ini2}&amp;dtf={$date_fin2}&amp;rawmode=yes",
@@ -349,11 +343,18 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
     // el token CSRF y la pagina se guarda sin token.
     $contenidoModulo = $htmlForm;
 
-    //$chartLabels = '"'._tr("Incoming Calls").'"'.', '.'"'._tr("Outcoming Calls").'"';
-    //$chartData = $numIn.', '.$numOut;
-    //$smarty->assign("chartLabels", $chartLabels);
-    //$smarty->assign("chartData", $chartData);
-    
+    // Los datos de la grafica viajan en un bloque JSON: asi el navegador los
+    // recibe como datos y no como codigo.
+    $smarty->assign("CHART_DATA", json_encode(array(
+        'type'    => $chartType,
+        'title'   => $chartTitle,
+        'title2'  => $chartTitle2,
+        'labels'  => $chartLabels,
+        'values'  => $chartData,
+        'values2' => $chartData2,
+        'noData'  => $noData,
+    ), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP));
+
     $contenidoModulo .= $smarty->fetch("$local_templates_dir/extension.tpl");
 
     return $contenidoModulo;
