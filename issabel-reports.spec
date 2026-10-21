@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 33
+Release: 34
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-34
+- Validate the billing report filter field by field. The filter was not
+  validated at all, and a duration that was not a number made PHP 8 fail
+  with a TypeError and the page answered 500.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-33
 - Validate the missed calls filter field by field. The errors went to a
   single global message that named the fields by their label, and the page

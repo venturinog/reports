@@ -27,6 +27,7 @@ include_once "libs/paloSantoDB.class.php";
 include_once "libs/paloSantoConfig.class.php";
 include_once "libs/paloSantoCDR.class.php";
 require_once "libs/misc.lib.php";
+require_once "libs/issabelReportForm.class.php";
 include_once "libs/paloSantoRate.class.php";
 include_once "libs/paloSantoTrunk.class.php";
 
@@ -112,29 +113,58 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
     $filter_value_tmp = "";
     $time = 0;
 
+    $arrForm = createFieldFilter();
+    $errors = array();
+
+    /* Validacion por campo: el servidor es la fuente de verdad. Si una fecha
+     * no vale, no se consulta nada y el error sale bajo el campo. */
+    if (isset($start_date_tmp)) {
+        if (trim((string)$start_date_tmp) === '') {
+            $errors['date_start'] = issabelReportError(_tr('Start Date'), true);
+        } else if (!issabelReportValidDate($start_date_tmp)) {
+            $errors['date_start'] = issabelReportError(_tr('Start Date'), false, false);
+        }
+    }
+    if (isset($end_date_tmp)) {
+        if (trim((string)$end_date_tmp) === '') {
+            $errors['date_end'] = issabelReportError(_tr('End Date'), true);
+        } else if (!issabelReportValidDate($end_date_tmp)) {
+            $errors['date_end'] = issabelReportError(_tr('End Date'), false, false);
+        }
+    }
+
     if($filter_field == 'duration'){
             $filter_value = "";
-            if(isset($horas)){
+            if(isset($horas) && is_numeric($horas)){
                 $hourToSec = $horas * 3600;
                 $_POST['horas']  = $horas;
             }else{
                 $hourToSec = 0;
                 $_POST['horas']  = $hourToSec;
             }
+            if(isset($horas) && trim((string)$horas) !== '' && !is_numeric($horas)) {
+                $errors['horas'] = issabelReportError(_tr("Hours"), false, false);
+            }
 
-            if(isset($minutos)){
+            if(isset($minutos) && is_numeric($minutos)){
                 $minToSec = $minutos * 60;
                 $_POST['minutos']  = $minutos;
             }else{
                 $minToSec = 0;
                 $_POST['minutos']  = $minToSec;
             }
+            if(isset($minutos) && trim((string)$minutos) !== '' && !is_numeric($minutos)) {
+                $errors['minutos'] = issabelReportError(_tr("Minutes"), false, false);
+            }
 
-            if(isset($segundos)){
+            if(isset($segundos) && is_numeric($segundos)){
                 $_POST['segundos'] = $segundos;
             }else{
                 $segundos = 0;
                 $_POST['segundos'] = $segundos;
+            }
+            if(isset($segundos) && trim((string)$segundos) !== '' && !is_numeric($segundos)) {
+                $errors['segundos'] = issabelReportError(_tr("Seconds"), false, false);
             }
 
         $time = $hourToSec + $minToSec + $segundos;
@@ -186,7 +216,9 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
     $arrData = array();
     $arrData = null;
     $extension = "";
-    $totalbilling_report = $pbilling_report->obtainNumReport($filter_field, $filter_value_tmp, $start_date, $end_date, $pDBSQLite, $time, "ANSWERED", "outgoing", $arrConfig);
+    $totalbilling_report = isset($errors['date_start']) || isset($errors['date_end'])
+        ? 0
+        : $pbilling_report->obtainNumReport($filter_field, $filter_value_tmp, $start_date, $end_date, $pDBSQLite, $time, "ANSWERED", "outgoing", $arrConfig);
 
     $url = array(
         'menu'          =>  $module_name,
@@ -364,7 +396,7 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
     $oGrid->setColumns($arrColumns);
     $oGrid->setData($arrData);
     //begin section filter
-    $arrFormFilterbilling_report = createFieldFilter();
+    $arrFormFilterbilling_report = $arrForm;
 
     if($_POST['date_start']==="")
         $_POST['date_start']  = " ";
@@ -389,8 +421,14 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
         }
     }
 
+    if (count($errors) > 0) {
+        issabelReportMarkInvalid($arrFormFilterbilling_report, $errors);
+    }
+    $smarty->assign("ERRORS", issabelReportErrorMap($arrFormFilterbilling_report, $errors));
+
     $oFilterForm = new paloForm($smarty, $arrFormFilterbilling_report);
     $smarty->assign("SHOW", _tr("Show"));
+    $smarty->assign("FILTER_TITLE", _tr("Show Filter"));
 
     $htmlFilter = $oFilterForm->fetchForm("$local_templates_dir/filter.tpl","",$_POST);
     $oGrid->showFilter(trim($htmlFilter));
