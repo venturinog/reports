@@ -1,22 +1,36 @@
-<table width="99%" border="0" cellspacing="0" cellpadding="0" align="center">
-    <tr class="letra12">
-        <td align="right">{$date_start.LABEL}:</td>
-        <td align="left" nowrap>{$date_start.INPUT}</td>
-        <td align="right">{$date_end.LABEL}:</td>
-        <td align="left" nowrap>{$date_end.INPUT}</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td align="right">{$filter_field.LABEL}:</td>
-        <td align="left">{$filter_field.INPUT}</td>
-        <td colspan="2">
-            <span id="textfield" {$style_text}>{$filter_value.INPUT}</span>
-            <span id="duration" {$style_time}>
-                    {$horas.INPUT}&nbsp;H&nbsp;
-                    {$minutos.INPUT}&nbsp;M&nbsp;
-                    {$segundos.INPUT}&nbsp;S&nbsp;
-            </span>
-        </td>
-        <td align="left"><input class="button" type="submit" name="show" value="{$SHOW}" /></td>
-    </tr>
-</table>
+<div class="iss-form">
+  <section class="iss-card">
+    <header class="iss-card__header"><i class="ti ti-filter"></i> {$FILTER_TITLE}</header>
+    <div class="iss-card__body iss-formgrid">
+      <div class="iss-field">
+        <span class="iss-field__label">{$date_start.LABEL}&nbsp;<span class="iss-required">*</span></span>
+        <span class="iss-field__control">{$date_start.INPUT}</span>
+      </div>
+      <div class="iss-field">
+        <span class="iss-field__label">{$date_end.LABEL}&nbsp;<span class="iss-required">*</span></span>
+        <span class="iss-field__control">{$date_end.INPUT}</span>
+      </div>
+      <div class="iss-field">
+        <span class="iss-field__label">{$filter_field.LABEL}</span>
+        <span class="iss-field__control">{$filter_field.INPUT}</span>
+      </div>
+      <div class="iss-field{$value_class}" id="billing_filter_value">
+        <span class="iss-field__label">{$filter_value.LABEL}</span>
+        <span class="iss-field__control">{$filter_value.INPUT}</span>
+      </div>
+      <div class="iss-field iss-field--full{$duration_class}" id="billing_filter_duration">
+        <span class="iss-field__label">{$filter_value.LABEL}</span>
+        <span class="iss-field__control iss-inline-field">
+          <span class="iss-inline-field">{$horas.INPUT}&nbsp;{$UNIT_HOURS}</span>
+          <span class="iss-inline-field">{$minutos.INPUT}&nbsp;{$UNIT_MINUTES}</span>
+          <span class="iss-inline-field">{$segundos.INPUT}&nbsp;{$UNIT_SECONDS}</span>
+        </span>
+      </div>
+    </div>
+    <div class="iss-form__toolbar">
+      <div class="iss-form__buttons">
+        <input class="button" type="submit" name="show" value="{$SHOW}">
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,29 +1,20 @@
-
-
-$(document).ready((function(){
-
-	$('select').click(function(){ 
-		var val = $('select option:selected').val(); //obtenemos el value para el valor del item es .text()
-		if(val=='duration'){
-			//$('.time').attr('style','visibility:show;');
-			$('#duration').show();
-			$('#textfield').hide();
-		}
-		else{
-			$('#duration').hide();
-			$('#textfield').show();
-		}
-	});
-}));
 /*
-onChange="validarSiNumero(this.value);"
-function validarSiNumero(numero){
-	if (!/^([0-9])*$/.test(numero))
-		alert("El valor " + numero + " no es un número");
-}*/
+ * Filtro del reporte de facturacion: el criterio decide si se busca por un
+ * valor de texto o por una duracion (horas, minutos y segundos).
+ *
+ * El cambio de criterio lo aplica el servidor cuando se envia el formulario;
+ * aqui solo se alterna lo que se ve, sin decidir nada.
+ */
+$(document).ready(function () {
+    var campo = $('#filter_field');
+    if (campo.length === 0) return;
 
- function onlyNumbers(evt)
-      {
-        var keyPressed = (evt.which) ? evt.which : event.keyCode
-        return !(keyPressed > 31 && (keyPressed < 48 || keyPressed > 57));
-      }
+    function alternar() {
+        var esDuracion = campo.val() === 'duration';
+        $('#billing_filter_value').toggleClass('neo-display-none', esDuracion);
+        $('#billing_filter_duration').toggleClass('neo-display-none', !esDuracion);
+    }
+
+    campo.on('change', alternar);
+    alternar();
+});

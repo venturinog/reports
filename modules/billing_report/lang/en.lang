@@ -39,9 +39,10 @@ $arrLangModule=array(
 "Trunk" => "Trunk",
 "default" => "default",
 "Unknown" => "Unknown",
-"horas" => "horas",
-"minutos" => "minutos",
-"segundos" => "segundos",
 "Account Code" => "Account Code",
+"Hours" => "Hours",
+"Minutes" => "Minutes",
+"Seconds" => "Seconds",
+"Value" => "Value",
 );
 ?>

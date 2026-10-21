@@ -75,9 +75,11 @@ function _moduleContent(&$smarty, $module_name)
     }
 
 	 $smarty->assign("module",$module_name);
-	 $smarty->assign("horas",_tr('horas'));
-	 $smarty->assign("minutos",_tr('minutos'));
-	 $smarty->assign("segundos",_tr('segundos'));
+	 // Los nombres de las unidades no pueden ser "horas"/"minutos"/"segundos":
+	 // son las macros del formulario y las sobrescriben.
+	 $smarty->assign("UNIT_HOURS",_tr('Hours'));
+	 $smarty->assign("UNIT_MINUTES",_tr('Minutes'));
+	 $smarty->assign("UNIT_SECONDS",_tr('Seconds'));
 
     //actions
     $action = getAction();
@@ -107,8 +109,6 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
     $arrColumns = "";
     $hourToSec = "";
     $minToSec  = "";
-    $style_time = "";
-    $style_text = "";
     $filter_value_tmp = "";
     $time = 0;
 
@@ -139,8 +139,6 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
 
         $time = $hourToSec + $minToSec + $segundos;
         $_POST['filter_value'] = $filter_value;
-        $style_time = "style='display: block;'";
-        $style_text = "style='display: none;'";
     }else{
         $horas = "";
         $minutos = "";
@@ -160,8 +158,6 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
             else
                 $filter_value_tmp = "";
         }
-        $style_time = "style='display: none;'";
-        $style_text = "style='display: block;'";
     }
 
     if(isset($start_date_tmp)){
@@ -180,8 +176,9 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
         $_POST['date_end']  = date("d M Y");
     }
 
-    $smarty->assign("style_time",$style_time);
-    $smarty->assign("style_text",$style_text);
+    $smarty->assign("duration_class", $filter_field == 'duration' ? '' : ' neo-display-none');
+    $smarty->assign("value_class", $filter_field == 'duration' ? ' neo-display-none' : '');
+    $smarty->assign("FILTER_TITLE", _tr("Show Filter"));
 
     //begin grid parameters
     $oGrid  = new paloSantoGrid($smarty);
@@ -459,7 +456,7 @@ function createFieldFilter(){
                                     "INPUT_EXTRA_PARAM"      => $arrFilter,
                                     "VALIDATION_TYPE"        => "text",
                                     "VALIDATION_EXTRA_PARAM" => ""),
-            "filter_value" => array("LABEL"                  => "",
+            "filter_value" => array("LABEL"                  => _tr("Value"),
                                     "REQUIRED"               => "no",
                                     "INPUT_TYPE"             => "TEXT",
                                     "INPUT_EXTRA_PARAM"      => "",
@@ -480,17 +477,17 @@ function createFieldFilter(){
                 "horas"   => array("LABEL"                  => "",
                                     "REQUIRED"               => "no",
                                     "INPUT_TYPE"             => "TEXT",
-                                    "INPUT_EXTRA_PARAM"      => array("size" => "2", "maxlength" => "2", "onkeypress" => "return onlyNumbers(event)"),
+                                    "INPUT_EXTRA_PARAM"      => array("size" => "2", "maxlength" => "2", "inputmode" => "numeric", "pattern" => "[0-9]*"),
                                     "VALIDATION_TYPE"        => "text",),
                 "minutos" => array("LABEL"                  => "",
                                     "REQUIRED"               => "no",
                                     "INPUT_TYPE"             => "TEXT",
-                                    "INPUT_EXTRA_PARAM"      => array("size" => "2", "maxlength" => "2", "onkeypress" => "return onlyNumbers(event)"),
+                                    "INPUT_EXTRA_PARAM"      => array("size" => "2", "maxlength" => "2", "inputmode" => "numeric", "pattern" => "[0-9]*"),
                                     "VALIDATION_TYPE"        => "text",),
                 "segundos" => array("LABEL"                  => "",
                                     "REQUIRED"               => "no",
                                     "INPUT_TYPE"             => "TEXT",
-                                    "INPUT_EXTRA_PARAM"      => array("size" => "2", "maxlength" => "2", "onkeypress" => "return onlyNumbers(event)"),
+                                    "INPUT_EXTRA_PARAM"      => array("size" => "2", "maxlength" => "2", "inputmode" => "numeric", "pattern" => "[0-9]*"),
                                     "VALIDATION_TYPE"        => "text",),
                     );
     return $arrFormElements;
