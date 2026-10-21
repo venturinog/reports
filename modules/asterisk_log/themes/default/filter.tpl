@@ -5,6 +5,7 @@
       <div class="iss-field">
         <span class="iss-field__label">{$filter.LABEL}</span>
         <span class="iss-field__control">{$filter.INPUT}</span>
+        {if $ERRORS.filter}<div class="invalid-feedback d-block">{$ERRORS.filter}</div>{/if}
       </div>
       <div class="iss-field">
         <span class="iss-field__label">{$busqueda.LABEL}</span>

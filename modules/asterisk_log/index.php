@@ -26,6 +26,7 @@ function _moduleContent(&$smarty, $module_name)
     //include issabel framework
     include_once "libs/paloSantoGrid.class.php";
     include_once "libs/paloSantoForm.class.php";
+    include_once "libs/issabelReportForm.class.php";
 
     //include module files
     include_once "modules/$module_name/configs/default.conf.php";
@@ -121,8 +122,14 @@ function report_AsteriskLogs($smarty, $module_name, $local_templates_dir)
 
     $listaFechas = $pAsteriskLogs->astLog->listarFechas();
 
-    if (!preg_match("/".$arrFormElements['filter']['VALIDATION_EXTRA_PARAM']."/", $field_pattern))
+    /* Validacion por campo: el servidor es la fuente de verdad. Una fecha que
+     * no esta en la lista se avisaba antes sustituyendola en silencio por la
+     * mas reciente. */
+    $errors = array();
+    if (!in_array($field_pattern, $listaFechas, true)) {
+        $errors['filter'] = issabelReportError(_tr('Date'), false, false);
         $field_pattern = $listaFechas[count($listaFechas) - 1];
+    }
     $_POST['filter'] = $field_pattern;
     $total_datos = $pAsteriskLogs->ObtainNumAsteriskLogs($field_pattern);
     $comboFechas = array();
@@ -130,6 +137,11 @@ function report_AsteriskLogs($smarty, $module_name, $local_templates_dir)
 
     $arrFormElements['filter']['INPUT_EXTRA_PARAM'] = $comboFechas;
     $oFilterForm = new paloForm($smarty, $arrFormElements);
+    if (count($errors) > 0) {
+        issabelReportMarkInvalid($arrFormElements, $errors);
+        $oFilterForm = new paloForm($smarty, $arrFormElements);
+    }
+    $smarty->assign("ERRORS", issabelReportErrorMap($arrFormElements, $errors));
 
     if ($busqueda != '') $_POST['busqueda'] = $busqueda;
 

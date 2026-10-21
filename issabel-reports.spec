@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 37
+Release: 38
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,10 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-38
+- Validate the asterisk log filter field by field. A date that was not
+  in the list was replaced by the most recent one without telling anybody.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-37
 - Validate the summary filter field by field. The filter was not validated
   at all and a date that was not a date was silently replaced by the
