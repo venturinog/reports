@@ -22,8 +22,10 @@
   $Id: index.php, Thu 13 May 2021 06:40:42 PM EDT, nicolas@issabel.com
 */
 
-include_once "libs/paloSantoGraphImage.lib.php";
-
+// La grafica de este modulo se dibuja en el cliente con Chart.js, asi que no
+// hace falta ninguna libreria de graficas en el servidor. El include que
+// existia aqui (libs/paloSantoGraphImage.lib.php) arrastraba jpgraph, que no
+// existe en Rocky Linux 10, y hacia fallar la pagina entera con HTTP 500.
 function _moduleContent(&$smarty, $module_name) {
 
     function getData($id, $getTime=0) {

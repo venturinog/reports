@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 10
+Release: 11
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,12 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-11
+- Drop the dead jpgraph include from the channel usage page. The
+  library was never used there: the chart is drawn in the browser. It
+  required jpgraph, which does not exist in Rocky Linux 10, and aborted
+  the page with HTTP 500 before anything was rendered.
+
 * Fri Oct 16 2026 Issabel Foundation <info@issabel.org> - 6.0.0-10
 - Escape the rpm queryformat used to record the pre-version on upgrade.
   The VERSION and RELEASE macros were expanded at build time, so %pre always
