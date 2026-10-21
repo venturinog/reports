@@ -28,6 +28,7 @@ include_once "libs/paloSantoConfig.class.php";
 include_once "libs/paloSantoCDR.class.php";
 include_once "libs/paloSantoJSON.class.php";
 require_once "libs/misc.lib.php";
+require_once "libs/issabelReportForm.class.php";
 
 function _moduleContent(&$smarty, $module_name)
 {
@@ -188,6 +189,7 @@ function _moduleContent(&$smarty, $module_name)
         );
 
     $oFilterForm = new paloForm($smarty, $arrFormElements);
+    $errors = array();
 
     // Parámetros base y validación de parámetros
     $url = array('menu' => $module_name);
@@ -245,19 +247,46 @@ function _moduleContent(&$smarty, $module_name)
         $paramFiltro['date_end']  = " ";
     }
 
+    /* Validacion por campo: el servidor es la fuente de verdad y la pagina se
+     * vuelve a pintar con el error bajo el campo que falla, sin redirigir y
+     * sin perder lo que el usuario escribio. */
+    if (trim((string)$paramFiltro['date_start']) === '') {
+        $errors['date_start'] = issabelReportError(_tr('Start Date'), true);
+    } else if (!issabelReportValidDate($paramFiltro['date_start'])) {
+        $errors['date_start'] = issabelReportError(_tr('Start Date'), false, false);
+    }
+    if (trim((string)$paramFiltro['date_end']) === '') {
+        $errors['date_end'] = issabelReportError(_tr('End Date'), true);
+    } else if (!issabelReportValidDate($paramFiltro['date_end'])) {
+        $errors['date_end'] = issabelReportError(_tr('End Date'), false, false);
+    }
+    if (!isset($arrFormElements['field_name']['INPUT_EXTRA_PARAM'][$paramFiltro['field_name']])) {
+        $errors['field_name'] = issabelReportError(_tr('Field Name'), false, false);
+        $paramFiltro['field_name'] = $paramFiltroBase['field_name'];
+    }
+    if (!isset($arrFormElements['status']['INPUT_EXTRA_PARAM'][$paramFiltro['status']])) {
+        $errors['status'] = issabelReportError(_tr('Status'), false, false);
+        $paramFiltro['status'] = $paramFiltroBase['status'];
+    }
+    if ($paramFiltro['ringgroup'] !== '' &&
+        !isset($arrFormElements['ringgroup']['INPUT_EXTRA_PARAM'][$paramFiltro['ringgroup']])) {
+        $errors['ringgroup'] = issabelReportError(_tr('Ring Group'), false, false);
+        $paramFiltro['ringgroup'] = $paramFiltroBase['ringgroup'];
+    }
+    if (!isset($arrFormElements['limit']['INPUT_EXTRA_PARAM'][$paramFiltro['limit']])) {
+        $errors['limit'] = issabelReportError(_tr('Limit'), false, false);
+        $paramFiltro['limit'] = $paramFiltroBase['limit'];
+    }
+    if (count($errors) > 0) {
+        issabelReportMarkInvalid($arrFormElements, $errors);
+        $oFilterForm = new paloForm($smarty, $arrFormElements);
+        unset($_POST['delete']);    // Se aborta el intento de borrar CDRs, si había uno.
+    }
+    $smarty->assign("ERRORS", issabelReportErrorMap($arrFormElements, $errors));
+
     $valueFieldName = $arrFormElements['field_name']["INPUT_EXTRA_PARAM"][$paramFiltro['field_name']];
     $valueStatus    = $arrFormElements['status']["INPUT_EXTRA_PARAM"][$paramFiltro['status']];
     $valueRingGRoup = $arrFormElements['ringgroup']["INPUT_EXTRA_PARAM"][$paramFiltro['ringgroup']];
-
-    if (!$oFilterForm->validateForm($paramFiltro)) {
-        $smarty->assign(array(
-            'mb_title'      =>  _tr('Validation Error'),
-            'mb_message'    =>  '<b>'._tr('The following fields contain errors').':</b><br/>'.
-                                implode(', ', array_keys($oFilterForm->arrErroresValidacion)),
-        ));
-        $paramFiltro = $paramFiltroBase;
-        unset($_POST['delete']);    // Se aborta el intento de borrar CDRs, si había uno.
-    }
 
     // Tradudir fechas a formato ISO para comparación y para API de CDRs.
     $url = array_merge($url, $paramFiltro);
