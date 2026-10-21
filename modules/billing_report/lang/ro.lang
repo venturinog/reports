@@ -36,5 +36,17 @@ $arrLangModule = array(
     "Duration" => "Durata",
     "Filter" => "Filtru",
     "Field" => "Camp",
+"Account Code" => "Cod cont",
+"Cost" => "Cost",
+"Hours" => "Ore",
+"Minutes" => "Minute",
+"Rate Value" => "Valoarea tarifului",
+"Seconds" => "Secunde",
+"Summary Cost" => "Cost total",
+"Trunk" => "Trunk",
+"Unknown" => "Necunoscut",
+"Value" => "Valoare",
+"billing_report" => "Raport de facturare",
+"default" => "implicit",
 );
 ?>

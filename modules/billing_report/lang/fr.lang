@@ -42,5 +42,14 @@ $arrLangModule = array(
     "minutos" => "minutes",
     "segundos" => "secondes",
     "Account Code" => "Code de compte",
+"Date" => "Date",
+"Destination" => "Destination",
+"Hours" => "Heures",
+"Minutes" => "Minutes",
+"Seconds" => "Secondes",
+"Source" => "Source",
+"Trunk" => "Tronc",
+"Value" => "Valeur",
+"billing_report" => "Rapport de facturation",
 );
 ?>

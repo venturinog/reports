@@ -37,5 +37,16 @@ $arrLangModule = array(
     "Duration" => "Dutata",
     "Filter" => "Filtro",
     "Field" => "Campo",
+"Account Code" => "Codice account",
+"Hours" => "Ore",
+"Minutes" => "Minuti",
+"Rate Value" => "Valore tariffa",
+"Seconds" => "Secondi",
+"Summary Cost" => "Costo totale",
+"Trunk" => "Tronco",
+"Unknown" => "Sconosciuto",
+"Value" => "Valore",
+"billing_report" => "Rapporto di fatturazione",
+"default" => "predefinito",
 );
 ?>

@@ -37,5 +37,16 @@ $arrLangModule = array(
     "Duration" => "有效期限",
     "Filter" => "过滤器",
     "Field" => "项目",
+"Account Code" => "账户代码",
+"Hours" => "小时",
+"Minutes" => "分钟",
+"Rate Value" => "费率值",
+"Seconds" => "秒",
+"Summary Cost" => "成本汇总",
+"Trunk" => "中继",
+"Unknown" => "未知",
+"Value" => "值",
+"billing_report" => "计费报告",
+"default" => "默认",
 );
 ?>

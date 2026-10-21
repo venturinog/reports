@@ -81,5 +81,9 @@ $arrLangModule=array(
 "Status" => "وضعيت",
 "Obsolete" => "غير قابل استفاده",
 "Current" => "درحال حاضر",
+"The file must be a CSV file with the columns of the rate" => "فایل باید یک CSV با ستون‌های نرخ باشد",
+"Error rate name already exists in database or is duplicated in csv file" => "خطا: نام نرخ از قبل در پایگاه داده وجود دارد یا در فایل CSV تکرار شده است",
+"The prefix already exists with the same Trunk in database or is duplicated in csv file" => "این پیشوند با همان ترانک از قبل در پایگاه داده وجود دارد یا در فایل CSV تکرار شده است",
+"File was imported successful" => "فایل با موفقیت درون‌ریزی شد",
 );
 ?>

@@ -38,5 +38,15 @@ $arrLangModule = array(
     "Duration" => "通話時間",
     "Filter" => "抽出条件",
     "Field" => "フィールド",
+"Account Code" => "アカウントコード",
+"Hours" => "時間",
+"Minutes" => "分",
+"Rate Value" => "料��値",
+"Seconds" => "秒",
+"Trunk" => "トランク",
+"Unknown" => "不明",
+"Value" => "値",
+"billing_report" => "請求レポート",
+"default" => "既定",
 );
 ?>

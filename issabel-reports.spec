@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 44
+Release: 45
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-45
+- Translate the missing keys of the report modules. Every language file
+  now has the same keys as the English one, so the interface no longer mixes
+  the language of the user with the key of the string in English.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-44
 - Fill the missing keys of the language files of the report modules. The
   pages fell back to the key of the string when the language did not have

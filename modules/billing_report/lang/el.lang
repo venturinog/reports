@@ -37,5 +37,16 @@ $arrLangModule = array(
     "Duration" => "Διάρκεια",
     "Filter" => "Φίλτρο",
     "Field" => "Πεδίο",
+"Account Code" => "Κωδικός λογαριασμού",
+"Hours" => "Ώρες",
+"Minutes" => "Λεπτά",
+"Rate Value" => "Τιμή τιμολογίου",
+"Seconds" => "Δευτερόλεπτα",
+"Summary Cost" => "Συνολικό κόστος",
+"Trunk" => "Διαύλωση",
+"Unknown" => "Άγνωστο",
+"Value" => "Τιμή",
+"billing_report" => "Αναφορά χρέωσης",
+"default" => "προεπιλογή",
 );
 ?>

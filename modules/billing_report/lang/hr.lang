@@ -36,5 +36,16 @@ $arrLangModule = array(
     "Dst. Channel" => "Odredišni kanal",
     "Duration" => "Trajanje",
     "Field" => "Polje",
+"Account Code" => "Šifra računa",
+"Hours" => "Sati",
+"Minutes" => "Minute",
+"Rate Value" => "Vrijednost tarife",
+"Seconds" => "Sekunde",
+"Summary Cost" => "Ukupni trošak",
+"Trunk" => "Trunk",
+"Unknown" => "Nepoznato",
+"Value" => "Vrijednost",
+"billing_report" => "Izvješće o fakturiranju",
+"default" => "zadano",
 );
 ?>

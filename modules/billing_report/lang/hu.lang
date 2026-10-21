@@ -37,5 +37,16 @@ $arrLangModule = array(
     "Duration" => "Időtartam",
     "Filter" => "Szűrő",
     "Field" => "Mező  ",
+"Account Code" => "Számlaszám",
+"Hours" => "Órák",
+"Minutes" => "Percek",
+"Rate Value" => "Díjérték",
+"Seconds" => "Másodperc",
+"Summary Cost" => "Összes költség",
+"Trunk" => "Tronk",
+"Unknown" => "Ismeretlen",
+"Value" => "Érték",
+"billing_report" => "Számlázási jelentés",
+"default" => "alapérték",
 );
 ?>

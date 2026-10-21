@@ -35,5 +35,17 @@ $arrLangModule = array(
     "Dst. Channel" => "Dest. Kanal",
     "Duration" => "Längd",
     "Field" => "Fält",
+"Account Code" => "Kontonummer",
+"Destination" => "Destination",
+"Hours" => "Timmar",
+"Minutes" => "Minuter",
+"Rate Value" => "Taxvärde",
+"Seconds" => "Sekunder",
+"Summary Cost" => "Total kostnad",
+"Trunk" => "Trunk",
+"Unknown" => "Okänd",
+"Value" => "Värde",
+"billing_report" => "Faktureringsrapport",
+"default" => "standard",
 );
 ?>

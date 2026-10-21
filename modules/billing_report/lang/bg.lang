@@ -38,5 +38,15 @@ $arrLangModule = array(
     "Duration" => "Продължителност",
     "Filter" => "Филтър",
     "Field" => "По",
+"Account Code" => "Код на сметката",
+"Hours" => "Часове",
+"Minutes" => "Минути",
+"Rate Value" => "Стойност на тарифата",
+"Seconds" => "Секунди",
+"Trunk" => "Тръг",
+"Unknown" => "Неизвестно",
+"Value" => "Стойност",
+"billing_report" => "Фактурен доклад",
+"default" => "по подразбиране",
 );
 ?>

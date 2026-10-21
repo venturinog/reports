@@ -40,5 +40,13 @@ $arrLangModule = array(
     "Rate Value" => "Tarifa",
     "Account Code" => "Protocolo",
     "Summary Cost" => "Soma dos Custos",
+"Hours" => "Horas",
+"Minutes" => "Minutos",
+"Seconds" => "Segundos",
+"Trunk" => "Tronco",
+"Unknown" => "Desconhecido",
+"Value" => "Valor",
+"billing_report" => "Relatório de faturamento",
+"default" => "padrão",
 );
 ?>

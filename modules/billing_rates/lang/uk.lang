@@ -82,5 +82,6 @@ $arrLangModule=array(
 	"File was imported successful" => "Файл успішно імпортовано",
 	"Error rate name already exists in database or is duplicated in csv file" => "Назва частоти помилок вже існує у базі даних або дублюється у файлі csv",
 	"The prefix already exists with the same Trunk in database or is duplicated in csv file" => "Префікс вже існує з таким же транком у базі даних або дублюєтьсяу файлі csv",
+"The file must be a CSV file with the columns of the rate" => "Файл має бути CSV зі стовпцями тарифу",
 );
 ?>

@@ -49,5 +49,9 @@ $arrLangModule=array(
 	"minutos" => "хвилин",
 	"segundos" => "секунд",
 	"Account Code" => "Код Рахунку",
+"Hours" => "Години",
+"Minutes" => "Хвилини",
+"Seconds" => "Секунди",
+"Value" => "Значення",
 );
 ?>

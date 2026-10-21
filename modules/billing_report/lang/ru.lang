@@ -37,5 +37,16 @@ $arrLangModule = array(
     "Duration" => "Длительность",
     "Filter" => "Фильтр",
     "Field" => "Поле",
+"Account Code" => "Код счёта",
+"Hours" => "Часы",
+"Minutes" => "Минуты",
+"Rate Value" => "Значение тарифа",
+"Seconds" => "Секунды",
+"Summary Cost" => "Итоговая стоимость",
+"Trunk" => "Транк",
+"Unknown" => "Неизвестно",
+"Value" => "Значение",
+"billing_report" => "Отчёт о тарификации",
+"default" => "по умолчанию",
 );
 ?>

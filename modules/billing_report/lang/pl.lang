@@ -37,5 +37,16 @@ $arrLangModule = array(
     "Duration" => "Czas trwania",
     "Filter" => "Filtr",
     "Field" => "Pole",
+"Account Code" => "Kod konta",
+"Hours" => "Godziny",
+"Minutes" => "Minuty",
+"Rate Value" => "Wartość taryfy",
+"Seconds" => "Sekundy",
+"Summary Cost" => "Koszt łączny",
+"Trunk" => "Trunk",
+"Unknown" => "Nieznany",
+"Value" => "Wartość",
+"billing_report" => "Raport rozliczeniowy",
+"default" => "domyślny",
 );
 ?>

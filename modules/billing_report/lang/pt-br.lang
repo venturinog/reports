@@ -37,5 +37,16 @@ $arrLangModule = array(
     "Duration" => "Duração",
     "Filter" => "Filtro",
     "Field" => "Campo",
+"Account Code" => "Código da conta",
+"Hours" => "Horas",
+"Minutes" => "Minutos",
+"Rate Value" => "Valor da tarifa",
+"Seconds" => "Segundos",
+"Summary Cost" => "Custo total",
+"Trunk" => "Tronco",
+"Unknown" => "Desconhecido",
+"Value" => "Valor",
+"billing_report" => "Relatório de faturamento",
+"default" => "padrão",
 );
 ?>

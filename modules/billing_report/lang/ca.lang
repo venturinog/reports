@@ -36,5 +36,17 @@ $arrLangModule = array(
     "Duration" => "Duració",
     "Filter" => "Filtrar",
     "Field" => "Camp",
+"Account Code" => "Codi del compte",
+"Cost" => "Cost",
+"Hours" => "Hores",
+"Minutes" => "Minuts",
+"Rate Value" => "Valor de la tarifa",
+"Seconds" => "Segons",
+"Summary Cost" => "Cost total",
+"Trunk" => "Troncal",
+"Unknown" => "Desconegut",
+"Value" => "Valor",
+"billing_report" => "Informe de facturació",
+"default" => "per defecte",
 );
 ?>

@@ -51,5 +51,9 @@ $arrLangModule=array(
 "Account Code" => "كد حساب",
 "Filter" => "نمايش",
 "Field" => "فیلد ",
+"Hours" => "ساعت",
+"Minutes" => "دقیقه",
+"Seconds" => "ثانیه",
+"Value" => "مقدار",
 );
 ?>

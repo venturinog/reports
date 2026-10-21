@@ -36,5 +36,16 @@ $arrLangModule = array(
     "Dst. Channel" => "Zielkanal",
     "Duration" => "Dauer",
     "Field" => "Felder",
+"Account Code" => "Kontonummer",
+"Hours" => "Stunden",
+"Minutes" => "Minuten",
+"Rate Value" => "Satzwert",
+"Seconds" => "Sekunden",
+"Summary Cost" => "Gesamtkosten",
+"Trunk" => "Trunk",
+"Unknown" => "Unbekannt",
+"Value" => "Wert",
+"billing_report" => "Abrechnungsbericht",
+"default" => "Standard",
 );
 ?>
