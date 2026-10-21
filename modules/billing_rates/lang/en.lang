@@ -28,6 +28,7 @@ $arrLangModule=array(
 "Rate Offset" => "Rate Offset",
 "None" => "None",
 "New Rate"=>"New Rate",
+"The file must be a CSV file with the columns of the rate"=>"The file must be a CSV file with the columns of the rate",
 "Edit Rate"=>"Edit Rate",
 "View Rate"=>"View Rate",
 "View"=>"View",

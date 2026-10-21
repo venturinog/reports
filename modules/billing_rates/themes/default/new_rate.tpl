@@ -8,7 +8,9 @@
     </div>
   </div>
 
+  <div class="iss-reveal">
   <section class="iss-card">
+    <header class="iss-card__header"><i class="ti ti-currency-dollar"></i> {$CARD_TITLE}</header>
     <div class="iss-card__body iss-formgrid">
       <div class="iss-field">
         <span class="iss-field__label">{$Prefix.LABEL}&nbsp;<span class="iss-required">*</span></span>
@@ -16,7 +18,7 @@
       </div>
       <div class="iss-field">
         <span class="iss-field__label">{$Rate.LABEL} {$by_min}&nbsp;<span class="iss-required">*</span></span>
-        <span class="iss-field__control"><a href="index.php?menu=currency" style="text-decoration:none;">{$currency}</a>&nbsp;{$Rate.INPUT}</span>
+        <span class="iss-field__control"><a href="index.php?menu=currency">{$currency}</a>&nbsp;{$Rate.INPUT}</span>
       </div>
       <div class="iss-field">
         <span class="iss-field__label">{$Hidden_Digits.LABEL}&nbsp;<span class="iss-required">*</span></span>
@@ -28,7 +30,7 @@
       </div>
       <div class="iss-field">
         <span class="iss-field__label">{$Rate_offset.LABEL}&nbsp;<span class="iss-required">*</span></span>
-        <span class="iss-field__control"><a href="index.php?menu=currency" style="text-decoration:none;">{$currency}</a>&nbsp;{$Rate_offset.INPUT}</span>
+        <span class="iss-field__control"><a href="index.php?menu=currency">{$currency}</a>&nbsp;{$Rate_offset.INPUT}</span>
       </div>
       <div class="iss-field">
         <span class="iss-field__label">{$Trunk.LABEL}&nbsp;<span class="iss-required">*</span></span>
@@ -36,5 +38,6 @@
       </div>
     </div>
   </section>
+  </div>
 </div>
 </form>

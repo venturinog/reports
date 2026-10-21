@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 29
+Release: 30
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,12 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-30
+- Bring the billing rate screens onto the theme. The view screen mixed
+  the values and the controls, the edit screen wrote the colour of the
+  history table by hand and the tables used the legacy classes of
+  Elastix. The view is now a compact card with the values as text.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-29
 - Show the default rate as plain text in the billing setup page. The view
   mode rendered the two values as disabled inputs, which is the pattern

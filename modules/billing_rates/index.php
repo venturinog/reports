@@ -224,6 +224,7 @@ function reportBillingNewRate($smarty, $module_name, $local_templates_dir, &$pDB
     $smarty->assign("currency", $currency);
     $smarty->assign("by_min",_tr("by_min"));
     $smarty->assign("Date_close",_tr("Date close"));
+    $smarty->assign("CARD_TITLE", _tr("New Rate"));
 
     // El <form> vive en la plantilla: si el envoltorio de PHP lo monta, el
     // formulario queda anidado y los parametros de la URL se pierden.
@@ -265,6 +266,7 @@ function reportBillingEditRate($smarty, $module_name, $local_templates_dir, &$pD
      $smarty->assign("by_min",_tr("by_min"));
      $smarty->assign("Date_close",_tr("Date close"));
      $smarty->assign("Creation_Date",_tr("Creation Date"));
+     $smarty->assign("CARD_TITLE", _tr("Edit Rate"));
      $smarty->assign("History",_tr("Rate History"));
      $smarty->assign("Status",_tr("Status"));
      $smarty->assign("Obsolete",_tr("Obsolete"));
@@ -291,6 +293,8 @@ function reportBillingImportRate($smarty, $module_name, $local_templates_dir, &$
     $smarty->assign("module_name", $module_name);
     $smarty->assign("by_min",_tr("by_min"));
     $smarty->assign("alert_import",_tr("alert_import"));
+    $smarty->assign("CARD_TITLE", _tr("import_rate"));
+    $smarty->assign("IMPORT_INFO", _tr("The file must be a CSV file with the columns of the rate"));
     $htmlForm = $oForm->fetchForm("$local_templates_dir/import_rate.tpl",_tr("import_rate"), $_DATA);
     return $htmlForm;
 }
