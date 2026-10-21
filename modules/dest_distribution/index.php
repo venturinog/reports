@@ -54,6 +54,7 @@ function _moduleContent(&$smarty, $module_name)
     $smarty->assign("menu","dest_distribution");
 
     $smarty->assign("Filter",_tr('Filter'));
+    $smarty->assign("FILTER_TITLE",_tr('Show Filter'));
 
 
 

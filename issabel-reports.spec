@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 21
+Release: 22
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-22
+- Use the theme grid in the destination distribution page. The filter was a
+  row of table cells with the labels on the side, and the summary table
+  used the legacy table classes of Elastix.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-21
 - Use the theme grid in the graphic report filter. The filter was a legacy
   table with the labels on the side, and the field of the extension and
