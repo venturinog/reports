@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 22
+Release: 23
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-23
+- Use the theme grid in the summary filter. The filter was a legacy table
+  with the labels on the side. The Spanish language file also had two
+  lines in latin-1, which broke the encoding check of the whole file.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-22
 - Use the theme grid in the destination distribution page. The filter was a
   row of table cells with the labels on the side, and the summary table

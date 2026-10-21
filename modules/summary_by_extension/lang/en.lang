@@ -42,6 +42,9 @@ $arrLangModule=array(
 "calls" => "calls",
 "call" => "call",
 "No data to display" => "No data to display",
-"Details" => "Details"
+"Details" => "Details",
+"Value" => "Value",
+"Start Date" => "Start Date",
+"End Date" => "End Date"
 );
 ?>

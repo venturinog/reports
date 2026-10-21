@@ -196,6 +196,7 @@ function reportReportCall($smarty, $module_name, $local_templates_dir, &$pDB_cdr
     $_POST['date_from'] = $date_from;
     $_POST['date_to']   = $date_to;
     $smarty->assign("SHOW", _tr("Show"));
+    $smarty->assign("FILTER_TITLE", _tr("Show Filter"));
 
     if($_POST["date_from"]==="")
         $_POST["date_from"]  = " ";
@@ -234,7 +235,7 @@ function createFieldForm(){
                                   "VALIDATION_TYPE"        => "text",
                                   "EDITABLE"               => "yes",
                                   "VALIDATION_EXTRA_PARAM" => ""),
-            "value_fil" => array( "LABEL"                  => "",
+            "value_fil" => array( "LABEL"                  => _tr("Value"),
                                   "REQUIRED"               => "no",
                                   "INPUT_TYPE"             => "TEXT",
                                   "INPUT_EXTRA_PARAM"      => "",
