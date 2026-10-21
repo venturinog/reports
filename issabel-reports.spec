@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 15
+Release: 16
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -95,6 +95,13 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-16
+- Handle the cancel button in the billing setup page. The button had no
+  branch, so the page fell through and re-rendered the form instead of
+  discarding the edit, and the redirect after saving did not stop the
+  module. The wrapper around the trunk grid was also removed: the theme
+  grid already carries its own form.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-15
 - Remove the nested forms from the billing rate screens. Each screen
   built its form in the PHP wrapper and the template had one too, so the

@@ -80,7 +80,12 @@ function _moduleContent(&$smarty, $module_name)
     $smarty->assign("REQUIRED_FIELD", _tr("Required field"));
     $strReturn = $oForm->fetchForm("$local_templates_dir/default_rate.tpl", _tr("Default Rate Configuration"), $arrDefaultRate);
 
-    if(isset($_POST['edit_default'])) {
+    if(isset($_POST['cancel'])) {
+        // Cancelar descarta la edicion y vuelve al modo vista.
+        header("Location: index.php?menu=billing_setup");
+        return NULL;
+    }
+    else if(isset($_POST['edit_default'])) {
         $arrDefaultRate['default_rate']=get_key_settings($pDBSetting,"default_rate");
         $arrDefaultRate['default_rate_offset']=get_key_settings($pDBSetting,"default_rate_offset");
         $oForm = new paloForm($smarty, $arrForm);
@@ -102,6 +107,7 @@ function _moduleContent(&$smarty, $module_name)
                 echo _tr("Error when saving default rate");
             } else {
                 header("Location: index.php?menu=billing_setup");
+                return NULL;
             }
         } else {
             // Error
@@ -184,10 +190,9 @@ function _moduleContent(&$smarty, $module_name)
     $oGrid = new paloSantoGrid($smarty);
     $oGrid->pagingShow(false);
     $oGrid->customAction('submit_bill_trunks',_tr('Billing Capable'));
+    // La grilla del tema ya viene con su propio <form>, que es el que lleva el
+    // token CSRF: envolverla otra vez anidaria los dos formularios.
     $trunk_config = $oGrid->fetchGrid($arrGrid, $arrData);
-    if (strpos($trunk_config, '<form') === FALSE)
-        $trunk_config =
-            "<form style='margin-bottom:0;' method='POST' action='?menu=billing_setup'>$trunk_config</form>";
    //mostrar los dos formularios
     $contenido.=$strReturn.$trunk_config;
     return $contenido;
