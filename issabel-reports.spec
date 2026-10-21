@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 39
+Release: 40
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,10 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-40
+- Validate the default rate field by field. The error was a single
+  global message that did not say which of the two values was wrong.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-39
 - Validate the graphic report filter field by field. The only check was
   the extension, and its error went to a global message and the report

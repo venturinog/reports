@@ -22,10 +22,12 @@
       <div class="iss-field">
         <span class="iss-field__label">{$default_rate.LABEL}&nbsp;<span class="iss-required">*</span></span>
         <span class="iss-field__control">{$default_rate.INPUT}</span>
+        {if $ERRORS.default_rate}<div class="invalid-feedback d-block">{$ERRORS.default_rate}</div>{/if}
       </div>
       <div class="iss-field">
         <span class="iss-field__label">{$default_rate_offset.LABEL}&nbsp;<span class="iss-required">*</span></span>
         <span class="iss-field__control">{$default_rate_offset.INPUT}</span>
+        {if $ERRORS.default_rate_offset}<div class="invalid-feedback d-block">{$ERRORS.default_rate_offset}</div>{/if}
       </div>
     </div>
   </section>
@@ -46,3 +48,51 @@
   {/if}
 </div>
 </form>
+{literal}
+<script>
+/* Validacion en vivo. El servidor sigue siendo la fuente de verdad: esto solo
+ * da la respuesta inmediata. */
+(function () {
+    'use strict';
+
+    function marcar(el, ok) {
+        if (!el) return;
+        el.classList.remove('is-valid', 'is-invalid');
+        el.classList.add(ok ? 'is-valid' : 'is-invalid');
+    }
+
+    var campos = [
+        { el: document.getElementById('default_rate'), requerido: true },
+        { el: document.getElementById('default_rate_offset'), requerido: true }
+    ];
+
+    function comprobar(tocados) {
+        var ok = true;
+        campos.forEach(function (campo) {
+            if (!campo.el) return;
+            var valor = campo.el.value.trim();
+            var bueno = valor === '' ? !campo.requerido : !isNaN(parseFloat(valor));
+            if (tocados || valor !== '') marcar(campo.el, bueno);
+            if (!bueno) ok = false;
+        });
+        return ok;
+    }
+
+    campos.forEach(function (campo) {
+        if (!campo.el) return;
+        campo.el.addEventListener('input', function () { comprobar(true); });
+        campo.el.addEventListener('blur', function () { comprobar(true); });
+    });
+
+    var boton = document.querySelector('input[name=save_default]');
+    if (boton && boton.form) {
+        boton.form.addEventListener('submit', function (e) {
+            if (e.submitter && e.submitter.name === 'cancel') return;
+            if (!comprobar(true)) { e.preventDefault(); return false; }
+        });
+    }
+
+    comprobar(false);
+})();
+</script>
+{/literal}

@@ -30,6 +30,7 @@ function _moduleContent(&$smarty, $module_name)
     include_once "libs/paloSantoConfig.class.php";
     include_once "libs/paloSantoTrunk.class.php";
     require_once "libs/misc.lib.php";
+    require_once "libs/issabelReportForm.class.php";
 
     //include module files
     include_once "modules/$module_name/configs/default.conf.php";
@@ -106,7 +107,27 @@ function _moduleContent(&$smarty, $module_name)
         $oForm = new paloForm($smarty, $arrForm);
         $arrDefaultRate['default_rate'] = $_POST['default_rate'];
         $arrDefaultRate['default_rate_offset'] = $_POST['default_rate_offset'];
-        if($oForm->validateForm($_POST)) {
+
+        /* Validacion por campo: el servidor es la fuente de verdad y la pagina
+         * se vuelve a pintar con el error bajo el campo que falla. */
+        $errors = array();
+        if (trim((string)$_POST['default_rate']) === '') {
+            $errors['default_rate'] = issabelReportError(_tr('Default Rate'), true);
+        } else if (!is_numeric($_POST['default_rate'])) {
+            $errors['default_rate'] = issabelReportError(_tr('Default Rate'), false, false);
+        }
+        if (trim((string)$_POST['default_rate_offset']) === '') {
+            $errors['default_rate_offset'] = issabelReportError(_tr('Default Rate Offset'), true);
+        } else if (!is_numeric($_POST['default_rate_offset'])) {
+            $errors['default_rate_offset'] = issabelReportError(_tr('Default Rate Offset'), false, false);
+        }
+        if (count($errors) > 0) {
+            issabelReportMarkInvalid($arrForm, $errors);
+            $oForm = new paloForm($smarty, $arrForm);
+        }
+        $smarty->assign("ERRORS", issabelReportErrorMap($arrForm, $errors));
+
+        if (count($errors) == 0) {
             $bValido=set_key_settings($pDBSetting,'default_rate',$arrDefaultRate['default_rate']);
             $bValido=set_key_settings($pDBSetting,'default_rate_offset',$arrDefaultRate['default_rate_offset']);
             if(!$bValido) {
@@ -116,9 +137,6 @@ function _moduleContent(&$smarty, $module_name)
                 return NULL;
             }
         } else {
-            // Error
-            $smarty->assign("mb_title", _tr("Validation Error"));
-            $smarty->assign("mb_message", _tr("Value for rate is not valid"));
             $smarty->assign("CANCEL", _tr("Cancel"));
             $smarty->assign("SAVE", _tr("Save"));
             $smarty->assign("REQUIRED_FIELD", _tr("Required field"));
