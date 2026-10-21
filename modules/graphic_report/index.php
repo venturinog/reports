@@ -195,12 +195,12 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
     $errors = array();
     if (trim((string)$date_ini) === '') {
         $errors['date_from'] = issabelReportError(_tr('Start date'), true);
-    } else if (!issabelReportValidDate($date_ini)) {
+    } else if (!validReportDate($date_ini)) {
         $errors['date_from'] = issabelReportError(_tr('Start date'), false, false);
     }
     if (trim((string)$date_fin) === '') {
         $errors['date_to'] = issabelReportError(_tr('End date'), true);
-    } else if (!issabelReportValidDate($date_fin)) {
+    } else if (!validReportDate($date_fin)) {
         $errors['date_to'] = issabelReportError(_tr('End date'), false, false);
     }
     if ($option === "Number") {

@@ -200,12 +200,12 @@ function reportReportCall($smarty, $module_name, $local_templates_dir, &$pDB_cdr
     $errors = array();
     if (trim((string)$date_from) === '') {
         $errors['date_from'] = issabelReportError(_tr('Start date'), true);
-    } else if (!issabelReportValidDate($date_from)) {
+    } else if (!validReportDate($date_from)) {
         $errors['date_from'] = issabelReportError(_tr('Start date'), false, false);
     }
     if (trim((string)$date_to) === '') {
         $errors['date_to'] = issabelReportError(_tr('End date'), true);
-    } else if (!issabelReportValidDate($date_to)) {
+    } else if (!validReportDate($date_to)) {
         $errors['date_to'] = issabelReportError(_tr('End date'), false, false);
     }
     if (trim((string)$value) !== '' && !is_numeric($value)) {

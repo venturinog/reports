@@ -88,7 +88,7 @@ function issabelReportError($label, $required = false, $valid = true)
  * @param string $value
  * @return bool
  */
-function issabelReportValidDate($value)
+function validReportDate($value)
 {
     return preg_match('/^[[:digit:]]{1,2}[[:space:]]+[[:alnum:]]{3}[[:space:]]+[[:digit:]]{4}$/', (string)$value) === 1;
 }
@@ -100,7 +100,7 @@ function issabelReportValidDate($value)
  * @param string $value
  * @return bool
  */
-function issabelReportValidDateTime($value)
+function validReportDateTime($value)
 {
     return preg_match('/^[[:digit:]]{1,2}[[:space:]]+[[:alnum:]]{3}[[:space:]]+[[:digit:]]{4}[[:space:]]+[[:digit:]]{1,2}:[[:digit:]]{1,2}$/', (string)$value) === 1;
 }

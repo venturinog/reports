@@ -101,12 +101,12 @@ function _moduleContent(&$smarty, $module_name)
          * se vuelve a pintar con el error bajo el campo que falla. */
         if (trim((string)$_POST['date_start']) === '') {
             $errors['date_start'] = issabelReportError(_tr('Start Date'), true);
-        } else if (!issabelReportValidDate($_POST['date_start'])) {
+        } else if (!validReportDate($_POST['date_start'])) {
             $errors['date_start'] = issabelReportError(_tr('Start Date'), false, false);
         }
         if (trim((string)$_POST['date_end']) === '') {
             $errors['date_end'] = issabelReportError(_tr('End Date'), true);
-        } else if (!issabelReportValidDate($_POST['date_end'])) {
+        } else if (!validReportDate($_POST['date_end'])) {
             $errors['date_end'] = issabelReportError(_tr('End Date'), false, false);
         }
         if (!isset($_POST['criteria']) || !isset($arrFormElements['criteria']['INPUT_EXTRA_PARAM'][$_POST['criteria']])) {
@@ -139,10 +139,10 @@ function _moduleContent(&$smarty, $module_name)
         $htmlFilter = $contenidoModulo=$oFilterForm->fetchForm("$local_templates_dir/dest_dist_filter.tpl", "", $_POST);
 
     } else if(isset($_GET['date_start']) && isset($_GET['date_end'])) {
-        if (!issabelReportValidDate($_GET['date_start'])) {
+        if (!validReportDate($_GET['date_start'])) {
             $errors['date_start'] = issabelReportError(_tr('Start Date'), false, false);
         }
-        if (!issabelReportValidDate($_GET['date_end'])) {
+        if (!validReportDate($_GET['date_end'])) {
             $errors['date_end'] = issabelReportError(_tr('End Date'), false, false);
         }
         $value_criteria = (isset($_GET['criteria']) && isset($arrFormElements['criteria']['INPUT_EXTRA_PARAM'][$_GET['criteria']]))

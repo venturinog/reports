@@ -126,12 +126,12 @@ function reportMissedCalls($smarty, $module_name, $local_templates_dir, &$pDB, $
     $errors = array();
     if (trim((string)$date_start) === '') {
         $errors['date_start'] = issabelReportError(_tr('Start Date'), true);
-    } else if (!issabelReportValidDateTime($date_start)) {
+    } else if (!validReportDateTime($date_start)) {
         $errors['date_start'] = issabelReportError(_tr('Start Date'), false, false);
     }
     if (trim((string)$date_end) === '') {
         $errors['date_end'] = issabelReportError(_tr('End Date'), true);
-    } else if (!issabelReportValidDateTime($date_end)) {
+    } else if (!validReportDateTime($date_end)) {
         $errors['date_end'] = issabelReportError(_tr('End Date'), false, false);
     }
     if (count($errors) > 0) {

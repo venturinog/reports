@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 50
+Release: 51
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,10 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-51
+- Name the date validators of the report modules after the convention of
+  the style guide, which prefixes the validators with valid.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-50
 - Escape the values of the report grids. The values come from the database
   and the grids print them as HTML, so a CDR with a script in it ended up

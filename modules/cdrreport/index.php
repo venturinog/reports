@@ -256,12 +256,12 @@ function _moduleContent(&$smarty, $module_name)
      * sin perder lo que el usuario escribio. */
     if (trim((string)$paramFiltro['date_start']) === '') {
         $errors['date_start'] = issabelReportError(_tr('Start Date'), true);
-    } else if (!issabelReportValidDate($paramFiltro['date_start'])) {
+    } else if (!validReportDate($paramFiltro['date_start'])) {
         $errors['date_start'] = issabelReportError(_tr('Start Date'), false, false);
     }
     if (trim((string)$paramFiltro['date_end']) === '') {
         $errors['date_end'] = issabelReportError(_tr('End Date'), true);
-    } else if (!issabelReportValidDate($paramFiltro['date_end'])) {
+    } else if (!validReportDate($paramFiltro['date_end'])) {
         $errors['date_end'] = issabelReportError(_tr('End Date'), false, false);
     }
     if (!isset($arrFormElements['field_name']['INPUT_EXTRA_PARAM'][$paramFiltro['field_name']])) {

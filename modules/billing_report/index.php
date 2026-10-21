@@ -125,14 +125,14 @@ function reportbilling_report($smarty, $module_name, $local_templates_dir, &$pDB
     if (isset($start_date_tmp)) {
         if (trim((string)$start_date_tmp) === '') {
             $errors['date_start'] = issabelReportError(_tr('Start Date'), true);
-        } else if (!issabelReportValidDate($start_date_tmp)) {
+        } else if (!validReportDate($start_date_tmp)) {
             $errors['date_start'] = issabelReportError(_tr('Start Date'), false, false);
         }
     }
     if (isset($end_date_tmp)) {
         if (trim((string)$end_date_tmp) === '') {
             $errors['date_end'] = issabelReportError(_tr('End Date'), true);
-        } else if (!issabelReportValidDate($end_date_tmp)) {
+        } else if (!validReportDate($end_date_tmp)) {
             $errors['date_end'] = issabelReportError(_tr('End Date'), false, false);
         }
     }
