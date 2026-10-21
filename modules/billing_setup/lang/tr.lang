@@ -1,0 +1,12 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Billing Capable" => "Faturalanabilir",
+"Default Rate Configuration" => "Varsayılan ücret yapılandırması",
+"Default Rate" => "Varsayılan ücret",
+"Default Rate Offset" => "Varsayılan ücret kayması",
+"Trunk Bill Configuration" => "Hat faturalama yapılandırması",
+"Trunk" => "Hat",
+"Billing Capable" => "Faturalanabilir",
+"Error when saving default rate" => "Varsayılan ücret kaydedilirken hata oluştu"
+);
+?>

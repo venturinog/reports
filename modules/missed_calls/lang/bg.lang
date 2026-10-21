@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Missed Calls" => "Пропуснати разговори",
+"Date" => "Дата",
+"Source" => "Източник",
+"Start Date" => "Начална дата",
+"End Date" => "Крайна дата",
+"Destination" => "Направление",
+"Time since last call" => "Време от последния разговор",
+"Number of attempts" => "Брой опити",
+"year(s)" => "година(и)",
+"month(s)" => "месец(а)",
+"day(s)" => "ден(и)",
+"hour(s)" => "час(а)",
+"minute(s)" => "минута(и)",
+"second(s)" => "секунда(и)",
+"Status" => "Състояние",
+"NO ANSWER" => "БЕЗ ОТГОВОР",
+"NO ANSWER - VOICEMAIL" => "БЕЗ ОТГОВОР И ГЛАСОВО СЪОБЩЕНИЕ",
+"UNKNOWN" => "НЕИЗВЕСТНО",
+"ANSWERED" => "ОТГОВОРЕНИ",
+"Value" => "Стойност",
+"The following fields contain errors" => "Следните полета съдържат грешки",
+"No extension for missed calls. Contact your administrator." => "Няма вътрешна линия за пропуснатите разговори. Свържете се с администратора."
+);
+?>

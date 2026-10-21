@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Missed Calls" => "未接来电",
+"Date" => "日期",
+"Source" => "来源",
+"Start Date" => "开始日期",
+"End Date" => "结束日期",
+"Destination" => "目的地",
+"Time since last call" => "距上次通话的时间",
+"Number of attempts" => "尝试次数",
+"year(s)" => "年",
+"month(s)" => "月",
+"day(s)" => "天",
+"hour(s)" => "小时",
+"minute(s)" => "分钟",
+"second(s)" => "秒",
+"Status" => "状态",
+"NO ANSWER" => "无人接听",
+"NO ANSWER - VOICEMAIL" => "无人接听并转入语音信箱",
+"UNKNOWN" => "未知",
+"ANSWERED" => "已接听",
+"Value" => "值",
+"The following fields contain errors" => "以下字段有误",
+"No extension for missed calls. Contact your administrator." => "没有分机可用于未接来电。请联系您的管理员。"
+);
+?>

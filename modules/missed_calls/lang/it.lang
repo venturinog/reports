@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Missed Calls" => "Chiamate perse",
+"Date" => "Data",
+"Source" => "Origine",
+"Start Date" => "Data di inizio",
+"End Date" => "Data di fine",
+"Destination" => "Destinazione",
+"Time since last call" => "Tempo dall'ultima chiamata",
+"Number of attempts" => "Numero di tentativi",
+"year(s)" => "anno/i",
+"month(s)" => "mese/i",
+"day(s)" => "giorno/i",
+"hour(s)" => "ora/e",
+"minute(s)" => "minuto/i",
+"second(s)" => "secondo/i",
+"Status" => "Stato",
+"NO ANSWER" => "NON RISPOSTE",
+"NO ANSWER - VOICEMAIL" => "NON RISPOSTE E SEGRETERIA VOCALE",
+"UNKNOWN" => "SCONOSCIUTO",
+"ANSWERED" => "RISPOSTE",
+"Value" => "Valore",
+"The following fields contain errors" => "I campi seguenti contengono errori",
+"No extension for missed calls. Contact your administrator." => "Nessun interno per le chiamate perse. Contatta il tuo amministratore."
+);
+?>

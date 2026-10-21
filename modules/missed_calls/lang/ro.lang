@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Missed Calls" => "Apeluri pierdute",
+"Date" => "Dată",
+"Source" => "Sursă",
+"Start Date" => "Dată de început",
+"End Date" => "Dată finală",
+"Destination" => "Destinație",
+"Time since last call" => "Timp de la ultimul apel",
+"Number of attempts" => "Numărul de încercări",
+"year(s)" => "ani",
+"month(s)" => "luni",
+"day(s)" => "zi",
+"hour(s)" => "ore",
+"minute(s)" => "minute",
+"second(s)" => "secunde",
+"Status" => "Stare",
+"NO ANSWER" => "FĂRĂ RĂSPUNS",
+"NO ANSWER - VOICEMAIL" => "FĂRĂ RĂSPUNS ȘI CĂSUȚĂ VOCALĂ",
+"UNKNOWN" => "NECUNOSCUT",
+"ANSWERED" => "PRELUATE",
+"Value" => "Valoare",
+"The following fields contain errors" => "Următoarele câmpuri conțin erori",
+"No extension for missed calls. Contact your administrator." => "Nu există extensie pentru apelurile pierdute. Contactați administratorul."
+);
+?>

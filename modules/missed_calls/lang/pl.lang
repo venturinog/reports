@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Missed Calls" => "Nieodebrane połączenia",
+"Date" => "Data",
+"Source" => "Źródło",
+"Start Date" => "Data rozpoczęcia",
+"End Date" => "Data zakończenia",
+"Destination" => "Miejsce docelowe",
+"Time since last call" => "Czas od ostatniego połączenia",
+"Number of attempts" => "Liczba prób",
+"year(s)" => "lata",
+"month(s)" => "mies.",
+"day(s)" => "dni",
+"hour(s)" => "godz.",
+"minute(s)" => "min.",
+"second(s)" => "s",
+"Status" => "Status",
+"NO ANSWER" => "BRAK ODPOWIEDZI",
+"NO ANSWER - VOICEMAIL" => "BRAK ODPOWIEDZI I POCZTA GŁOSOWA",
+"UNKNOWN" => "NIEZNANY",
+"ANSWERED" => "ODEBRANE",
+"Value" => "Wartość",
+"The following fields contain errors" => "Następujące pola zawierają błędy",
+"No extension for missed calls. Contact your administrator." => "Brak rozszerzenia dla nieodebranych połączeń. Skontaktuj się z administratorem."
+);
+?>

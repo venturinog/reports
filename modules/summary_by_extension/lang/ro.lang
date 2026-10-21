@@ -1,0 +1,28 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Summary by Extension" => "Sumar după extensie",
+"Start date" => "Dată de început",
+"End date" => "Dată finală",
+"Extension" => "Extensie",
+"User name" => "Nume de utilizator",
+"Sec. Outgoing Calls" => "Timp total (apeluri de ieșire)",
+"Sec. Incoming Calls" => "Timp total (apeluri de intrare)",
+"Num. Outgoing Calls" => "Nr. apeluri de ieșire",
+"Num. Incoming Calls" => "Nr. apeluri de intrare",
+"Call Details" => "Vizualizare",
+"Top 10 (Outgoing) ext" => "Top 10 (ieșire) ext.",
+"Top 10 (Incoming) ext" => "Top 10 (intrare) ext.",
+"Filter by" => "Filtrează după",
+"User" => "Utilizator",
+"seconds" => "secunde",
+"Other calls" => "Alte apeluri",
+"External #" => "Nr. extern",
+"calls" => "apeluri",
+"call" => "apel",
+"No data to display" => "Nu există date de afișat",
+"Details" => "Detalii",
+"Value" => "Valoare",
+"Start Date" => "Dată de început",
+"End Date" => "Dată finală"
+);
+?>

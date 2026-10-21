@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Missed Calls" => "Missade samtal",
+"Date" => "Datum",
+"Source" => "Källa",
+"Start Date" => "Startdatum",
+"End Date" => "Slutdatum",
+"Destination" => "Destination",
+"Time since last call" => "Tid sedan senaste samtalet",
+"Number of attempts" => "Antal försök",
+"year(s)" => "år",
+"month(s)" => "månad(er)",
+"day(s)" => "dag(ar)",
+"hour(s)" => "timme/ar",
+"minute(s)" => "minut/ar",
+"second(s)" => "sekund/er",
+"Status" => "Status",
+"NO ANSWER" => "INGET SVAR",
+"NO ANSWER - VOICEMAIL" => "INGET SVAR OCH RÖSTBREV",
+"UNKNOWN" => "OKÄND",
+"ANSWERED" => "BESVARADE",
+"Value" => "Värde",
+"The following fields contain errors" => "Följande fält innehåller fel",
+"No extension for missed calls. Contact your administrator." => "Ingen förlängning för missade samtal. Kontakta din administratör."
+);
+?>

@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Missed Calls" => "Ubesvarede opkald",
+"Date" => "Dato",
+"Source" => "Kilde",
+"Start Date" => "Startdato",
+"End Date" => "Slutdato",
+"Destination" => "Destination",
+"Time since last call" => "Tid siden sidste opkald",
+"Number of attempts" => "Antal forsøg",
+"year(s)" => "år",
+"month(s)" => "måned(er)",
+"day(s)" => "dag(e)",
+"hour(s)" => "time(r)",
+"minute(s)" => "minut(ter)",
+"second(s)" => "sekund(er)",
+"Status" => "Status",
+"NO ANSWER" => "INGEN SVAR",
+"NO ANSWER - VOICEMAIL" => "INGEN SVAR OG VOICEMAIL",
+"UNKNOWN" => "UKENDT",
+"ANSWERED" => "BESVARET",
+"Value" => "Værdi",
+"The following fields contain errors" => "Følgende felter indeholder fejl",
+"No extension for missed calls. Contact your administrator." => "Der er ingen udvidelse til ubesvarede opkald. Kontakt din administrator."
+);
+?>

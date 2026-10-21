@@ -1,0 +1,19 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Channels Usage Report" => "Отчет за използване на канали",
+"Simultaneous Channels (Total)" => "Едновременни канали (общо)",
+"Simultaneous Zap Channels" => "Едновременни канали Zap",
+"Simultaneous SIP Channels" => "Едновременни канали SIP",
+"Simultaneous IAX Channels" => "Едновременни канали IAX",
+"Simultaneous H323 Channels" => "Едновременни канали H323",
+"Simultaneous Local Channels" => "Едновременни локални канали",
+"Total Channels" => "Общо канали",
+"Print" => "Печат",
+"Zap Channels" => "Канали Zap",
+"SIP Channels" => "Канали SIP",
+"IAX Channels" => "Канали IAX",
+"H323 Channels" => "Канали H323",
+"Local Channels" => "Локални канали",
+"Nothing to show yet" => "Още няма какво да се покаже"
+);
+?>

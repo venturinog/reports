@@ -1,0 +1,28 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Summary by Extension" => "Resum per extensió",
+"Start date" => "Data d'inici",
+"End date" => "Data de fi",
+"Extension" => "Extensió",
+"User name" => "Nom d'usuari",
+"Sec. Outgoing Calls" => "Temps total (trucades sortints)",
+"Sec. Incoming Calls" => "Temps total (trucades entrants)",
+"Num. Outgoing Calls" => "Núm. de trucades sortints",
+"Num. Incoming Calls" => "Núm. de trucades entrants",
+"Call Details" => "Veure",
+"Top 10 (Outgoing) ext" => "Top 10 (sortints) ext.",
+"Top 10 (Incoming) ext" => "Top 10 (entrants) ext.",
+"Filter by" => "Filtra per",
+"User" => "Usuari",
+"seconds" => "segons",
+"Other calls" => "Altres trucades",
+"External #" => "Núm. extern",
+"calls" => "trucades",
+"call" => "trucada",
+"No data to display" => "No hi ha dades per mostrar",
+"Details" => "Detalls",
+"Value" => "Valor",
+"Start Date" => "Data d'inici",
+"End Date" => "Data de fi"
+);
+?>

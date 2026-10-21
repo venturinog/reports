@@ -1,0 +1,28 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Summary by Extension" => "Σύνοψη κατά εσωτερικό",
+"Start date" => "Ημερομηνία έναρξης",
+"End date" => "Ημερομηνία λήξης",
+"Extension" => "Εσωτερικό",
+"User name" => "Όνομα χρήστη",
+"Sec. Outgoing Calls" => "Συνολικός χρόνος (εξερχόμενες κλήσεις)",
+"Sec. Incoming Calls" => "Συνολικός χρόνος (εισερχόμενες κλήσεις)",
+"Num. Outgoing Calls" => "Αριθμός εξερχόμενων κλήσεων",
+"Num. Incoming Calls" => "Αριθμός εισερχόμενων κλήσεων",
+"Call Details" => "Προβολή",
+"Top 10 (Outgoing) ext" => "Top 10 (εξερχόμενα) εσωτ.",
+"Top 10 (Incoming) ext" => "Top 10 (εισερχόμενα) εσωτ.",
+"Filter by" => "Φίλτρο κατά",
+"User" => "Χρήστης",
+"seconds" => "δευτερόλεπτα",
+"Other calls" => "Άλλες κλήσεις",
+"External #" => "Εξωτερικός αριθμός",
+"calls" => "κλήσεις",
+"call" => "κλήση",
+"No data to display" => "Δεν υπάρχουν δεδομένα για εμφάνιση",
+"Details" => "Λεπτομέρειες",
+"Value" => "Τιμή",
+"Start Date" => "Ημερομηνία έναρξης",
+"End Date" => "Ημερομηνία λήξης"
+);
+?>

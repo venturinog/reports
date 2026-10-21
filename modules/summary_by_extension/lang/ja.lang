@@ -1,0 +1,28 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Summary by Extension" => "内線別のサマリー",
+"Start date" => "開始日",
+"End date" => "終了日",
+"Extension" => "内線",
+"User name" => "ユーザー名",
+"Sec. Outgoing Calls" => "合計時間（発信）",
+"Sec. Incoming Calls" => "合計時間（着信）",
+"Num. Outgoing Calls" => "発信回数",
+"Num. Incoming Calls" => "着信回数",
+"Call Details" => "表示",
+"Top 10 (Outgoing) ext" => "発信上位 10 件（内線）",
+"Top 10 (Incoming) ext" => "着信上位 10 件（内線）",
+"Filter by" => "絞り込み条件",
+"User" => "ユーザー",
+"seconds" => "秒",
+"Other calls" => "その他の通話",
+"External #" => "外部番号",
+"calls" => "通話",
+"call" => "通話",
+"No data to display" => "表示するデータがありません",
+"Details" => "詳細",
+"Value" => "値",
+"Start Date" => "開始日",
+"End Date" => "終了日"
+);
+?>

@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Missed Calls" => "Promašeni pozivi",
+"Date" => "Datum",
+"Source" => "Izvor",
+"Start Date" => "Početni datum",
+"End Date" => "Završni datum",
+"Destination" => "Odredište",
+"Time since last call" => "Vrijeme od zadnjeg poziva",
+"Number of attempts" => "Broj pokušaja",
+"year(s)" => "godina(e)",
+"month(s)" => "mjesec(i)",
+"day(s)" => "dan(a)",
+"hour(s)" => "sat(i)",
+"minute(s)" => "minuta(e)",
+"second(s)" => "sekunda(e)",
+"Status" => "Status",
+"NO ANSWER" => "BEZ ODGOVORA",
+"NO ANSWER - VOICEMAIL" => "BEZ ODGOVORA I GLASOVNA POŠTA",
+"UNKNOWN" => "NEPOZNATO",
+"ANSWERED" => "ODGOVORENO",
+"Value" => "Vrijednost",
+"The following fields contain errors" => "Sljedeća polja sadrže pogreške",
+"No extension for missed calls. Contact your administrator." => "Nema ekstenzije za promašene pozive. Obratite se administratoru."
+);
+?>

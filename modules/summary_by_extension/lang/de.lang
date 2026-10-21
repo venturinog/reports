@@ -1,0 +1,28 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Summary by Extension" => "Zusammenfassung nach Durchwahl",
+"Start date" => "Startdatum",
+"End date" => "Enddatum",
+"Extension" => "Durchwahl",
+"User name" => "Benutzername",
+"Sec. Outgoing Calls" => "Gesamtzeit (ausgehende Anrufe)",
+"Sec. Incoming Calls" => "Gesamtzeit (eingehende Anrufe)",
+"Num. Outgoing Calls" => "Anzahl ausgehender Anrufe",
+"Num. Incoming Calls" => "Anzahl eingehender Anrufe",
+"Call Details" => "Anzeigen",
+"Top 10 (Outgoing) ext" => "Top 10 (ausgehend) Durchwahl",
+"Top 10 (Incoming) ext" => "Top 10 (eingehend) Durchwahl",
+"Filter by" => "Filtern nach",
+"User" => "Benutzer",
+"seconds" => "Sekunden",
+"Other calls" => "Andere Anrufe",
+"External #" => "Externe Nummer",
+"calls" => "Anrufe",
+"call" => "Anruf",
+"No data to display" => "Keine Daten zum Anzeigen",
+"Details" => "Details",
+"Value" => "Wert",
+"Start Date" => "Startdatum",
+"End Date" => "Enddatum"
+);
+?>

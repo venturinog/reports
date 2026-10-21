@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"billing_report" => "Faturalama raporu",
+"Start Date" => "Başlangıç tarihi",
+"End Date" => "Bitiş tarihi",
+"Channel" => "Kanal",
+"Billing Report" => "Faturalama raporu",
+"Cost" => "Maliyet",
+"Summary Cost" => "Toplam maliyet",
+"Rate Applied" => "Uygulanan ücret",
+"Date" => "Tarih",
+"Source" => "Kaynak",
+"Destination" => "Hedef",
+"Dst. Channel" => "Hedef kanalı",
+"Duration" => "Süre",
+"Rate Value" => "Ücret değeri",
+"Trunk" => "Hat",
+"default" => "varsayılan",
+"Unknown" => "Bilinmiyor",
+"Account Code" => "Hesap kodu",
+"Hours" => "Saat",
+"Minutes" => "Dakika",
+"Seconds" => "Saniye",
+"Value" => "Değer"
+);
+?>

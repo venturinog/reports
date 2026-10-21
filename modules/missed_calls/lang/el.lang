@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Missed Calls" => "Χαμένες κλήσεις",
+"Date" => "Ημερομηνία",
+"Source" => "Πηγή",
+"Start Date" => "Ημερομηνία έναρξης",
+"End Date" => "Ημερομηνία λήξης",
+"Destination" => "Προορισμός",
+"Time since last call" => "Χρόνος από την τελευταία κλήση",
+"Number of attempts" => "Αριθμός προσπαθειών",
+"year(s)" => "έτος(η)",
+"month(s)" => "μήνα(ες)",
+"day(s)" => "ημέρα(ες)",
+"hour(s)" => "ώρα(ες)",
+"minute(s)" => "λεπτό(ά)",
+"second(s)" => "δευτερόλεπτο(α)",
+"Status" => "Κατάσταση",
+"NO ANSWER" => "ΧΩΡΙΣ ΑΠΑΝΤΗΣΗ",
+"NO ANSWER - VOICEMAIL" => "ΧΩΡΙΣ ΑΠΑΝΤΗΣΗ ΚΑΙ ΤΑΧΥΔΡΟΜΗΤΟ",
+"UNKNOWN" => "ΆΓΝΩΣΤΟ",
+"ANSWERED" => "ΑΠΑΝΤΗΘΗΚΑΝ",
+"Value" => "Τιμή",
+"The following fields contain errors" => "Τα παρακάτω πεδία περιέχουν σφάλματα",
+"No extension for missed calls. Contact your administrator." => "Δεν υπάρχει εσωτερικό για τις χαμένες κλήσεις. Επικοινωνήστε με τον διαχειριστή σας."
+);
+?>

@@ -1,0 +1,28 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Summary by Extension" => "Sammanfattning per anknytning",
+"Start date" => "Startdatum",
+"End date" => "Slutdatum",
+"Extension" => "Anknytning",
+"User name" => "Användarnamn",
+"Sec. Outgoing Calls" => "Total tid (utgående samtal)",
+"Sec. Incoming Calls" => "Total tid (inkommande samtal)",
+"Num. Outgoing Calls" => "Antal utgående samtal",
+"Num. Incoming Calls" => "Antal inkommande samtal",
+"Call Details" => "Visa",
+"Top 10 (Outgoing) ext" => "Topp 10 (utgående) anknytning",
+"Top 10 (Incoming) ext" => "Topp 10 (inkommande) anknytning",
+"Filter by" => "Filtrera efter",
+"User" => "Användare",
+"seconds" => "sekunder",
+"Other calls" => "Övriga samtal",
+"External #" => "Externt nummer",
+"calls" => "samtal",
+"call" => "samtal",
+"No data to display" => "Inga data att visa",
+"Details" => "Detaljer",
+"Value" => "Värde",
+"Start Date" => "Startdatum",
+"End Date" => "Slutdatum"
+);
+?>

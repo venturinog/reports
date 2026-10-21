@@ -1,0 +1,28 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Summary by Extension" => "Riepilogo per interno",
+"Start date" => "Data di inizio",
+"End date" => "Data di fine",
+"Extension" => "Interno",
+"User name" => "Nome utente",
+"Sec. Outgoing Calls" => "Tempo totale (chiamate in uscita)",
+"Sec. Incoming Calls" => "Tempo totale (chiamate in entrata)",
+"Num. Outgoing Calls" => "Numero di chiamate in uscita",
+"Num. Incoming Calls" => "Numero di chiamate in entrata",
+"Call Details" => "Visualizza",
+"Top 10 (Outgoing) ext" => "Top 10 (in uscita) est.",
+"Top 10 (Incoming) ext" => "Top 10 (in entrata) est.",
+"Filter by" => "Filtra per",
+"User" => "Utente",
+"seconds" => "secondi",
+"Other calls" => "Altre chiamate",
+"External #" => "N. esterno",
+"calls" => "chiamate",
+"call" => "chiamata",
+"No data to display" => "Non c'è nessun dato da mostrare",
+"Details" => "Dettagli",
+"Value" => "Valore",
+"Start Date" => "Data di inizio",
+"End Date" => "Data di fine"
+);
+?>

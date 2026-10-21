@@ -1,0 +1,28 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Summary by Extension" => "Обобщение по вътрешен номер",
+"Start date" => "Начална дата",
+"End date" => "Крайна дата",
+"Extension" => "Вътрешен номер",
+"User name" => "Потребителско име",
+"Sec. Outgoing Calls" => "Общо време (изходящи разговори)",
+"Sec. Incoming Calls" => "Общо време (входящи разговори)",
+"Num. Outgoing Calls" => "Брой изходящи разговори",
+"Num. Incoming Calls" => "Брой входящи разговори",
+"Call Details" => "Преглед",
+"Top 10 (Outgoing) ext" => "Топ 10 (изходящи) вътр.",
+"Top 10 (Incoming) ext" => "Топ 10 (входящи) вътр.",
+"Filter by" => "Филтър по",
+"User" => "Потребител",
+"seconds" => "секунди",
+"Other calls" => "Други разговори",
+"External #" => "Външен номер",
+"calls" => "разговори",
+"call" => "разговор",
+"No data to display" => "Няма данни за показване",
+"Details" => "Подробности",
+"Value" => "Стойност",
+"Start Date" => "Начална дата",
+"End Date" => "Крайна дата"
+);
+?>

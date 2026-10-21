@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Missed Calls" => "不在着信",
+"Date" => "日付",
+"Source" => "発信元",
+"Start Date" => "開始日",
+"End Date" => "終了日",
+"Destination" => "宛先",
+"Time since last call" => "最終通話からの経過時間",
+"Number of attempts" => "試行回数",
+"year(s)" => "年",
+"month(s)" => "月",
+"day(s)" => "日",
+"hour(s)" => "時間",
+"minute(s)" => "分",
+"second(s)" => "秒",
+"Status" => "状態",
+"NO ANSWER" => "不在応答",
+"NO ANSWER - VOICEMAIL" => "不在応答および留守番電話",
+"UNKNOWN" => "不明",
+"ANSWERED" => "応答",
+"Value" => "値",
+"The following fields contain errors" => "次のフィールドにエラーがあります",
+"No extension for missed calls. Contact your administrator." => "不在着信に対する内線がありません。管理者にお問い合わせください。"
+);
+?>

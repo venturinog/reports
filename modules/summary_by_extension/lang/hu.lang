@@ -1,0 +1,28 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Summary by Extension" => "Összegzés mellékvonal szerint",
+"Start date" => "Kezdő dátum",
+"End date" => "Végső dátum",
+"Extension" => "Mellékvonal",
+"User name" => "Felhasználónév",
+"Sec. Outgoing Calls" => "Teljes idő (kimenő hívások)",
+"Sec. Incoming Calls" => "Teljes idő (bejövő hívások)",
+"Num. Outgoing Calls" => "Kimenő hívások száma",
+"Num. Incoming Calls" => "Bejövő hívások száma",
+"Call Details" => "Megjelenítés",
+"Top 10 (Outgoing) ext" => "Top 10 (kimenő) mellékvonal",
+"Top 10 (Incoming) ext" => "Top 10 (bejövő) mellékvonal",
+"Filter by" => "Szűrés alapján",
+"User" => "Felhasználó",
+"seconds" => "másodperc",
+"Other calls" => "Egyéb hívások",
+"External #" => "Külső szám",
+"calls" => "hívások",
+"call" => "hívás",
+"No data to display" => "Nincs megjeleníthető adat",
+"Details" => "Részletek",
+"Value" => "Érték",
+"Start Date" => "Kezdő dátum",
+"End Date" => "Végső dátum"
+);
+?>

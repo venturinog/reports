@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Missed Calls" => "Trucades perdudes",
+"Date" => "Data",
+"Source" => "Origen",
+"Start Date" => "Data d'inici",
+"End Date" => "Data de fi",
+"Destination" => "Destinació",
+"Time since last call" => "Temps des de l'última trucada",
+"Number of attempts" => "Nombre d'intents",
+"year(s)" => "any(s)",
+"month(s)" => "mes(os)",
+"day(s)" => "dia(s)",
+"hour(s)" => "hora(s)",
+"minute(s)" => "minut(s)",
+"second(s)" => "segon(s)",
+"Status" => "Estat",
+"NO ANSWER" => "SENSE CONTESTAR",
+"NO ANSWER - VOICEMAIL" => "SENSE CONTESTAR I BÚSTIA DE VEUS",
+"UNKNOWN" => "DESCONEGUT",
+"ANSWERED" => "CONTESTADES",
+"Value" => "Valor",
+"The following fields contain errors" => "Els camps següents tenen errors",
+"No extension for missed calls. Contact your administrator." => "No hi ha extensió per a les trucades perdudes. Contacteu amb el vostre administrador."
+);
+?>

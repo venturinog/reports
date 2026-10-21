@@ -1,0 +1,19 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Channels Usage Report" => "Kanal kullanım raporu",
+"Simultaneous Channels (Total)" => "Eşzamanlı kanallar (toplam)",
+"Simultaneous Zap Channels" => "Eşzamanlı Zap kanalları",
+"Simultaneous SIP Channels" => "Eşzamanlı SIP kanalları",
+"Simultaneous IAX Channels" => "Eşzamanlı IAX kanalları",
+"Simultaneous H323 Channels" => "Eşzamanlı H323 kanalları",
+"Simultaneous Local Channels" => "Eşzamanlı yerel kanallar",
+"Total Channels" => "Toplam kanal",
+"Print" => "Yazdır",
+"Zap Channels" => "Zap kanalları",
+"SIP Channels" => "SIP kanalları",
+"IAX Channels" => "IAX kanalları",
+"H323 Channels" => "H323 kanalları",
+"Local Channels" => "Yerel kanallar",
+"Nothing to show yet" => "Henüz gösterilecek bir şey yok"
+);
+?>

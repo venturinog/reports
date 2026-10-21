@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Missed Calls" => "Elmulasztott hívások",
+"Date" => "Dátum",
+"Source" => "Forrás",
+"Start Date" => "Kezdő dátum",
+"End Date" => "Végső dátum",
+"Destination" => "Cél",
+"Time since last call" => "Idő az utolsó hívás óta",
+"Number of attempts" => "Kísérletek száma",
+"year(s)" => "év",
+"month(s)" => "hónap",
+"day(s)" => "nap",
+"hour(s)" => "óra",
+"minute(s)" => "perc",
+"second(s)" => "másodperc",
+"Status" => "Állapot",
+"NO ANSWER" => "NEM VÁLASZOLVA",
+"NO ANSWER - VOICEMAIL" => "NEM VÁLASZOLVA ÉS HANGPOSTA",
+"UNKNOWN" => "ISMERETLEN",
+"ANSWERED" => "VÁLASZOLVA",
+"Value" => "Érték",
+"The following fields contain errors" => "A következő mezők hibásak",
+"No extension for missed calls. Contact your administrator." => "Nincs mellékvonal az elmulasztott hívásokhoz. Forduljon a rendszergazdához."
+);
+?>

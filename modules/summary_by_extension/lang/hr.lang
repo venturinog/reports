@@ -1,0 +1,28 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Summary by Extension" => "Sažetak po ekstenziji",
+"Start date" => "Početni datum",
+"End date" => "Završni datum",
+"Extension" => "Ekstenzija",
+"User name" => "Korisničko ime",
+"Sec. Outgoing Calls" => "Ukupno vrijeme (odlazni pozivi)",
+"Sec. Incoming Calls" => "Ukupno vrijeme (dolazni pozivi)",
+"Num. Outgoing Calls" => "Broj odlaznih poziva",
+"Num. Incoming Calls" => "Broj dolaznih poziva",
+"Call Details" => "Prikaži",
+"Top 10 (Outgoing) ext" => "Top 10 (odlazni) ekst.",
+"Top 10 (Incoming) ext" => "Top 10 (dolazni) ekst.",
+"Filter by" => "Filtriraj po",
+"User" => "Korisnik",
+"seconds" => "sekundi",
+"Other calls" => "Ostali pozivi",
+"External #" => "Vanjski broj",
+"calls" => "pozivi",
+"call" => "poziv",
+"No data to display" => "Nema podataka za prikaz",
+"Details" => "Detalji",
+"Value" => "Vrijednost",
+"Start Date" => "Početni datum",
+"End Date" => "Završni datum"
+);
+?>

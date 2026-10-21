@@ -1,0 +1,22 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Filter" => "Filtre",
+"Start Date" => "Başlangıç tarihi",
+"End Date" => "Bitiş tarihi",
+"Destination Distribution" => "Hedefe göre dağılım",
+"Criteria" => "Ölçüt",
+"Distribution by Time" => "Zamana göre dağılım",
+"Distribution by Number of Calls" => "Arama sayısına göre dağılım",
+"Distribution by Cost" => "Maliyete göre dağılım",
+"Date Range spans maximum number of days" => "Tarih aralığı en fazla bu kadar günü kapsar",
+"ERROR" => "HATA",
+"Minutes" => "Dakika",
+"Number of Calls" => "Arama sayısı",
+"others" => "Diğerleri",
+"Rate Name" => "Ücret adı",
+"default" => "varsayılan",
+"Duration in seconds" => "Süre (saniye)",
+"Cost" => "Maliyet",
+"No records found" => "Kayıt bulunamadı"
+);
+?>

@@ -1,0 +1,28 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Summary by Extension" => "Resumo por ramal",
+"Start date" => "Data inicial",
+"End date" => "Data final",
+"Extension" => "Ramal",
+"User name" => "Nome de usuário",
+"Sec. Outgoing Calls" => "Tempo total (chamadas de saída)",
+"Sec. Incoming Calls" => "Tempo total (chamadas de entrada)",
+"Num. Outgoing Calls" => "N.º de chamadas de saída",
+"Num. Incoming Calls" => "N.º de chamadas de entrada",
+"Call Details" => "Ver",
+"Top 10 (Outgoing) ext" => "Top 10 (saintes) ramais",
+"Top 10 (Incoming) ext" => "Top 10 (entrantes) ramais",
+"Filter by" => "Filtrar por",
+"User" => "Usuário",
+"seconds" => "segundos",
+"Other calls" => "Outras chamadas",
+"External #" => "N.º externo",
+"calls" => "chamadas",
+"call" => "chamada",
+"No data to display" => "Não há dados para exibir",
+"Details" => "Detalhes",
+"Value" => "Valor",
+"Start Date" => "Data inicial",
+"End Date" => "Data final"
+);
+?>

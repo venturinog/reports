@@ -1,0 +1,28 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Summary by Extension" => "내선별 요약",
+"Start date" => "시작일",
+"End date" => "종료일",
+"Extension" => "내선",
+"User name" => "사용자 이름",
+"Sec. Outgoing Calls" => "총 시간(발신 통화)",
+"Sec. Incoming Calls" => "총 시간(수신 통화)",
+"Num. Outgoing Calls" => "발신 통화 횟수",
+"Num. Incoming Calls" => "수신 통화 횟수",
+"Call Details" => "보기",
+"Top 10 (Outgoing) ext" => "상위 10개(발신) 내선",
+"Top 10 (Incoming) ext" => "상위 10개(수신) 내선",
+"Filter by" => "필터 기준",
+"User" => "사용자",
+"seconds" => "초",
+"Other calls" => "기타 통화",
+"External #" => "외부 번호",
+"calls" => "통화",
+"call" => "통화",
+"No data to display" => "표시할 데이터가 없습니다",
+"Details" => "세부 정보",
+"Value" => "값",
+"Start Date" => "시작일",
+"End Date" => "종료일"
+);
+?>

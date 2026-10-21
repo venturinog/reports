@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Missed Calls" => "Verpasste Anrufe",
+"Date" => "Datum",
+"Source" => "Quelle",
+"Start Date" => "Startdatum",
+"End Date" => "Enddatum",
+"Destination" => "Ziel",
+"Time since last call" => "Zeit seit dem letzten Anruf",
+"Number of attempts" => "Anzahl der Versuche",
+"year(s)" => "Jahr(e)",
+"month(s)" => "Monat(e)",
+"day(s)" => "Tag(e)",
+"hour(s)" => "Stunde(n)",
+"minute(s)" => "Minute(n)",
+"second(s)" => "Sekunde(n)",
+"Status" => "Status",
+"NO ANSWER" => "NICHT BEANTWORTET",
+"NO ANSWER - VOICEMAIL" => "NICHT BEANTWORTET UND SPRACHBOX",
+"UNKNOWN" => "UNBEKANNT",
+"ANSWERED" => "BEANTWORTET",
+"Value" => "Wert",
+"The following fields contain errors" => "Die folgenden Felder enthalten Fehler",
+"No extension for missed calls. Contact your administrator." => "Keine Erweiterung für verpasste Anrufe. Wenden Sie sich an Ihren Administrator."
+);
+?>

@@ -1,0 +1,28 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Summary by Extension" => "按分机汇总",
+"Start date" => "开始日期",
+"End date" => "结束日期",
+"Extension" => "分机",
+"User name" => "用户名",
+"Sec. Outgoing Calls" => "总时长（呼出）",
+"Sec. Incoming Calls" => "总时长（呼入）",
+"Num. Outgoing Calls" => "呼出次数",
+"Num. Incoming Calls" => "呼入次数",
+"Call Details" => "查看",
+"Top 10 (Outgoing) ext" => "前 10 个（呼出）分机",
+"Top 10 (Incoming) ext" => "前 10 个（呼入）分机",
+"Filter by" => "筛选条件",
+"User" => "用户",
+"seconds" => "秒",
+"Other calls" => "其他通话",
+"External #" => "外部号码",
+"calls" => "通话",
+"call" => "通话",
+"No data to display" => "没有可显示的数据",
+"Details" => "详情",
+"Value" => "值",
+"Start Date" => "开始日期",
+"End Date" => "结束日期"
+);
+?>

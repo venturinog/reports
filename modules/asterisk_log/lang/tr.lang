@@ -1,0 +1,14 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Search string" => "Arama metni",
+"Search" => "Ara",
+"Search next" => "Sonrakini ara",
+"offset" => "kayma",
+"Asterisk Logs" => "Asterisk kayıtları",
+"Date" => "Tarih",
+"Show" => "Göster",
+"Message" => "Mesaj",
+"Type" => "Tür",
+"Source" => "Kaynak"
+);
+?>

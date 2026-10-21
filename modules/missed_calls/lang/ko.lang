@@ -1,0 +1,26 @@
+global $arrLangModule;
+$arrLangModule=array(
+"Missed Calls" => "수신하지 못한 통화",
+"Date" => "날짜",
+"Source" => "발신지",
+"Start Date" => "시작일",
+"End Date" => "종료일",
+"Destination" => "목적지",
+"Time since last call" => "마지막 통화 이후 시간",
+"Number of attempts" => "시도 횟수",
+"year(s)" => "년",
+"month(s)" => "월",
+"day(s)" => "일",
+"hour(s)" => "시간",
+"minute(s)" => "분",
+"second(s)" => "초",
+"Status" => "상태",
+"NO ANSWER" => "응답 없음",
+"NO ANSWER - VOICEMAIL" => "응답 없음 및 음성 사서함",
+"UNKNOWN" => "알 수 없음",
+"ANSWERED" => "응답됨",
+"Value" => "값",
+"The following fields contain errors" => "다음 필드에 오류가 있습니다",
+"No extension for missed calls. Contact your administrator." => "수신하지 못한 통화에 사용할 내선이 없습니다. 관리자에게 문의하십시오."
+);
+?>
