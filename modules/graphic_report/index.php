@@ -166,10 +166,8 @@ function report_Extention($smarty, $module_name, $local_templates_dir, $pDB_cdr,
 
     if( getAction() == "show" ){
         $smarty->assign("date_from", $date_ini);
-        $smarty->assign("date_1", $date_ini);
 
         $smarty->assign("date_to", $date_fin);
-        $smarty->assign("date_2", $date_fin);
 
         $date_ini2 = translateDate($date_ini);
         $date_fin2 = translateDate($date_fin);

@@ -37,11 +37,6 @@
     </div>
   </section>
 </div>
-<input type="hidden" name="nav" value="{$nav_value}" />
-<input type="hidden" name="start" value="{$start_value}" />
-<input type="hidden" name="date_1" value="{$date_1}" />
-<input type="hidden" name="date_2" value="{$date_2}" />
-
 <!--// solo para que pase el error llamado del popup -->
 <input type="hidden" name="phone_type" id="phone_type"  value="" />
 <input type="hidden" name="phone_id" id="phone_id" value="" />

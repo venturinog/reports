@@ -2,7 +2,7 @@
 Summary: Issabel Reports Module
 Name: issabel-reports
 Version: 6.0.0
-Release: 53
+Release: 54
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -96,6 +96,11 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-54
+- Drop the hidden fields the graphic report filter carried over from the
+  grid. Nothing read them and two of them were never even filled in, so
+  every page load logged a warning about them.
+
 * Wed Oct 21 2026 Issabel Foundation <info@issabel.org> - 6.0.0-53
 - Drop the dead filter of the billing rates. The module built a filter
   with no fields and never showed it, so the template was dead code.
